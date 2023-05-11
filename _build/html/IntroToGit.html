@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Git and Github &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'IntroToGit';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Your Coding Environment" href="Your_Coding_Environment.html" />
+    <link rel="prev" title="The Command Line" href="CommandLine.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to the Data Science Playbook
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CommandLine.html">The Command Line</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Git and Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Your_Coding_Environment.html">Your Coding Environment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FIntroToGit.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/IntroToGit.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Git and Github</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-git">What is Git?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-git">Install Git</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-github">What is GitHub?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-git-for-your-projects">How to Use Git for Your Projects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-github-for-your-projects">How to use GitHub for Your Projects</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-push-our-work-onto-github-follow-these-set-of-instructions">To push our work onto GitHub, follow these set of instructions:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warning-account-authentication-process">WARNING: Account Authentication Process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-github-to-collaborate-with-others">How to Use GitHub to Collaborate with Others</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="git-and-github">
+<h1>Git and Github<a class="headerlink" href="#git-and-github" title="Permalink to this heading">#</a></h1>
+<p>Git and Github are a must know for programming. This section will cover:</p>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>The difference between Git and GitHub</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>Installing Git and Creating a GitHub account</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>Using Git and GitHub for personal projects</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>Using Git and GitHub for collaboration</p></li>
+</ol>
+</li>
+</ul>
+<section id="what-is-git">
+<h2>What is Git?<a class="headerlink" href="#what-is-git" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://git-scm.com/">Git</a> is a program you can run from the command line. it comes pre-installed on all Linux based machines and Macbooks. If you have a Windows PC you have to download it. Programmers use git so that they can keep a history of all changes made to their code. This means that they can roll back changes as far back as when they started using git with their project. Folders in git are referred to as a <strong>repository</strong>, or <strong>repo</strong>, for short. Directories, repositories, and folders pretty much mean the same thing in the world of programming.</p>
+<section id="install-git">
+<h3>Install Git<a class="headerlink" href="#install-git" title="Permalink to this heading">#</a></h3>
+<p>Follow these instructions to download git:</p>
+<p><strong>For Windows</strong></p>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>Install <a class="reference external" href="https://git-for-windows.github.io/">Git Bash</a></p></li>
+</ol>
+</li>
+</ul>
+<p><strong>For Macbooks</strong>: Git should come pre-installed if you have a Macbook or a Linux based machine but if you need to download it, follow these steps:</p>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>Install <a class="reference external" href="http://brew.sh/">Homebrew</a></p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>Go to the command line after installing Homebrew</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>After installing Homebrew, type <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">git</span></code> in the command line</p></li>
+</ol>
+</li>
+</ul>
+</section>
+</section>
+<section id="what-is-github">
+<h2>What is GitHub?<a class="headerlink" href="#what-is-github" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://github.com/">GitHub</a> is an application of GitHub. It is essentially the <em>public</em>, ‘Social Network’ for programming and programmers. You can share folders on your computer publically and make it available for all to see and potentially use. Its the perfect place to show your work, track your projects/code and collaborate with other people interested in programming. Before moving forward, join the programming geekdom and create a <a class="reference external" href="https://github.com/">GitHub</a> account.</p>
+</section>
+<section id="how-to-use-git-for-your-projects">
+<h2>How to Use Git for Your Projects<a class="headerlink" href="#how-to-use-git-for-your-projects" title="Permalink to this heading">#</a></h2>
+<p>Before getting into git basics, lets open the command line and use the following commands to create a new folder and a new file:</p>
+<ol class="arabic simple">
+<li><p>Open Terminal</p></li>
+<li><p>Command to create a new folder:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">practice</span></code></p></li>
+</ul>
+</li>
+<li><p>Make the folder your new directory</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">practice</span></code></p></li>
+</ul>
+</li>
+<li><p>Create a new text file called ‘a’ in your folder</p>
+<ul class="simple">
+<li><p>For Mac: <code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">a.txt</span></code></p></li>
+<li><p>For Windows: <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">a.txt</span></code></p></li>
+</ul>
+</li>
+<li><p>Make sure the new file is there:</p>
+<ul class="simple">
+<li><p>For Mac: <code class="docutils literal notranslate"><span class="pre">ls</span></code></p></li>
+<li><p>For Windows: <code class="docutils literal notranslate"><span class="pre">dir</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="whatpracticeshouldlooklike.png" src="_images/whatpracticeshouldlooklike.png" /></p>
+<p>Now that we have our folder lets start playing around with git:</p>
+<ol class="arabic">
+<li><p>We are going initialize our folder/repository. This jumpstarts the git process. First, make sure you are still in the <strong>practice</strong> folder you created. Then copy this into the command line:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code></p></li>
+</ul>
+</li>
+<li><p>Now to specifiy what you want to save, use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>. There are two ways to use this command:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> will save all your changes across all files in your folder</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">[insert</span> <span class="pre">filename]</span></code> will only save work done in the file you specify</p></li>
+</ul>
+<p>In my opinion the first is the safest and only command I use to save all my work because I’d hate to forget saving any changes</p>
+</li>
+<li><p>Now that we have acknowledged what we want to save. We will use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m'insert</span> <span class="pre">comment'</span></code> to actually save our progress. It is important to comment well so you will be less confused when trying to go back to see what changes you made and where. Type this into the command line:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m'[insert</span> <span class="pre">your</span> <span class="pre">comment]'</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="firstcommits.png" src="_images/firstcommits.png" /></p>
+<ol class="arabic simple" start="4">
+<li><p>Now find your txt file in the practice folder, and open it. It should be empty. Type anything you want in there and save the file. Now lets add our changes and save it using the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> command</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m'[insert</span> <span class="pre">your</span> <span class="pre">comment]'</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="another_commit.png" src="_images/another_commit.png" /></p>
+<ol class="arabic simple" start="5">
+<li><p>To see a log of all of our commits, we can use git log.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="gitlogoneline.png" src="_images/gitlogoneline.png" /></p>
+<ol class="arabic simple" start="6">
+<li><p>Say we made some mistakes, and would like to go to a previous point in our project, we would use the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> look at our comments to see what version we want to go back to, copy the ID of the commit, then type this into terminal:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;commit-id&gt;</span> <span class="pre">.</span></code>
+Don’t forget the final ‘ .’ at the end. If you leave this off it will take you to a new “detached head state” where you can make changes and it will allow you to make commits, but nothing will be saved and any commits you make will be lost. After running that line and once you are sure you want to revert to the old version of your project, add and then commit your changes:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m'detailed</span> <span class="pre">explanation</span> <span class="pre">of</span> <span class="pre">why</span> <span class="pre">you</span> <span class="pre">made</span> <span class="pre">those</span> <span class="pre">changes'</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="how-to-use-github-for-your-projects">
+<h2>How to use GitHub for Your Projects<a class="headerlink" href="#how-to-use-github-for-your-projects" title="Permalink to this heading">#</a></h2>
+<p>Now that we’ve familiarized ourselves with git, lets learn about github. All of the work we done so far has been done locally on our private computer and we can only track our changes using the command line.  This is where Github comes in. In the next few steps we’re going to create an online folder on Github that will showcase our work and easily allow us to track our commits.</p>
+<ol class="arabic simple">
+<li><p>Head over to your Github account. You should see a green button called ‘create repository’. Click on it</p></li>
+</ol>
+<p><img alt="create_first_repo.png" src="_images/create_first_repo.png" /></p>
+<p>Now create your repo. Give it the same name as the folder on your computer we are linking it to which, in this case, is our practice folder. Choose to make your repo public or private and then click create repository. Note that you can change whether a repo is public or private at anytime. If you want others to see your work, the repo will have to be public.</p>
+<p><img alt="create_repo_2.png" src="_images/create_repo_2.png" /></p>
+<p>You have now created your first repository in github! Now we need to get some things in there. Lets take a look at some instructions GitHub has given us to help us with this endeavor.
+We’ll skip over the first set of directions since we’re ahead of the curve and instead take a look at the second set. Copy the very first line and head over to <strong>Terminal</strong></p>
+<p><img alt="lookinsiderepo.png" src="_images/lookinsiderepo.png" /></p>
+<section id="to-push-our-work-onto-github-follow-these-set-of-instructions">
+<h3>To push our work onto GitHub, follow these set of instructions:<a class="headerlink" href="#to-push-our-work-onto-github-follow-these-set-of-instructions" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Open <strong>Terminal</strong></p></li>
+<li><p>Take the first line of instructions we copied, paste it into the command line, and hit enter</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">origin</span> <span class="pre">https://github.com/[your_username]/practice.git</span></code></p></li>
+</ul>
+</li>
+<li><p>Now we have linked our online repository to the repository on our computer. Next we’ll push all of the data in our folder as well as all of the the commits we made using git into our Github repo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">-u</span> <span class="pre">origin</span> <span class="pre">master</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="warning-account-authentication-process">
+<h3>WARNING: Account Authentication Process<a class="headerlink" href="#warning-account-authentication-process" title="Permalink to this heading">#</a></h3>
+<p>At this point you might be prompted for a password because github wants to use to authenticate your account. GitHub will most likely not allow you to use your account password for this process. Instead you will have to use an access token.</p>
+<p>To get an access token head over to your account, find your profile picture, and scroll down to settings</p>
+<p><img alt="access_token_git1.png" src="_images/access_token_git1.png" /></p>
+<p>Find the Developer Setting tab and click on it</p>
+<p><img alt="develop_settings.png" src="_images/develop_settings.png" /></p>
+<p>Now under personal access tokens, select Tokens(classic)</p>
+<p><img alt="settingsdevelop.png" src="_images/settingsdevelop.png" /></p>
+<p>Click on <strong>Generate New Token</strong> and select <strong>Generate New token(classic)</strong></p>
+<p><img alt="Personal_access_tokens.png" src="_images/Personal_access_tokens.png" /></p>
+<p>(<em>For this part use a different picture, same name, with al the boxes shown as select. Include another picture showing where they have to click to create the token</em> )
+Fill out the Notes section and for select scopes check all of the boxes. Then scroll down and create your token</p>
+<p><img alt="personal_access_token_check.png" src="_images/personal_access_token_check.png" /></p>
+<p>Now that you have created your token be sure you copy it and save it. Go back to terminal and paste your token as your password and click enter. Now repeat steps 1 -3 for setting up your remote repository and run your commands.</p>
+<p>Terminal will tell you if the push request failed or not, but just to be sure, head over to your online repository and refresh it.</p>
+<p><img alt="adding_remote_link.png" src="_images/adding_remote_link.png" /></p>
+<p>You should now see the file you created along with the time you pushed it to GitHub. We can also see how many commits we have made in this repository and even see the details about each commit when we click on it</p>
+<p><img alt="github_wizardry_worked.png" src="_images/github_wizardry_worked.png" /></p>
+<p>Github not only gives details such as commit comments, the commit ID, and the date of the commit, but also allows you to see what your folder looked like when you saved your work.</p>
+<p><img alt="see_ur_commits.png" src="_images/see_ur_commits.png" /></p>
+<p>Furthermore, you can see the content of the file you push into your repository by simply clicking on it it. In this case, its just text, but if you were to push a python file or a notebook into Github, it would allow you to see the code you wrote. Very cool stuff.</p>
+<p><img alt="textyouwrote.png" src="_images/textyouwrote.png" /></p>
+<p>If you made it this far with no trouble then congrats! You have cast your very first spell from the large Github book of wizardry. There’s more to learn about Github but these are the most important things you need to know to make it a home for your projects. Github is the best ecosystem to track your progress and save your work so I would highly encourage anyone interested in coding to use it on a recurring basis.</p>
+</section>
+</section>
+<section id="how-to-use-github-to-collaborate-with-others">
+<h2>How to Use GitHub to Collaborate with Others<a class="headerlink" href="#how-to-use-github-to-collaborate-with-others" title="Permalink to this heading">#</a></h2>
+<p>By now we understand the git helps us take snapshots of our project environment, and allows us to revert back in case something goes left and we would like to recover our previous work, but things can get really confusing when more than one persion is working on a project and making changes. Github helps us with managing this process with <strong>branches</strong>.</p>
+<p>A branch is in essence a set of unique cod with a unique name. Each repository can have more than one branch. Go to your repository and look at the top of your page. You should see <strong>master</strong> and <strong>1 branch</strong> towards the top.</p>
+<p><img alt="masterbranch.png" src="_images/masterbranch.png" /></p>
+<p><strong>Master</strong> means that this is the main branch that all other branches will come from. It is the official place for the final project being built. Next to master, you should see <strong>1 branch</strong> which indicates the master branch is the first and only branch associated with this repository.</p>
+<p>When working on your own projects, you can work directly off the master branch. You are the master of the master branch. When you work with a team or collaborate with others on a project, you would never want to touch the master. You would need to to create another branch to do your work</p>
+<p>Lets play around with this. We are going to pretend that our practice branch is a bigwig project and we will create a new branch to do our work.</p>
+<ol class="arabic simple">
+<li><p>Go to terminal and use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> command to create a new branch:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">[insert</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">new</span> <span class="pre">branch]</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="creating_new_branch.png" src="_images/creating_new_branch.png" /></p>
+<ol class="arabic simple" start="2">
+<li><p>While in the new branch, create a new text file called ‘a-test.txt’:</p>
+<ul class="simple">
+<li><p><strong>For Mac</strong>: <code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">a-test.txt</span></code></p></li>
+<li><p><strong>For Windows</strong>: <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">a-test.txt</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="adding_to_new_branch.png" src="_images/adding_to_new_branch.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>As sanity check, lets make sure we are tracking the branch we are working on:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="checking_branch_on.png" src="_images/checking_branch_on.png" /></p>
+<ol class="arabic simple" start="4">
+<li><p>Save the changes you have made in the new branch and push it into github:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m'[insert</span> <span class="pre">comment]'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">[new</span> <span class="pre">branch</span> <span class="pre">name]</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="saving_new_branch_changes.png" src="_images/saving_new_branch_changes.png" /></p>
+<ol class="arabic simple" start="5">
+<li><p>Head over to your github repo. You should get a notification about the new branch you greated. Click ‘Compare &amp; pull request’.</p></li>
+</ol>
+<p><img alt="see_branch_changes.png" src="_images/see_branch_changes.png" /></p>
+<ol class="arabic simple" start="6">
+<li><p>This page will give you the option to view the changes made in this branch and you as the owner of the master file will be able to view the updates and decide wheter or not they are good enough to be included in the master branch. To initiate this click on Create pull request.</p></li>
+</ol>
+<p><img alt="initiate_pull_request.png" src="_images/initiate_pull_request.png" /></p>
+<ol class="arabic simple" start="7">
+<li><p>You will be led to a new page, and there select Merge pull request to push all the changes done on the new branch to the master branch</p></li>
+</ol>
+<p><img alt="merge.png" src="_images/merge.png" /></p>
+<ol class="arabic simple" start="8">
+<li><p>Once the you confirm the merge, Github will notify you whether the merge was succesfful or not. You should now see that your master branch now also has the new file you created in your new branch</p></li>
+</ol>
+<p><img alt="pull_request_success.png" src="_images/pull_request_success.png" /></p>
+<p><img alt="updated_file.png" src="_images/updated_file.png" /></p>
+<ol class="arabic simple" start="9">
+<li><p>Now that your online master repo is up to date, you must also make sure the repo on you computer is safe as well. To do this, head back over to terminal and switch out of your new branch and back to the master branch:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">master</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="switch_to_master.png" src="_images/switch_to_master.png" /></p>
+<ol class="arabic simple" start="10">
+<li><p>Then use the git pull command to pull all the changes made in the online repo to your local repository:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="git_pull.png" src="_images/git_pull.png" /></p>
+<ol class="arabic simple" start="11">
+<li><p>Use the git push command to check that things are back to normal. If your online repo does not much the repo on your computer, git will throw you an error:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">master</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="git_push_confirm_working.png" src="_images/git_push_confirm_working.png" /></p>
+<p>With that last step, you have completed the process of creating a new branch, updated it with new information, and completed the whole process of initiating a pull request to keep both your online repo and local repo up to date. This is not necessary when building your own projects, but it will come in handy if you ever want to collaborate with other teams and people through Github.
+I hope this was helpful! In case it did not, I will leave some links to resources that helped me when figuring out GitHub. It can be a hard application to get your head around but once you do, it will be one of the most helpful tool in your programming journey.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="CommandLine.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The Command Line</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Your_Coding_Environment.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Your Coding Environment</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-git">What is Git?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-git">Install Git</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-github">What is GitHub?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-git-for-your-projects">How to Use Git for Your Projects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-github-for-your-projects">How to use GitHub for Your Projects</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-push-our-work-onto-github-follow-these-set-of-instructions">To push our work onto GitHub, follow these set of instructions:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warning-account-authentication-process">WARNING: Account Authentication Process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-github-to-collaborate-with-others">How to Use GitHub to Collaborate with Others</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
