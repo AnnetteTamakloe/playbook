@@ -1,0 +1,1094 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Geocoding in Python &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Geocoding-in-Python';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to the Data Science Playbook
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CommandLine.html">The Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroToGit.html">Git and Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Your_Coding_Environment.html">Your Coding Environment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FGeocoding-in-Python.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Geocoding-in-Python.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Geocoding in Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-necessary-libraries-and-tools">Installing Necessary Libraries and Tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-libraries">Install Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-packages">Install Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">Data Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-geocoder">Testing The Geocoder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-in-and-transforming-the-data">Reading In and Transforming The Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geocoding-the-addresses">Geocoding The Addresses</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="geocoding-in-python">
+<h1>Geocoding in Python<a class="headerlink" href="#geocoding-in-python" title="Permalink to this heading">#</a></h1>
+<p>Maps can be a powerful way to tell stories about your data, yet great datasets for geospatial analysis are rarely complete. At times you may have a dataset that only has an address column, missing key information you’ll need for spatial analysis – Latitude and Longitude coordinates. In this case you’ll need to do some <strong>Geocoding</strong>.</p>
+<p><strong>Geocoding is the computational process of transforming a physical address description to a location on the Earth’s surface (spatial representation in numerical coordinates)</strong>.</p>
+<p>This sounds like a daunting process, but it can easily be done with the help of Python and the Bing Maps API. Before diving in, for any of this to work you will first have to acquire a Bing Maps API Key, which you can do by following these <a class="reference external" href="https://www.microsoft.com/en-us/maps/create-a-bing-maps-key">simple steps</a>.</p>
+<section id="installing-necessary-libraries-and-tools">
+<h2>Installing Necessary Libraries and Tools<a class="headerlink" href="#installing-necessary-libraries-and-tools" title="Permalink to this heading">#</a></h2>
+<p>Next, import the libraries and packages needed which are the geocoder library and the pandas and re packages. The Geocoder package is the perfect candidate to solve this problem since it already deals with multiple geocoding services such as Google, Bing, OSM. Using this package and the Bing API Key, we’ll be able to use Bings data for our geocoding needs.</p>
+<section id="install-libraries">
+<h3>Install Libraries<a class="headerlink" href="#install-libraries" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>geocoder
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="install-packages">
+<h3>Install Packages<a class="headerlink" href="#install-packages" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geocoder</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">re</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="data-preprocessing">
+<h2>Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this heading">#</a></h2>
+<section id="testing-the-geocoder">
+<h3>Testing The Geocoder<a class="headerlink" href="#testing-the-geocoder" title="Permalink to this heading">#</a></h3>
+<p>Now test out the Geocoder package and our API Key to make sure they work.</p>
+<p>We’ll define our geocoder as g and make a request to Bing to geocode a specific address. The Bing API usually needs the address line(Street Address), locality(City/Town), and adminDistrict(State) to geocode the addresses. You also need to pass the developer key you retrieved from Bing through the geocoder.</p>
+<p>After running this, your output should be the latitudinal and longitudinal coordinates of the address we used for testing.</p>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">geocoder</span><span class="o">.</span><span class="n">bing</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">addressline</span> <span class="o">=</span> <span class="s1">&#39;2831 Henderson Rd, Redding, CA 96002&#39;</span><span class="p">,</span> 
+                  <span class="n">locality</span><span class="o">=</span><span class="s1">&#39;Redding&#39;</span><span class="p">,</span> <span class="n">adminDistrict</span><span class="o">=</span><span class="s1">&#39;California&#39;</span><span class="p">,</span> 
+                  <span class="n">method</span><span class="o">=</span><span class="s1">&#39;details&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span> <span class="n">APIKey</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">json</span>
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span>  <span class="n">g</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">latlng</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status code 403 from http://dev.virtualearth.net/REST/v1/Locations: ERROR - 403 Client Error: Forbidden for url: http://dev.virtualearth.net/REST/v1/Locations?adminDistrict=California&amp;locality=Redding&amp;o=json&amp;inclnb=1&amp;key=AiBnj44fEKq_ivctmWJQMIngyMz7QZFIXAXtSuWQ6VKz2AMSiPmqHjQf7yEIzvZP&amp;maxResults=1
+</pre></div>
+</div>
+</div>
+</div>
+<p>As can be seen below, the same can be done to reverse geocode coordinates to retrieve specific address locations for any place in the world.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">geocoder</span><span class="o">.</span><span class="n">bing</span><span class="p">([[</span><span class="mf">26.351670</span><span class="p">,</span> <span class="mf">127.769400</span><span class="p">],</span> <span class="p">[</span><span class="mf">48.845580</span><span class="p">,</span> <span class="mf">2.321807</span><span class="p">]],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;batch_reverse&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span> <span class="n">APIKey</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">address</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">postal</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">country</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status code 403 from http://spatial.virtualearth.net/REST/v1/Dataflows/Geocode: ERROR - 403 Client Error: Forbidden for url: http://spatial.virtualearth.net/REST/v1/Dataflows/Geocode?input=csv&amp;key=AiBnj44fEKq_ivctmWJQMIngyMz7QZFIXAXtSuWQ6VKz2AMSiPmqHjQf7yEIzvZP
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-in-and-transforming-the-data">
+<h3>Reading In and Transforming The Data<a class="headerlink" href="#reading-in-and-transforming-the-data" title="Permalink to this heading">#</a></h3>
+<p>Now that its been confirmed that the geocoder tool is working, lets read in the excel file of the addresseses we’d like to geocode.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;addresses.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;addresses.xlsx&#39;</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.9/site-packages/pandas/io/excel/_base.py:478,</span> in <span class="ni">read_excel</span><span class="nt">(io, sheet_name, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">476</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">ExcelFile</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">477</span>     <span class="n">should_close</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="ne">--&gt; </span><span class="mi">478</span>     <span class="n">io</span> <span class="o">=</span> <span class="n">ExcelFile</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">479</span> <span class="k">elif</span> <span class="n">engine</span> <span class="ow">and</span> <span class="n">engine</span> <span class="o">!=</span> <span class="n">io</span><span class="o">.</span><span class="n">engine</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">481</span>         <span class="s2">&quot;Engine should not be specified when passing &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">482</span>         <span class="s2">&quot;an ExcelFile - ExcelFile already has the engine set&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">483</span>     <span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.9/site-packages/pandas/io/excel/_base.py:1496,</span> in <span class="ni">ExcelFile.__init__</span><span class="nt">(self, path_or_buffer, engine, storage_options)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1494</span>     <span class="n">ext</span> <span class="o">=</span> <span class="s2">&quot;xls&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1495</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1496</span>     <span class="n">ext</span> <span class="o">=</span> <span class="n">inspect_excel_format</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1497</span>         <span class="n">content_or_path</span><span class="o">=</span><span class="n">path_or_buffer</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span>
+<span class="g g-Whitespace">   </span><span class="mi">1498</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1499</span>     <span class="k">if</span> <span class="n">ext</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1500</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1501</span>             <span class="s2">&quot;Excel file format cannot be determined, you must specify &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1502</span>             <span class="s2">&quot;an engine manually.&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1503</span>         <span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.9/site-packages/pandas/io/excel/_base.py:1371,</span> in <span class="ni">inspect_excel_format</span><span class="nt">(content_or_path, storage_options)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1368</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content_or_path</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1369</span>     <span class="n">content_or_path</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">content_or_path</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1371</span> <span class="k">with</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1372</span>     <span class="n">content_or_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">is_text</span><span class="o">=</span><span class="kc">False</span>
+<span class="g g-Whitespace">   </span><span class="mi">1373</span> <span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1374</span>     <span class="n">stream</span> <span class="o">=</span> <span class="n">handle</span><span class="o">.</span><span class="n">handle</span>
+<span class="g g-Whitespace">   </span><span class="mi">1375</span>     <span class="n">stream</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.9/site-packages/pandas/io/common.py:868,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">867</span>         <span class="c1"># Binary mode</span>
+<span class="ne">--&gt; </span><span class="mi">868</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span> <span class="c1"># Convert BytesIO or file objects passed with an encoding</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;addresses.xlsx&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Whitlow Plan, Brookland Grove, Washington, DC ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Unit 02 Plan, Aria Reserve Miami, Miami, FL 33137</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Unit 01 A Plan, Aria Reserve Miami, Miami, FL ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Buchanan Plan, The Townhomes At Michigan P...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Plan 3 Plan, Hudson At Belterra, Austin, TX 78737</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>191</th>
+      <td>065-620-017, Redding, CA 96001</td>
+    </tr>
+    <tr>
+      <th>192</th>
+      <td>(Undisclosed Address), Washington, DC 20020</td>
+    </tr>
+    <tr>
+      <th>193</th>
+      <td>(Undisclosed Address), Miami, FL 33177</td>
+    </tr>
+    <tr>
+      <th>194</th>
+      <td>(Undisclosed Address), Miami, FL 33125</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>Whitlow Plan, Brookland Grove, Washington, DC ...</td>
+    </tr>
+  </tbody>
+</table>
+<p>196 rows × 1 columns</p>
+</div></div></div>
+</div>
+<p>Since the addresses are not formatted in the way necessary for the Bing API to do its work, some data transformation techniques will have to be employed.  Our data frame must have columns for the <strong>address line</strong>(Street Address), <strong>locality</strong>(City/Town), and  <strong>adminDistrict</strong>(State).
+We’ll follow the steps below and use <strong>Pandas</strong> as well as the <strong>re</strong> packages to clean the data.</p>
+<ol class="arabic simple">
+<li><p>Create and define a new Data frame outside of the forloop</p></li>
+<li><p>Use the re function to split our addresses by commas, which allow us to define the address, street, and city using their location each address string.</p></li>
+<li><p>Use the re function to split the addresses by spaces, which will allow us to extract the state and zip code using their location in the string</p></li>
+<li><p>After defining all the and cleaning the key data needed, append the newly cleaned observations into the geo Data frame.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;address&#39;</span><span class="p">,</span><span class="s1">&#39;street&#39;</span><span class="p">,</span><span class="s1">&#39;city&#39;</span><span class="p">,</span><span class="s1">&#39;state&#39;</span><span class="p">,</span><span class="s1">&#39;zip&#39;</span><span class="p">,</span><span class="s1">&#39;country&#39;</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">address</span><span class="p">:</span>
+    <span class="n">s</span><span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">address</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="n">street</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1">#print(i)</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">country</span> <span class="o">=</span> <span class="s1">&#39;U.S.&#39;</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">zipcode</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+    
+    <span class="n">geo</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;address&#39;</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;street&#39;</span><span class="p">:</span><span class="n">street</span><span class="p">,</span><span class="s1">&#39;city&#39;</span><span class="p">:</span><span class="n">city</span><span class="p">,</span><span class="s1">&#39;state&#39;</span><span class="p">:</span><span class="n">state</span><span class="p">,</span>
+                      <span class="s1">&#39;zip&#39;</span><span class="p">:</span><span class="n">zipcode</span><span class="p">,</span><span class="s1">&#39;country&#39;</span><span class="p">:</span><span class="n">country</span><span class="p">},</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Columns for the latitude and longitude coordinates the geocoder will retrieve from the the Bing API also needed to be created and added to the dataframe</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+<span class="n">geo</span><span class="p">[</span><span class="s1">&#39;long&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is how the geo data frame should look like after our mini preprocessing session:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>address</th>
+      <th>street</th>
+      <th>city</th>
+      <th>state</th>
+      <th>zip</th>
+      <th>country</th>
+      <th>lat</th>
+      <th>long</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Whitlow Plan, Brookland Grove, Washington, DC ...</td>
+      <td>Whitlow Plan</td>
+      <td>Brookland Grove</td>
+      <td>DC</td>
+      <td>20017</td>
+      <td>U.S.</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Unit 02 Plan, Aria Reserve Miami, Miami, FL 33137</td>
+      <td>Unit 02 Plan</td>
+      <td>Aria Reserve Miami</td>
+      <td>FL</td>
+      <td>33137</td>
+      <td>U.S.</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Unit 01 A Plan, Aria Reserve Miami, Miami, FL ...</td>
+      <td>Unit 01 A Plan</td>
+      <td>Aria Reserve Miami</td>
+      <td>FL</td>
+      <td>33137</td>
+      <td>U.S.</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Buchanan Plan, The Townhomes At Michigan P...</td>
+      <td>The Buchanan Plan</td>
+      <td>The Townhomes At Michigan Park</td>
+      <td>DC</td>
+      <td>20017</td>
+      <td>U.S.</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Plan 3 Plan, Hudson At Belterra, Austin, TX 78737</td>
+      <td>Plan 3 Plan</td>
+      <td>Hudson At Belterra</td>
+      <td>TX</td>
+      <td>78737</td>
+      <td>U.S.</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>191</th>
+      <td>065-620-017, Redding, CA 96001</td>
+      <td>065-620-017</td>
+      <td>Redding</td>
+      <td>CA</td>
+      <td>96001</td>
+      <td>U.S.</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>192</th>
+      <td>(Undisclosed Address), Washington, DC 20020</td>
+      <td>(Undisclosed Address)</td>
+      <td>Washington</td>
+      <td>DC</td>
+      <td>20020</td>
+      <td>U.S.</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>193</th>
+      <td>(Undisclosed Address), Miami, FL 33177</td>
+      <td>(Undisclosed Address)</td>
+      <td>Miami</td>
+      <td>FL</td>
+      <td>33177</td>
+      <td>U.S.</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>194</th>
+      <td>(Undisclosed Address), Miami, FL 33125</td>
+      <td>(Undisclosed Address)</td>
+      <td>Miami</td>
+      <td>FL</td>
+      <td>33125</td>
+      <td>U.S.</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>Whitlow Plan, Brookland Grove, Washington, DC ...</td>
+      <td>Whitlow Plan</td>
+      <td>Brookland Grove</td>
+      <td>DC</td>
+      <td>20017</td>
+      <td>U.S.</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>196 rows × 8 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="geocoding-the-addresses">
+<h2>Geocoding The Addresses<a class="headerlink" href="#geocoding-the-addresses" title="Permalink to this heading">#</a></h2>
+<p>Now its time to geocode. We will create a for loop to pass each address through the geocoder object created a couple steps above, except this time, we’ll be passing the column names for each iteration through it. Same as before, the Bing API Developer key will also have to be passed through the geocoder. We will then us the g.lat and g.long functions to request the latitudinal and longitudinal coordinates for all of our addresses.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">geo</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">geocoder</span><span class="o">.</span><span class="n">bing</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">addressline</span> <span class="o">=</span> <span class="n">geo</span><span class="p">[</span><span class="s1">&#39;street&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">locality</span><span class="o">=</span> <span class="n">geo</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">adminDistrict</span><span class="o">=</span> <span class="n">geo</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">PostalCode</span><span class="o">=</span> <span class="n">geo</span><span class="p">[</span><span class="s1">&#39;zip&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">Countryregion</span><span class="o">=</span> <span class="n">geo</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;details&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;AqkhJ4a6kTQ6c4rm5vicHt7BsTav-KsWdaaKCnP794yFpzMDWPa1XCp14WUliC20&#39;</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">json</span>
+        <span class="n">geo</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">lat</span>
+        <span class="n">geo</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">lng</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">geo</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+        <span class="n">geo</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;long&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now lets take a look at the geo data frame</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>address</th>
+      <th>street</th>
+      <th>city</th>
+      <th>state</th>
+      <th>zip</th>
+      <th>country</th>
+      <th>lat</th>
+      <th>long</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Whitlow Plan, Brookland Grove, Washington, DC ...</td>
+      <td>Whitlow Plan</td>
+      <td>Brookland Grove</td>
+      <td>DC</td>
+      <td>20017</td>
+      <td>U.S.</td>
+      <td>38.904778</td>
+      <td>-77.016289</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Unit 02 Plan, Aria Reserve Miami, Miami, FL 33137</td>
+      <td>Unit 02 Plan</td>
+      <td>Aria Reserve Miami</td>
+      <td>FL</td>
+      <td>33137</td>
+      <td>U.S.</td>
+      <td>28.595512</td>
+      <td>-82.487343</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Unit 01 A Plan, Aria Reserve Miami, Miami, FL ...</td>
+      <td>Unit 01 A Plan</td>
+      <td>Aria Reserve Miami</td>
+      <td>FL</td>
+      <td>33137</td>
+      <td>U.S.</td>
+      <td>28.595512</td>
+      <td>-82.487343</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Buchanan Plan, The Townhomes At Michigan P...</td>
+      <td>The Buchanan Plan</td>
+      <td>The Townhomes At Michigan Park</td>
+      <td>DC</td>
+      <td>20017</td>
+      <td>U.S.</td>
+      <td>38.904778</td>
+      <td>-77.016289</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Plan 3 Plan, Hudson At Belterra, Austin, TX 78737</td>
+      <td>Plan 3 Plan</td>
+      <td>Hudson At Belterra</td>
+      <td>TX</td>
+      <td>78737</td>
+      <td>U.S.</td>
+      <td>31.463848</td>
+      <td>-99.333298</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>191</th>
+      <td>065-620-017, Redding, CA 96001</td>
+      <td>065-620-017</td>
+      <td>Redding</td>
+      <td>CA</td>
+      <td>96001</td>
+      <td>U.S.</td>
+      <td>40.574638</td>
+      <td>-122.381088</td>
+    </tr>
+    <tr>
+      <th>192</th>
+      <td>(Undisclosed Address), Washington, DC 20020</td>
+      <td>(Undisclosed Address)</td>
+      <td>Washington</td>
+      <td>DC</td>
+      <td>20020</td>
+      <td>U.S.</td>
+      <td>38.892063</td>
+      <td>-77.019913</td>
+    </tr>
+    <tr>
+      <th>193</th>
+      <td>(Undisclosed Address), Miami, FL 33177</td>
+      <td>(Undisclosed Address)</td>
+      <td>Miami</td>
+      <td>FL</td>
+      <td>33177</td>
+      <td>U.S.</td>
+      <td>25.775084</td>
+      <td>-80.194702</td>
+    </tr>
+    <tr>
+      <th>194</th>
+      <td>(Undisclosed Address), Miami, FL 33125</td>
+      <td>(Undisclosed Address)</td>
+      <td>Miami</td>
+      <td>FL</td>
+      <td>33125</td>
+      <td>U.S.</td>
+      <td>25.775084</td>
+      <td>-80.194702</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>Whitlow Plan, Brookland Grove, Washington, DC ...</td>
+      <td>Whitlow Plan</td>
+      <td>Brookland Grove</td>
+      <td>DC</td>
+      <td>20017</td>
+      <td>U.S.</td>
+      <td>38.904778</td>
+      <td>-77.016289</td>
+    </tr>
+  </tbody>
+</table>
+<p>196 rows × 8 columns</p>
+</div></div></div>
+</div>
+<p>We now have the coordinates for every single one of our addresses and have completed the geocoding process</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-necessary-libraries-and-tools">Installing Necessary Libraries and Tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-libraries">Install Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-packages">Install Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">Data Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-geocoder">Testing The Geocoder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-in-and-transforming-the-data">Reading In and Transforming The Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geocoding-the-addresses">Geocoding The Addresses</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
