@@ -21,7 +21,7 @@ if 4 == 4:
 print('4 is definitely equal to 4')
 ------------------
 
-[0;36m  Cell [0;32mIn[27], line 2[0;36m[0m
+[0;36m  Cell [0;32mIn[29], line 2[0;36m[0m
 [0;31m    print('4 is definitely equal to 4')[0m
 [0m    ^[0m
 [0;31mIndentationError[0m[0;31m:[0m expected an indented block

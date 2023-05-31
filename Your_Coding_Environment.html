@@ -354,20 +354,19 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-navigator">Anaconda Navigator</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-jupyter-lab">Introduction to Jupyter Lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-your-first-notebook">Launching Your First Notebook</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-jupyter-notebook-functions">Important Jupyter Notebook Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-tab">File Tab</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernal-tab">Kernal Tab</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-icon-palette">Command Icon Palette:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-new-folders-in-jupyter">1.1. Creating New Folders in Jupyter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-your-first-notebook">1.2. Launching Your First Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-jupyter-notebook-functions">1.3. Important Jupyter Notebook Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#file-tab">File Tab</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kernal-tab">Kernal Tab</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#command-icon-palette">Command Icon Palette:</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-types">Cell Types</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-cells-in-jupyter">1.4. Running Cells in Jupyter</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-cells-in-jupyter">Running Cells in Jupyter</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-short-aside-on-keyboard-short-cuts">A Short Aside on Keyboard Short Cuts</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-short-aside-on-keyboard-short-cuts"><em>A Short Aside on Keyboard Short Cuts</em></a></li>
 </ul>
             </nav>
         </div>
@@ -382,7 +381,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="your-coding-environment">
 <h1>Your Coding Environment<a class="headerlink" href="#your-coding-environment" title="Permalink to this heading">#</a></h1>
 <p>The first and most important step in the analytics journey is setting up the right environments to execute your projects and ideas. I use Python for most of my projects because it is fairly easy to learn and is one of the most common tools used for projects in several fields such as Data Science, Cybersecurity, Data Engineering and even App Development.</p>
-<p>Python can be downloaded directly or you can have it downloaded through the Anaconda Distribution, which includes Python, R and other Data Science tools.</p>
+<p><a class="reference external" href="https://www.python.org/downloads/">Python</a> can be downloaded directly or you can have it downloaded through the Anaconda Distribution, which includes Python, R and other Data Science tools.</p>
 <section id="anaconda-navigator">
 <h2>Anaconda Navigator<a class="headerlink" href="#anaconda-navigator" title="Permalink to this heading">#</a></h2>
 <p>You can download Anaconda Navigator <a class="reference external" href="https://www.anaconda.com/download/">here</a>. After downloading it, find Anaconda Navigator on your computer and open it. You will see an ton of tools like <strong>Jupyter Notebook, Jupyter Lab, PyCharm, VS Code, R Studio</strong> and more to choose from. Personally I love using <strong>Jupyter Lab</strong> for all things Python and occasionally I also use <strong>VS Code</strong>. <strong>VS Code</strong> should come as part of the Anaconda bundle but if its not available in Anaconda, it can be downloaded <a class="reference external" href="https://code.visualstudio.com/download">here</a>.</p>
@@ -393,23 +392,25 @@ document.write(`
 <h2>Introduction to Jupyter Lab<a class="headerlink" href="#introduction-to-jupyter-lab" title="Permalink to this heading">#</a></h2>
 <p>One you have launched Jupyter, click on the folder icon. Under <strong>Name</strong>, you should see some familiar folders and files you currently have saved on your computer. Anything you create in Jupyter will automatically be saved locally in whatever directory you are currently in (which Jupyter will show you). It is very important to have awareness of the folders you will use as directories. I personally like to create new folders for each project I build.</p>
 <p><img alt="JBStep1.1.png" src="_images/JBStep1.1.png" /></p>
+<section id="creating-new-folders-in-jupyter">
+<h3>1.1. Creating New Folders in Jupyter<a class="headerlink" href="#creating-new-folders-in-jupyter" title="Permalink to this heading">#</a></h3>
 <p>You can add a new folder by clicking on the <strong>folder</strong> icon or by right clicking anywhere in the current directory and selecting <strong>New Folder</strong>.</p>
 <p><img alt="JBStep2-newfolder.png" src="_images/JBStep2-newfolder.png" /></p>
 <p>Be sure to give your folder a distinct name to set it apart from other directories on your computer.</p>
 <p><img alt="DSprojects.png" src="_images/DSprojects.png" /></p>
 <p>Now a whole new directory is available for you to use for your projects! To make this folder your working directory, double click it.</p>
 <p><img alt="NewfolderStep1.png" src="_images/NewfolderStep1.png" /></p>
+</section>
 <section id="launching-your-first-notebook">
-<h3>Launching Your First Notebook<a class="headerlink" href="#launching-your-first-notebook" title="Permalink to this heading">#</a></h3>
+<h3>1.2. Launching Your First Notebook<a class="headerlink" href="#launching-your-first-notebook" title="Permalink to this heading">#</a></h3>
 <p>Once you are in the folder, click on <strong>Python 3(ipykernal)</strong> under Notebook. This will open up a new notebook that you can use to code. You can also access other interfaces through the <strong>Launcher</strong> tab such as the Command Line (Terminal).</p>
 <p><img alt="launchnotebook-infolder.png" src="_images/launchnotebook-infolder.png" /></p>
 <p>Now that you have opened your first notebook, lets go through some of the more relavant tabs and discuss their functions.</p>
 </section>
 <section id="important-jupyter-notebook-functions">
-<h3>Important Jupyter Notebook Functions<a class="headerlink" href="#important-jupyter-notebook-functions" title="Permalink to this heading">#</a></h3>
-</section>
+<h3>1.3. Important Jupyter Notebook Functions<a class="headerlink" href="#important-jupyter-notebook-functions" title="Permalink to this heading">#</a></h3>
 <section id="file-tab">
-<h3>File Tab<a class="headerlink" href="#file-tab" title="Permalink to this heading">#</a></h3>
+<h4>File Tab<a class="headerlink" href="#file-tab" title="Permalink to this heading">#</a></h4>
 <p><img alt="File_tab.png" src="_images/File_tab.png" /></p>
 <ol class="arabic simple">
 <li><p><strong>New</strong>: The name is self-explanatory as it allows you to create multiple new Notebooks for your Python or Data Science projects.</p></li>
@@ -422,7 +423,7 @@ document.write(`
 </ol>
 </section>
 <section id="kernal-tab">
-<h3>Kernal Tab<a class="headerlink" href="#kernal-tab" title="Permalink to this heading">#</a></h3>
+<h4>Kernal Tab<a class="headerlink" href="#kernal-tab" title="Permalink to this heading">#</a></h4>
 <p><img alt="kernal_tab.png" src="_images/kernal_tab.png" /></p>
 <p>The Jupyter notebook kernal is a tool that helps us execute python code in Jupyter notebook, hence why it is called the ipython kernal when we launch a notebook. These are the main functions in the Kernal tab:</p>
 <ol class="arabic simple">
@@ -436,7 +437,7 @@ document.write(`
 </ol>
 </section>
 <section id="command-icon-palette">
-<h3>Command Icon Palette:<a class="headerlink" href="#command-icon-palette" title="Permalink to this heading">#</a></h3>
+<h4>Command Icon Palette:<a class="headerlink" href="#command-icon-palette" title="Permalink to this heading">#</a></h4>
 <p>Lets talk about the icon palette in your notebook, starting from the first icon, which is the save icon, until the end. This pallete will be useful for quickly completing the majority of your tasks in the notebook</p>
 <p><img alt="JB_Command_Line.png" src="_images/JB_Command_Line.png" /></p>
 <ol class="arabic simple">
@@ -452,6 +453,7 @@ document.write(`
 <li><p><strong>Change Cell Type</strong>: Allows you the option to convert the type of cell into your desired type ranging from Code, Markdown, etc.</p></li>
 </ol>
 <p><img alt="cell-types.png" src="_images/cell-types.png" /></p>
+</section>
 <section id="cell-types">
 <h4>Cell Types<a class="headerlink" href="#cell-types" title="Permalink to this heading">#</a></h4>
 <p>Jupyter Notebook has 3 types of cell types:</p>
@@ -463,21 +465,20 @@ document.write(`
 <p>The most commonly used cell types are Code and Markdown.</p>
 </section>
 </section>
-</section>
 <section id="running-cells-in-jupyter">
-<h2>Running Cells in Jupyter<a class="headerlink" href="#running-cells-in-jupyter" title="Permalink to this heading">#</a></h2>
+<h3>1.4. Running Cells in Jupyter<a class="headerlink" href="#running-cells-in-jupyter" title="Permalink to this heading">#</a></h3>
 <p>You can run the notebook document step-by-step (one cell a time) by pressing <em>crtl + enter</em> for running the particular cell or <em>shift + enter</em> to run the current cell as well create a new cell below it. You can run the whole notebook in a single step by clicking on the menu Run -&gt; Run All Cells.</p>
 <p><img alt="cell1.png" src="_images/cell1.png" /></p>
 <p>The above image is a representation of how each of these cells can run as separate blocks. In the first code cell you can notice that we have used the print statement for printing a basic “Hello World!” program, while we’ve turned the second one to a Markdown cell. After running all cell blocks, this is what you should get.</p>
+<p><img alt="output_cell.png" src="_images/output_cell.png" /></p>
 <p>Any thing you write after a hashtag(#) will be considered text and won’t be executed as code.</p>
 <p>On the other hand, anything your write after # in a markdown cell will be considered a header. Click <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html">here</a> to find out more about markdowns.</p>
-<p>The following shows how our notebook should look after running the previous cells.</p>
-<p><img alt="output_cell.png" src="_images/output_cell.png" /></p>
+</section>
+</section>
 <section id="a-short-aside-on-keyboard-short-cuts">
-<h3>A Short Aside on Keyboard Short Cuts<a class="headerlink" href="#a-short-aside-on-keyboard-short-cuts" title="Permalink to this heading">#</a></h3>
+<h2><em>A Short Aside on Keyboard Short Cuts</em><a class="headerlink" href="#a-short-aside-on-keyboard-short-cuts" title="Permalink to this heading">#</a></h2>
 <p>Knowing keyboard shortcuts will make coding a lot easier for you. I tend to use well known short cuts like <strong>ctrl z</strong> to undo errors I’ve made, or <strong>ctrl c</strong> to copy and <strong>ctrl v</strong> to paste, but there are many more keyboard shortcuts that can aid you. You can use the image below to uncover more shortcuts or use this <a class="reference external" href="https://gist.github.com/discdiver/9e00618756d120a8c9fa344ac1c375ac#file-jupyterlab_shortcuts-md">resource</a> to find out more about shortcuts</p>
 <p><img alt="key_board.png" src="_images/key_board.png" /></p>
-</section>
 </section>
 </section>
 
@@ -541,20 +542,19 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-navigator">Anaconda Navigator</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-jupyter-lab">Introduction to Jupyter Lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-your-first-notebook">Launching Your First Notebook</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-jupyter-notebook-functions">Important Jupyter Notebook Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-tab">File Tab</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernal-tab">Kernal Tab</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-icon-palette">Command Icon Palette:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-new-folders-in-jupyter">1.1. Creating New Folders in Jupyter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-your-first-notebook">1.2. Launching Your First Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-jupyter-notebook-functions">1.3. Important Jupyter Notebook Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#file-tab">File Tab</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kernal-tab">Kernal Tab</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#command-icon-palette">Command Icon Palette:</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-types">Cell Types</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-cells-in-jupyter">1.4. Running Cells in Jupyter</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-cells-in-jupyter">Running Cells in Jupyter</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-short-aside-on-keyboard-short-cuts">A Short Aside on Keyboard Short Cuts</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-short-aside-on-keyboard-short-cuts"><em>A Short Aside on Keyboard Short Cuts</em></a></li>
 </ul>
   </nav></div>
 
