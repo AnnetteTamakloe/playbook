@@ -1,0 +1,18 @@
+process for updating blog 
+1. Ensure you are in playbook directory: 
+    cd playbook
+2. perform git add:
+    git add ./*
+3. Do the commit:
+    git commit -m'why you changed blog'
+4. git push:
+    git push
+5. Rebuild the build folder, go back to DSblog:
+    cd 
+    cd Projects
+    cd DSblog 
+    jupyter-book build playbook
+6. Once thats rebuilt, go inside the blog again:
+    cd playbook
+7. Update the github pages blog with the following command:
+   ghp-import -n -p -f _build/html
