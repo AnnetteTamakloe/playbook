@@ -1,0 +1,993 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Ensemble Learning: Bagging, Boosting, and Stacking &#8212; Data_Science_Playbook</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Ensemble_Learning_BH';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Introduction to ML: Boston Housing Data" href="Machine_Learning_BHDataset.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CommandLine.html">The Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroToGit.html">Git and Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Your_Coding_Environment.html">Your Coding Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Basic_intro_Python.html">Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linear_Regression_Basics.html">Linear Regression for Machine Learning: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Machine_Learning_BHDataset.html">Introduction to ML: Boston Housing Data</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ensemble Learning: Bagging, Boosting, and Stacking</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FEnsemble_Learning_BH.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Ensemble_Learning_BH.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Ensemble Learning: Bagging, Boosting, and Stacking</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">Bagging</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-algorithm-for-regression-analysis">Random Forest Algorithm for Regression Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting">Boosting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking">Stacking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross Validation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ensemble-learning-bagging-boosting-and-stacking">
+<h1>Ensemble Learning: Bagging, Boosting, and Stacking<a class="headerlink" href="#ensemble-learning-bagging-boosting-and-stacking" title="Permalink to this heading">#</a></h1>
+<p>Once you have a nice baseline for your predictive model, it’s hard to think of other ways to squeeze more juice out of it. This is where <a class="reference external" href="https://builtin.com/machine-learning/ensemble-model">Ensemble Learning</a> comes in. <strong>Ensemble Learning</strong> is a machine learning approach that seeks better peformance by combining predictions from <em>multiple</em> models. When we have a baseline model, that model may not perform well due to high variance or high bias as we talked about in the last blog, but when we bring several models togehter, they can create a very strong learner. Ensemble methods are also fairly easy to use. The scikit-learn library makes it easy to implement them and there usually is little to no data preprocessing since many of the ensemble algorithms include processes that handle missing data. The three main types of ensemble learning are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ibm.com/topics/bagging#:~:text=the%20next%20step-,What%20is%20bagging%3F,be%20chosen%20more%20than%20once.">Bagging</a></p></li>
+<li><p><a class="reference external" href="https://www.ibm.com/topics/boosting">Boosting</a></p></li>
+<li><p><a class="reference external" href="https://developer.ibm.com/articles/stack-machine-learning-models-get-better-results/">Stacking</a></p></li>
+</ul>
+<p>Lets discuss and implement each one on our dataset boston housing dataset to understand how they work.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import necessary packages for reading in and analyzing our dataset</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1">#Impute the column names </span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CRIM&#39;</span><span class="p">,</span><span class="s1">&#39;ZN&#39;</span><span class="p">,</span><span class="s1">&#39;INDUS&#39;</span><span class="p">,</span><span class="s1">&#39;CHAS&#39;</span><span class="p">,</span><span class="s1">&#39;NOX&#39;</span><span class="p">,</span><span class="s1">&#39;RM&#39;</span><span class="p">,</span><span class="s1">&#39;AGE&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;DIS&#39;</span><span class="p">,</span><span class="s1">&#39;RAD&#39;</span><span class="p">,</span><span class="s1">&#39;TAX&#39;</span><span class="p">,</span><span class="s1">&#39;PTRATIO&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;LSTAT&#39;</span><span class="p">,</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span>
+<span class="c1">#Read in our dataset and define our column names and delimiter so our dataframe looks nice)</span>
+<span class="n">bh</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;housing.data&#39;</span><span class="p">,</span> <span class="n">delim_whitespace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">columns</span><span class="p">)</span>
+<span class="n">bh</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+      <th>MEDV</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.00632</td>
+      <td>18.0</td>
+      <td>2.31</td>
+      <td>0</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>1</td>
+      <td>296.0</td>
+      <td>15.3</td>
+      <td>396.90</td>
+      <td>4.98</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.02731</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>2</td>
+      <td>242.0</td>
+      <td>17.8</td>
+      <td>396.90</td>
+      <td>9.14</td>
+      <td>21.6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.02729</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>2</td>
+      <td>242.0</td>
+      <td>17.8</td>
+      <td>392.83</td>
+      <td>4.03</td>
+      <td>34.7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.03237</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>3</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>394.63</td>
+      <td>2.94</td>
+      <td>33.4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.06905</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>3</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>396.90</td>
+      <td>5.33</td>
+      <td>36.2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Let define our features and our target</span>
+<span class="c1">#We&#39;ll use all our features in the dataset so we will extract MEDV and define our features as X, and then define MEDV as y, the target</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">bh</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;MEDV&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">bh</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span>
+<span class="c1"># Lets split our training set and our testing set</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">25</span><span class="p">)</span>
+<span class="c1">#Now take a look at the distributions </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of X_train: &quot;</span><span class="p">,</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of X_test: &quot;</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of y_train: &quot;</span><span class="p">,</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of y_test&quot;</span><span class="p">,</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X_train:  (354, 13)
+Shape of X_test:  (152, 13)
+Shape of y_train:  (354,)
+Shape of y_test (152,)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="bagging">
+<h2>Bagging<a class="headerlink" href="#bagging" title="Permalink to this heading">#</a></h2>
+<p>Bagging is a type of ensemble modelling where several baseline models or ‘weak’ models are trained at the same time and are then combined to create a better model.</p>
+<p><img alt="bagging_visual.png" src="attachment:d7532872-a7ed-4ca1-a4b7-cd66f3c39357.png" /></p>
+<p>First bagging uses a resampling technique known as bootstrapping to randomly pick datapoints in the training data set and puts them into several different subsets. After the subsets have been created, it then trains each of them at the same time with baseline models. This is known as <strong>Parallel Training</strong>. Afterwards, the average of all of the outputs are taken to create a more accurate estimation model. Bagging is usually used to enhance baseline models that have high variance and low bias which tend to be models that have overfitting issues.</p>
+<p><img alt="bootstrap_process_bagging.png" src="attachment:1a4d755f-eef2-4624-9e2a-be446f60d19f.png" /></p>
+<p><strong>Benefits of bagging include</strong>:</p>
+<ul class="simple">
+<li><p>Reduction in variance and subsequently a reduction in overfitting</p></li>
+<li><p>It works well with both categorical and continuous values</p></li>
+<li><p>It will most likely yield a better overall model for your data</p></li>
+</ul>
+<p>A very popular and extremely useful bagging algorithm is <strong>Random Forest</strong>. We’ll use the Random Forest Regression algorithm  on our dataset to understand how bagging works</p>
+<section id="random-forest-algorithm-for-regression-analysis">
+<h3>Random Forest Algorithm for Regression Analysis<a class="headerlink" href="#random-forest-algorithm-for-regression-analysis" title="Permalink to this heading">#</a></h3>
+<p>The Random Forest Algorithm is a bagging algorithm that combines the functionalities of the <a class="reference external" href="https://www.cambridgespark.com/info/getting-started-with-regression-and-decision-trees">Decision Trees</a> aglorithm and Bagging. For more on Decision Trees, click <a class="reference external" href="https://www.cambridgespark.com/info/from-simple-regression-to-multiple-regression-with-decision-trees#:~:text=Decision%20trees%20can%20be%20used,the%20error%20and%20avoid%20overfit">here</a>.
+These are the steps for implementing the Random Forest model:</p>
+<ul class="simple">
+<li><p>Step 1: A subset of data points and a subset of features is selected for constructing each decision tree. Simply put, n random records and m features are taken from the data set having k number of records.</p></li>
+<li><p>Step 2: Individual decision trees are constructed for each sample.</p></li>
+<li><p>Step 3: Each decision tree will generate an output.</p></li>
+<li><p>Step 4: Final output is considered based on Majority Voting or Averaging for Classification and regression, respectively.</p></li>
+</ul>
+<p><img alt="rf_algo_viz.jpeg" src="attachment:5fd62d9f-221b-4298-96a9-24540279e7db.jpeg" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Bring in RF model from sklearn and define rf model</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
+<span class="c1">#train the model on our training data</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>RandomForestRegressor(n_estimators=500, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor(n_estimators=500, random_state=42)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+
+<span class="c1"># Predicting R2 Score the Train set results</span>
+<span class="n">y_pred_rf_train</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">r2_score_rf_train</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred_rf_train</span><span class="p">)</span>
+
+<span class="c1"># Predicting R2 Score the Test set results</span>
+<span class="n">y_pred_rf_test</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">r2_score_rf_test</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_rf_test</span><span class="p">)</span>
+
+<span class="c1"># Predicting RMSE the Test set result</span>
+<span class="n">rmse_rf_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred_rf_train</span><span class="p">)))</span>
+<span class="n">rmse_rf_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_rf_test</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2_score (train): &#39;</span><span class="p">,</span> <span class="n">r2_score_rf_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE for training set is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rmse_rf_train</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2_score (test): &#39;</span><span class="p">,</span> <span class="n">r2_score_rf_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE for test set is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rmse_rf_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2_score (train):  0.9773763028723524
+RMSE for training set is 1.4134376081749656
+R2_score (test):  0.8612575946626428
+RMSE for test set is 3.233214527492636
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="boosting">
+<h2>Boosting<a class="headerlink" href="#boosting" title="Permalink to this heading">#</a></h2>
+<p>Boosting is an ensemble learning method that combines weak models together to create a strong learner that minimizes training errors. This sounds similar to Bagging, and foundationally it is, but there is one key difference. While bagging trains its models in parallel, boosting trains models <strong>Sequentially</strong>.</p>
+<p><img alt="boosting_visual.png" src="attachment:8806eff6-ff26-4fdf-9856-027f68c674ef.png" /></p>
+<p>This means that a series of models are constructed and with each new model, the weights of the misclassified data in the previous model are changed to get better accuracy. This process helps the algorithm identify the key variables that it needs to focus on to improve its performance. Boosting is usually used for models that have low variance and high bias, which tend to be models experience underfitting issues.</p>
+<p><img alt="boosting_visual_process.png" src="attachment:2bdc0d89-e59a-47ce-ac12-ea2c9a761cb5.png" /></p>
+<p>Popular types of boosting algorithms include:</p>
+<ul class="simple">
+<li><p><strong>AdaBoost(Adaptive Boosting)</strong>:This method operates iteratively, identifying misclassified data points and adjusting their weights to minimize the training error. The model continues optimize in a sequential fashion until it yields the strongest predictor.</p></li>
+<li><p><strong>Gradient Boosting</strong>:This also works sequentially but unlike AdaBoost, Gradient Boosting trains on the residual errors of the previous predictor. The name, gradient boosting, is used since it combines the <a class="reference external" href="https://www.ibm.com/topics/gradient-descent#:~:text=Gradient%20descent%20is%20an%20optimization,each%20iteration%20of%20parameter%20updates">gradient descent</a> algorithm and boosting method.</p></li>
+<li><p><strong>XGBoost(Extreme Gradient Boosting)</strong>: XGBoost is an implementation of gradient boosting that uses an ensemble of decision trees and gradient boosting to make predictions. XGBoost leverages multiple cores on the CPU, allowing for learning to occur in parallel during training.</p></li>
+</ul>
+<p>Lets test out the XGBoost algorithm on our boston housing dataset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xgbr</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBRegressor</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="s1">&#39;reg:squarederror&#39;</span><span class="p">)</span>  <span class="c1">#Our XGBoost model</span>
+<span class="n">xgbr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>XGBRegressor(base_score=None, booster=None, callbacks=None,
+             colsample_bylevel=None, colsample_bynode=None,
+             colsample_bytree=None, early_stopping_rounds=None,
+             enable_categorical=False, eval_metric=None, feature_types=None,
+             gamma=None, gpu_id=None, grow_policy=None, importance_type=None,
+             interaction_constraints=None, learning_rate=None, max_bin=None,
+             max_cat_threshold=None, max_cat_to_onehot=None,
+             max_delta_step=None, max_depth=None, max_leaves=None,
+             min_child_weight=None, missing=nan, monotone_constraints=None,
+             n_estimators=100, n_jobs=None, num_parallel_tree=None,
+             predictor=None, random_state=None, ...)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">XGBRegressor</label><div class="sk-toggleable__content"><pre>XGBRegressor(base_score=None, booster=None, callbacks=None,
+             colsample_bylevel=None, colsample_bynode=None,
+             colsample_bytree=None, early_stopping_rounds=None,
+             enable_categorical=False, eval_metric=None, feature_types=None,
+             gamma=None, gpu_id=None, grow_policy=None, importance_type=None,
+             interaction_constraints=None, learning_rate=None, max_bin=None,
+             max_cat_threshold=None, max_cat_to_onehot=None,
+             max_delta_step=None, max_depth=None, max_leaves=None,
+             min_child_weight=None, missing=nan, monotone_constraints=None,
+             n_estimators=100, n_jobs=None, num_parallel_tree=None,
+             predictor=None, random_state=None, ...)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predicting R2 Score the Train set results</span>
+<span class="n">y_pred_xgb_train</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">r2_score_xgb_train</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred_xgb_train</span><span class="p">)</span>
+
+<span class="c1"># Predicting R2 Score the Test set results</span>
+<span class="n">y_pred_xgb_test</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">r2_score_xgb_test</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_xgb_test</span><span class="p">)</span>
+
+<span class="c1"># Predicting RMSE the Test set result</span>
+<span class="n">rmse_xgb_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred_xgb_train</span><span class="p">)))</span>
+<span class="n">rmse_xgb_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_xgb_test</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2_score (train): &#39;</span><span class="p">,</span> <span class="n">r2_score_xgb_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE for training set is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rmse_xgb_train</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2_score (test): &#39;</span><span class="p">,</span> <span class="n">r2_score_xgb_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE for test set is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rmse_xgb_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2_score (train):  0.9445743991372995
+RMSE for training set is 2.20719685494909
+R2_score (test):  0.9495325463753564
+RMSE for test set is 1.9391973068772448
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="stacking">
+<h2>Stacking<a class="headerlink" href="#stacking" title="Permalink to this heading">#</a></h2>
+<p>Boosting and Bagging are the most widely known and used ensemble methods, but another powerful ensemble method used in Machine Learning is <strong>Stacking</strong>. Stacking is a method that uses different types of models to learn some parts of a problem within a dataset. What stacking does is that it builds multiple different learners and use them to build an “intermediate prediction”, one prediction for each learned model. Afterwards a new model, the final model, is then added to the framework. This model is stacked on top of the others and learns from each of the intermediate predictions to build the final prediction of the framework. This process will most likely give you a better model and might improve overall model performance</p>
+<p><img alt="model_stacking.png" src="attachment:6c9f5d78-c97f-4508-b6de-3e6ccdae8468.png" /></p>
+<section id="cross-validation">
+<h3>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this heading">#</a></h3>
+<p>To perform stacking, a method called <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)"><strong>Cross Validation</strong></a> is required. This method is optional for bagging and boosting, but it is absolutely critical for stacking, so lets learn more about it. The gold standard for model evaluation in Machine Learning is train-test-split. You first split your data into two sets, the training set and the test set, train your model on the training set, then test it on the testing set to ensure your model works well on unseen data. This is done to check for overfitting.</p>
+<p>Now when doing evaluations on the testing set, there’s a chance that your model could mold itself differently after being fit on the testing set, which could result in overfitting on other data brought in after the model is finalized. This is where the <em>validation</em> set comes in. With validation your data is split into three sets, the training set, the validation set, and the test set. This can work, but this can reduce the number of samples which can be sued for learning the model and the results are based on picking data points randomly, which could cause more overfitting issues down the line with unseen data.</p>
+<p>This is where cross validation comes in. When performing cross validation with stacking you first split your data into two sets, the training set and the holdout set. You then <em>further</em> split your training data into smaller sets(k sets). Each k subset is then further split <em>again</em> where you’ll have training sets and a testing set for each k subset. You then bring in the models where one model would be used for each k subset. Once each model has been trained using the k subsets you’d then test them again on the holdout dataset. The average of the predictions for the test set in each k fold would be put into an array and added to the larger training set as a new feature and the same would be done for the holdout set, each getting a new feature added to it. The udpatd datasets would then be used to train the metalearner for the final predictions.</p>
+<p><img alt="stacking_process.png" src="attachment:3a87c062-c202-4238-85a3-1ef28d2c49cc.png" /></p>
+<p>This is a step by step process of what Cross Validation looks like with stacking:</p>
+<ul>
+<li><ol class="arabic simple">
+<li><p>Gather the models you’d like to use for your data (Random Forest, XGBoost)</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>Split your data set into a Training and Holdout Dataset</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>For the training set, split the data into K subsets (k = 5 subsets) and for each subset</p></li>
+</ol>
+<ul class="simple">
+<li><p>3.1. For each iteration of K, split the subset into a training set and a test set</p></li>
+<li><p>3.2. Set your current model to train on the training set and then validate it on the test set</p></li>
+<li><p>3.3. After making predictions on the test set, collect all your predictions for each set and add them into a full_y_predict array</p></li>
+<li><p>3.4. Test the model again and make predictions on the Hold out set and call them holdout_pred</p></li>
+<li><p>3.5. Add full_y_predict as a feature on the training set and add holdout_pred as a feature in the hold out set</p></li>
+</ul>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>Return the Training set and the Holdout set with the new features and run them through your metalearner in the next layer to create your final predictions</p></li>
+</ol>
+</li>
+</ul>
+<p>We would predict one fold at a time, with a different model each time.</p>
+<p><img alt="k_fold_crossv.png" src="attachment:332f4e1d-7726-4ff5-ac91-cd873a9c7ddf.png" /></p>
+<p>Lets actually implement model stacking using the 4 models we’ve used so far on our data set, Linear Regression, Random Forest, and XGBoost</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>mlxtend
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: mlxtend in /opt/anaconda3/lib/python3.9/site-packages (0.22.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scipy&gt;=1.2.1 in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (1.10.1)
+Requirement already satisfied: joblib&gt;=0.13.2 in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (1.2.0)
+Requirement already satisfied: scikit-learn&gt;=1.0.2 in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (1.2.2)
+Requirement already satisfied: setuptools in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (65.6.3)
+Requirement already satisfied: matplotlib&gt;=3.0.0 in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (3.7.1)
+Requirement already satisfied: pandas&gt;=0.24.2 in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (2.0.0)
+Requirement already satisfied: numpy&gt;=1.16.2 in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (1.24.2)
+Requirement already satisfied: importlib-resources&gt;=3.2.0 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (5.12.0)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (4.39.3)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (3.0.9)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (2.8.2)
+Requirement already satisfied: cycler&gt;=0.10 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (0.11.0)
+Requirement already satisfied: pillow&gt;=6.2.0 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (9.4.0)
+Requirement already satisfied: packaging&gt;=20.0 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (23.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (1.4.4)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (1.0.7)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pytz&gt;=2020.1 in /opt/anaconda3/lib/python3.9/site-packages (from pandas&gt;=0.24.2-&gt;mlxtend) (2022.7)
+Requirement already satisfied: tzdata&gt;=2022.1 in /opt/anaconda3/lib/python3.9/site-packages (from pandas&gt;=0.24.2-&gt;mlxtend) (2023.3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /opt/anaconda3/lib/python3.9/site-packages (from scikit-learn&gt;=1.0.2-&gt;mlxtend) (3.1.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: zipp&gt;=3.1.0 in /opt/anaconda3/lib/python3.9/site-packages (from importlib-resources&gt;=3.2.0-&gt;matplotlib&gt;=3.0.0-&gt;mlxtend) (3.11.0)
+Requirement already satisfied: six&gt;=1.5 in /opt/anaconda3/lib/python3.9/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=3.0.0-&gt;mlxtend) (1.16.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">bh</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;MEDV&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">bh</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span>
+<span class="c1"># Lets split our training set and our testing set</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">25</span><span class="p">)</span>
+<span class="c1">#Now take a look at the distributions </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of X_train: &quot;</span><span class="p">,</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of X_test: &quot;</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of y_train: &quot;</span><span class="p">,</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of y_test&quot;</span><span class="p">,</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X_train:  (354, 13)
+Shape of X_test:  (152, 13)
+Shape of y_train:  (354,)
+Shape of y_test (152,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mlxtend.regressor</span> <span class="kn">import</span> <span class="n">StackingCVRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBRegressor</span>
+
+<span class="n">l_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+<span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBRegressor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stack</span> <span class="o">=</span> <span class="n">StackingCVRegressor</span><span class="p">(</span><span class="n">regressors</span><span class="o">=</span><span class="p">(</span><span class="n">l_model</span><span class="p">,</span><span class="n">rf</span><span class="p">,</span> <span class="n">xgb</span><span class="p">),</span>
+                            <span class="n">meta_regressor</span><span class="o">=</span><span class="n">xgb</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                            <span class="n">use_features_in_secondary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">store_train_meta_features</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">stack</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">rmse_stack</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">)))</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rmse_stack</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.9111733889353992
+0.8875197373284275
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Machine_Learning_BHDataset.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to ML: Boston Housing Data</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">Bagging</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-algorithm-for-regression-analysis">Random Forest Algorithm for Regression Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting">Boosting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking">Stacking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross Validation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Annette Tamakloe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

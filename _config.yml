@@ -3,7 +3,7 @@
 
 title: Data_Science_Playbook
 author: Annette Tamakloe
-logo: logo.png
+logo: data_diaries.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
