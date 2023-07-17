@@ -6,4 +6,12 @@ root: intro
 chapters:
 - file: CommandLine
 - file: IntroToGit
-- file: Your_Coding_Environment
+- file: Your_Coding_Environmentax 
+
+- file: Basic_intro_Python
+
+- file: Geocoding-in-Python
+
+- file: Linear_Regression_Basics
+- file: Machine_Learning_BHDataset
+- file: Ensemble_Learning_BH
