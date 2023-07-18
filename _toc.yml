@@ -8,6 +8,7 @@ chapters:
 - file: IntroToGit
 - file: Your_Coding_Environment
 - file: Basic_intro_Python
+- file: Geocoder
 - file: Linear_Regression_Basics
 - file: Machine_Learning_BHDataset
 - file: Ensemble_Learning_BH
