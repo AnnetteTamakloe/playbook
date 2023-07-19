@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Geocoding in Python &#8212; Data_Science_Playbook</title>
+    <title>Introduction To Geocoding with APIs &#8212; Data_Science_Playbook</title>
   
   
   
@@ -161,11 +161,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="IntroToGit.html">Git and Github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Your_Coding_Environment.html">Your Coding Environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Basic_intro_Python.html">Python Basics</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Geocoding in Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction To Geocoding with APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Linear_Regression_Basics.html">Linear Regression for Machine Learning: The Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Machine_Learning_BHDataset.html">Introduction to ML: Boston Housing Data</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="Machine_Learning_BHDataset.html">ML Basics: Boston Housing Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Ensemble_Learning_BH.html">Ensemble Learning: Bagging, Boosting, and Stacking</a></li>
 </ul>
 
@@ -350,7 +348,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Geocoding in Python</h1>
+    <h1>Introduction To Geocoding with APIs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -360,8 +358,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-the-api">Test The API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-the-data">Read In the Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-bing-maps-api">Testing the Bing Maps API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">Data Preprocessing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geocoding-the-addresses">Geocoding The Addresses</a></li>
 </ul>
             </nav>
@@ -374,24 +372,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="geocoding-in-python">
-<h1>Geocoding in Python<a class="headerlink" href="#geocoding-in-python" title="Permalink to this heading">#</a></h1>
-<p>Maps can be a powerful way to tell stories about your data, yet great datasets for geospatial analysis are rarely complete. At times you may have a dataset that only has an address column, missing key information you’ll need for spatial analysis – Latitude and Longitude coordinates. In this case you’ll need to do some <strong>Geocoding</strong>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-geocoding-with-apis">
+<h1>Introduction To Geocoding with APIs<a class="headerlink" href="#introduction-to-geocoding-with-apis" title="Permalink to this heading">#</a></h1>
+<p>Excellent data analysis is only as good as the quality of data you use. As a Data Scientist, I find myself spend most of my time finding quality data sources and filling gaps in my datasets. This is especially true with Geospatial analysis. Often times you’ll find yourself left with a dataset that only has an address column, missing key information necessary for spatial analysis – latitude and longitude coordinates. In this case you’ll need to do some <strong>Geocoding</strong>.</p>
 <p><strong>Geocoding is the computational process of transforming a physical address description to a location on the Earth’s surface (spatial representation in numerical coordinates)</strong>.</p>
-<p>This sounds like a daunting process, but it can easily be done with the help of Python and the Bing Maps API. Before diving in, for any of this to work you will first have to acquire a Bing Maps API Key, which you can do by following these <a class="reference external" href="https://www.microsoft.com/en-us/maps/create-a-bing-maps-key">simple steps</a>.</p>
-<p>Next, import the libraries and packages needed which are the geocoder library and the pandas and re packages. The Geocoder package is the perfect candidate to solve this problem since it already deals with multiple geocoding services such as Google, Bing, OSM. Using this package and the Bing API Key, we’ll be able to use Bings data for our geocoding needs.</p>
-<div class="cell tag_hide-output tag_hide-input tag_remove-output docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
+<p>This sounds like a daunting process, but it can easily be done with the help of Python and an <strong>API</strong>. API stands for <em>“Application Programming Interface</em>.” It is a set of rules and protocols that allows different software applications to communicate and interact with each other. APIs enable different systems to exchange data and can be extremely useful for filling gaps in datasets. We’ll be using the <strong>Bing Maps API</strong> to geocode our addresses.</p>
+<p>Before diving in you need to get a Bing Maps API Key, which you can do by following these <a class="reference external" href="https://www.microsoft.com/en-us/maps/create-a-bing-maps-key">simple steps</a>.</p>
+<p>Next, import the libraries and packages needed which are the geocoder library and the pandas and re packages.</p>
+<div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>geocoder
 </pre></div>
 </div>
 </div>
-</details>
 </div>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -404,10 +397,10 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="test-the-api">
-<h2>Test The API<a class="headerlink" href="#test-the-api" title="Permalink to this heading">#</a></h2>
-<p>Now test out the Geocoder package and our API Key to make sure they work.</p>
-<p>We’ll define our geocoder as g and make a request to Bing to geocode a specific address. The Bing API usually needs the address line(Street Address), locality(City/Town), and adminDistrict(State) to geocode the addresses. You also need to pass the developer key you retrieved from Bing through the geocoder.</p>
+<section id="testing-the-bing-maps-api">
+<h2>Testing the Bing Maps API<a class="headerlink" href="#testing-the-bing-maps-api" title="Permalink to this heading">#</a></h2>
+<p>Now that we have all our tools, test out the Geocoder package and the API Key to make sure they work.</p>
+<p>We’ll define our geocoder as <strong>g</strong> and make a request to Bing to geocode a specific address. The Bing Maps API needs the <strong>address line</strong>(Street Address), <strong>locality</strong>(City/Town), and <strong>adminDistrict</strong>(State) to geocode the addresses. You also need to pass the developer key you retrieved from Bing through the geocoder.</p>
 <p>After running this, your output should be the latitudinal and longitudinal coordinates of the address we used for testing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -424,7 +417,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>As can be seen below, the same can be done to reverse geocode coordinates to retrieve specific address locations for any place in the world.</p>
+<p>Pretty cool right? We can also reverse geocode coordinates to retrieve specific address locations for any place in the world. Lets test this out below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">geocoder</span><span class="o">.</span><span class="n">bing</span><span class="p">([[</span><span class="mf">26.351670</span><span class="p">,</span> <span class="mf">127.769400</span><span class="p">],</span> <span class="p">[</span><span class="mf">48.845580</span><span class="p">,</span> <span class="mf">2.321807</span><span class="p">]],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;batch_reverse&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">APIKey</span><span class="p">)</span>
@@ -442,19 +435,21 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="read-in-the-data">
-<h2>Read In the Data<a class="headerlink" href="#read-in-the-data" title="Permalink to this heading">#</a></h2>
-<p>Now that its been confirmed that the geocoder tool is working, lets read in the excel file of the addresseses we’d like to geocode.</p>
+<section id="data-preprocessing">
+<h2>Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this heading">#</a></h2>
+<p>Now that its been confirmed that the geocoder tool is working, lets read in the excel file of the addresseses we’d like to geocode. Head over to my <a class="reference external" href="https://github.com/AnnetteTamakloe/Geocoding/tree/master">github page</a> for to download a copy of the file. Make sure to save it in the same folder as the current notebook you are using.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;addresses.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Read in your file </span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;addresses.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Take a look at the file</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -513,7 +508,8 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Lets check the number of addresses in the file</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -523,32 +519,14 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Now lets transform our data to make it easy for our Bing API to do its job.  Our data frame must have columns for the <strong>address line</strong>(Street Address), <strong>locality</strong>(City/Town), and  <strong>adminDistrict</strong>(State).
+We’ll use <strong>Pandas</strong> and the <strong>re</strong> packages to clean the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;address&#39;</span><span class="p">]</span>
-<span class="n">s</span><span class="o">=</span> <span class="n">add</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Aria Reserve Miami
-</pre></div>
-</div>
-</div>
-</div>
-<p>Since the addresses are not formatted in the way necessary for the Bing API to do its work, some data transformation techniques will have to be employed.  Our data frame must have columns for the <strong>address line</strong>(Street Address), <strong>locality</strong>(City/Town), and  <strong>adminDistrict</strong>(State).
-We’ll follow the steps below and use <strong>Pandas</strong> as well as the <strong>re</strong> packages to clean the data.</p>
-<ol class="arabic simple">
-<li><p>Create and define a new Data frame outside of the forloop</p></li>
-<li><p>Use the re function to split our addresses by commas, which allow us to define the address, street, and city using their location each address string.</p></li>
-<li><p>Use the re function to split the addresses by spaces, which will allow us to extract the state and zip code using their location in the string</p></li>
-<li><p>After defining all the and cleaning the key data needed, append the newly cleaned observations into the geo Data frame.</p></li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo_data</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># List to store the dictionaries</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Create an empty list to store our data</span>
+<span class="n">geo_data</span> <span class="o">=</span> <span class="p">[]</span> 
 
+<span class="c1">#Create a forloop that goes through each address and splices it by street name, city, country, name, zip</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">address</span><span class="p">:</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
@@ -559,100 +537,17 @@ We’ll follow the steps below and use <strong>Pandas</strong> as well as the <s
     <span class="n">state</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="n">zipcode</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     
-    <span class="c1"># Append the data as a dictionary to the list</span>
+<span class="c1">#Define our data by passing it through a dictionary to define our columns and put it into a list</span>
     <span class="n">geo_data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="n">address</span><span class="p">,</span> <span class="s1">&#39;street&#39;</span><span class="p">:</span> <span class="n">street</span><span class="p">,</span> <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">:</span> <span class="n">state</span><span class="p">,</span>
                      <span class="s1">&#39;zip&#39;</span><span class="p">:</span> <span class="n">zipcode</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="n">country</span><span class="p">})</span>
 
-<span class="c1"># Create a DataFrame from the list of dictionaries</span>
+<span class="c1">#Create a DataFrame from the list of dictionaries</span>
 <span class="n">geo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">geo_data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>address</th>
-      <th>street</th>
-      <th>city</th>
-      <th>state</th>
-      <th>zip</th>
-      <th>country</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Whitlow Plan, Brookland Grove, Washington, DC ...</td>
-      <td>Whitlow Plan</td>
-      <td>Brookland Grove</td>
-      <td>DC</td>
-      <td>20017</td>
-      <td>U.S.</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Unit 02 Plan, Aria Reserve Miami, Miami, FL 33137</td>
-      <td>Unit 02 Plan</td>
-      <td>Aria Reserve Miami</td>
-      <td>FL</td>
-      <td>33137</td>
-      <td>U.S.</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Unit 01 A Plan, Aria Reserve Miami, Miami, FL ...</td>
-      <td>Unit 01 A Plan</td>
-      <td>Aria Reserve Miami</td>
-      <td>FL</td>
-      <td>33137</td>
-      <td>U.S.</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>The Buchanan Plan, The Townhomes At Michigan P...</td>
-      <td>The Buchanan Plan</td>
-      <td>The Townhomes At Michigan Park</td>
-      <td>DC</td>
-      <td>20017</td>
-      <td>U.S.</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Plan 3 Plan, Hudson At Belterra, Austin, TX 78737</td>
-      <td>Plan 3 Plan</td>
-      <td>Hudson At Belterra</td>
-      <td>TX</td>
-      <td>78737</td>
-      <td>U.S.</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>Columns for the latitude and longitude coordinates the geocoder will retrieve from the the Bing API also needed to be created and added to the dataframe</p>
+<p>We also need to create columns for the latitude and longitude coordinates the geocoder will retrieve from the the Bing API.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
@@ -661,7 +556,7 @@ We’ll follow the steps below and use <strong>Pandas</strong> as well as the <s
 </div>
 </div>
 </div>
-<p>This is how the geo data frame should look like after our mini preprocessing session:</p>
+<p>This is how the our dataset should look like after our data preprocessing session</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -760,7 +655,7 @@ We’ll follow the steps below and use <strong>Pandas</strong> as well as the <s
 </section>
 <section id="geocoding-the-addresses">
 <h2>Geocoding The Addresses<a class="headerlink" href="#geocoding-the-addresses" title="Permalink to this heading">#</a></h2>
-<p>Now its time to geocode. We will create a for loop to pass each address through the geocoder object created a couple steps above, except this time, we’ll be passing the column names for each iteration through it. Same as before, the Bing API Developer key will also have to be passed through the geocoder. We will then us the g.lat and g.long functions to request the latitudinal and longitudinal coordinates for all of our addresses.</p>
+<p>Now its time to geocode. We will create a for loop to pass each address through the geocoder we created a couple steps before, except this time, we’ll be passing the our columns that contain our data through it. Just as before, we’ll have to use the API Developer key to make the request to Bing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">geo</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
@@ -770,13 +665,13 @@ We’ll follow the steps below and use <strong>Pandas</strong> as well as the <s
         <span class="n">geo</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">lat</span>
         <span class="n">geo</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">lng</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="n">geo</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-        <span class="n">geo</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;long&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+        <span class="n">geo</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39; &#39;</span>
+        <span class="n">geo</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;long&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39; &#39;</span> 
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now lets take a look at the geo data frame</p>
+<p>Now lets take a look out our dataframe geo. The lat and long columns should now be populated with the latitudinal and longitudinal coordinates for each of our addresses.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo</span>
@@ -939,7 +834,7 @@ We’ll follow the steps below and use <strong>Pandas</strong> as well as the <s
 <p>196 rows × 8 columns</p>
 </div></div></div>
 </div>
-<p>We now have the coordinates for every single one of our addresses and have completed the geocoding process</p>
+<p>And with that, we have completed the geocoding process. With this dataset, you should be able to make rich visualizations filled with detail and meaningful data analysis in tools like Tableau, Python or R.</p>
 </section>
 </section>
 
@@ -1010,8 +905,8 @@ We’ll follow the steps below and use <strong>Pandas</strong> as well as the <s
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-the-api">Test The API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-the-data">Read In the Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-bing-maps-api">Testing the Bing Maps API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">Data Preprocessing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geocoding-the-addresses">Geocoding The Addresses</a></li>
 </ul>
   </nav></div>

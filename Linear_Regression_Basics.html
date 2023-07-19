@@ -64,8 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Linear_Regression_Basics';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Introduction to ML: Boston Housing Data" href="Machine_Learning_BHDataset.html" />
-    <link rel="prev" title="Geocoding in Python" href="Geocoder.html" />
+    <link rel="next" title="ML Basics: Boston Housing Dataset" href="Machine_Learning_BHDataset.html" />
+    <link rel="prev" title="Introduction To Geocoding with APIs" href="Geocoder.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -161,11 +161,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="IntroToGit.html">Git and Github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Your_Coding_Environment.html">Your Coding Environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Basic_intro_Python.html">Python Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Geocoder.html">Geocoding in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geocoder.html">Introduction To Geocoding with APIs</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear Regression for Machine Learning: The Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Machine_Learning_BHDataset.html">Introduction to ML: Boston Housing Data</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="Machine_Learning_BHDataset.html">ML Basics: Boston Housing Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Ensemble_Learning_BH.html">Ensemble Learning: Bagging, Boosting, and Stacking</a></li>
 </ul>
 
@@ -360,11 +358,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-exactly-is-linear-regression">What exactly is Linear Regression?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-of-linear-regression">Structure of Linear Regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-determine-our-line-of-best-fit">How do we determine our line of best fit?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient Descent</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameters">Hyperparameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-linear-regression">What is Linear Regression?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-of-linear-regression">1. Structure of Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#line-of-best-fit">1.1 Line of Best Fit</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-line-of-best-fit">2. Determining Line of Best Fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-function-and-error-terms">2.1 Cost Function and Error Terms</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">2.2 Gradient Descent</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameters">2.3 Hyperparameters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics-for-model-evaluation">3. Metrics for Model Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-optimization-process">3.1 Visualizing the Optimization Process</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -380,34 +388,27 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-regression-for-machine-learning-the-basics">
 <h1>Linear Regression for Machine Learning: The Basics<a class="headerlink" href="#linear-regression-for-machine-learning-the-basics" title="Permalink to this heading">#</a></h1>
-<p>There’s one frequent question I hear often when people inquire about the Data Science field. Do I need to know math? And to many people’s chagrin, the answer is yes, especially for Machine Learning. The good thing to know is that you DONT need to be a math wizz to understand the fundemental math concepts for the field. The beauty of applications like Python and R is that they have many tools that do much of the heavy lifting when it comes to implementing mathematical theories on your dataset, but here needs to be a willingness to understand the science behind what you create so you know how to treat your data.
-Statistics in particular is a necessary curriculum you’ll need for Machine Learning and the perfect place to start is with Linear Regression. This guide will walk through the basics of using Linear Regression for Machine Learning and will hopefully act as a reference as well.</p>
-<section id="what-exactly-is-linear-regression">
-<h2>What exactly is Linear Regression?<a class="headerlink" href="#what-exactly-is-linear-regression" title="Permalink to this heading">#</a></h2>
-<p>Linear Regression is a type of statistical analysis that is used to find a relationship between one more more features(independent variable) and a target variable (dependent variable) It can be used to forecast sales, prices, and can even used to gain insights about customer behavior. You can bucket most linear regression analyses into two types:</p>
+<p>There’s one frequent question I hear often when people inquire about the Data Science field. Do I need to know math? And to many people’s chagrin, the answer is yes, especially for Machine Learning. The good thing to know is that you don’t need to be a math wizz to understand the fundemental math concepts for the field. The beauty of applications like Python and R is that they have many tools that do much of the heavy lifting when it comes to implementing mathematical theories on your dataset, but there needs to be a willingness to understand the science behind what you create so you know how to treat your data.
+Statistics in particular is a necessary curriculum you’ll need for Machine Learning and the perfect place to start is with Linear Regression. This will be a hands on guide that will use packages such as <strong>pandas</strong>, <strong>numpy</strong>, <strong>matplotlib</strong>, and <strong>Scikit Learn</strong> to detail the basics of Linear Regression for Machine Learning.</p>
+<section id="what-is-linear-regression">
+<h2>What is Linear Regression?<a class="headerlink" href="#what-is-linear-regression" title="Permalink to this heading">#</a></h2>
+<p>Linear Regression is a type of statistical analysis that is used to find a relationship between one more more features (independent variables) and a target variable (dependent variable). It can be used to forecast sales, prices, and can even used to gain insights about customer behavior. You can bucket most linear regression analyses into two types:</p>
 <ul class="simple">
-<li><ol class="arabic simple">
 <li><p><strong>Univariate Linear Regression:</strong> Only one feature is used in your model</p></li>
-</ol>
-</li>
-<li><ol class="arabic simple" start="2">
 <li><p><strong>Multivariate Linear Regression:</strong> More than one feature is used in your model</p></li>
-</ol>
-</li>
 </ul>
 <section id="structure-of-linear-regression">
-<h3>Structure of Linear Regression<a class="headerlink" href="#structure-of-linear-regression" title="Permalink to this heading">#</a></h3>
+<h3>1. Structure of Linear Regression<a class="headerlink" href="#structure-of-linear-regression" title="Permalink to this heading">#</a></h3>
 <p>The linear regression model can be summarized by the following equation:</p>
 <p><img alt="linear_equation.png" src="_images/linear_equation.png" /></p>
-<p>or</p>
-<p><img alt="h(x).webp" src="attachment:e852bddd-ebc6-4b0d-a142-c40854db0fec.webp" /></p>
 <ul class="simple">
-<li><p>Y is the predicted value.</p></li>
-<li><p>This equation is also known as the hypothesis function h(x).</p></li>
-<li><p>θ1…….,θn are our model parameters or the coefficients of the features of our model. They are the foundation of our predicted values</p></li>
-<li><p>θ-zero is the bias term and is also the value of the equation if all of our other features have a coefficient of 0. Its also known as the intercept</p></li>
+<li><p>Y: This the predicted value. It is also known as the hypothesis function h(x)</p></li>
+<li><p>θ1…….,θn: These are our model parameters or the coefficients of the features of our model. They determine the value of Y</p></li>
+<li><p>θ-zero: This is the bias term - the value Y if all of our other parameters have a value of 0. Its also known as the intercept</p></li>
 </ul>
-<p>This would also be our theoretical equation for our <em>line of best fit</em> or our <em>regression line</em>. If we plotted our feautures or independent variables individually against our target variable we would get a scatter plot. Lets create one to get a better understanding of what I mean. We will create some data for a dependent variable y and one independent variable x.</p>
+<section id="line-of-best-fit">
+<h4>1.1 Line of Best Fit<a class="headerlink" href="#line-of-best-fit" title="Permalink to this heading">#</a></h4>
+<p>This structure is our theoretical equation for our <strong>line of best fit</strong> or  <strong>regression line</strong>. To further understand it’s function, lets create some fake data for a feature (x) and a target value (y) and plot them against each other.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -434,26 +435,37 @@ Statistics in particular is a necessary curriculum you’ll need for Machine Lea
 </div>
 <p>Our line of best fit’s job <em>(which represents our equation)</em> is to try and get a sense of the best or <em>optimal</em> values that would help us hit most of our observations on the scatterplot. If our line of best fit does a good job, we should be able to take it and use it to predict our Y variables fairly accurately for similar datasets that have different observations</p>
 </section>
-<section id="how-do-we-determine-our-line-of-best-fit">
-<h3>How do we determine our line of best fit?<a class="headerlink" href="#how-do-we-determine-our-line-of-best-fit" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="determining-line-of-best-fit">
+<h3>2. Determining Line of Best Fit<a class="headerlink" href="#determining-line-of-best-fit" title="Permalink to this heading">#</a></h3>
 <p>As mentioned before, our line of best fits job is to hit as many points as it can on our scatter plot. If it does its job well, the distance between our line and each of our data points would be very small. The distance between each of our predicted values(represented by our line of best fit) and the actual data observations is known as an error term or a residual. Lets take a look at a visual representation of this.</p>
 <p><img alt="residuals.webp" src="attachment:264bfb77-90a4-4c53-baea-1aebc0940255.webp" /></p>
+<p><img alt="residuals.gif" src="attachment:f85d7728-5f18-407d-9ad7-9cc9d3ee8971.gif" /></p>
+<section id="cost-function-and-error-terms">
+<h4>2.1 Cost Function and Error Terms<a class="headerlink" href="#cost-function-and-error-terms" title="Permalink to this heading">#</a></h4>
 <p>The sum of all of our error terms is measured by something called the <em>cost function</em> which is defined as the sum of the squares of all of our residuals. This is how our cost function looks like for a specific feature or parameter</p>
 <p><img alt="cost_function.webp" src="attachment:0e572f2b-c86c-4f22-a42a-3d792f403f3e.webp" /></p>
-<p><em>h(x)</em> represents the hypothesis function we mentioned before, and it is essentially the value we got for Y with our equation - our predicted value. The predicted value is subtracted from the actual value in the data to get our error for one observation. We then do this for each and every observation, add them all up and square them. The huge E seen in the equation represents the summing up all of the error terms for each of our observations. You may ask why we also square our error term. This is done so we can get the absolute values for all our observations. That way any negative values are transformed into positives before we add them up. We also do this to penalize data points which are further away from the regression line much more than the points which lie close to the line. The <em>m</em> in our equation represents the number of training sets we have</p>
-<p><img alt="h(x).webp" src="attachment:98fd2259-2be3-4237-8c5e-233810d2bf13.webp" /></p>
-<p>Our objective in all of this is find the best or <em>optimal</em> parameters (represented by θ) for each of our features (represented by x) to minimize the cost function or the loss function. We could do this using the Normal Equation or with something called <a class="reference external" href="https://builtin.com/data-science/gradient-descent"><strong>Gradient Descent</strong></a>.</p>
+<ul class="simple">
+<li><p><strong>J(θ)</strong>: This represents a parameter for a feature. We want the parameter that will make our cost function 0</p></li>
+<li><p><strong>h(x)</strong>: The hypothesis function we mentioned before, it is our predicted value. The predicted value is subtracted from the actual value in the data to get our error for one observation. This is done for each observation and they are then squared them and aggregated.</p></li>
+<li><p><strong>E</strong>:    This represents aggregatation of all the error terms for each of our observations. Why do we square the error term? This is done so we can get the absolute values for all our observations. That way any negative values are transformed into positives before we add them up. We also do this to penalize data points which are further away from the regression line much more than the points which lie close to the line.</p></li>
+<li><p><strong>m</strong>:    The number of training sets we have</p></li>
+</ul>
+<p>Our objective is to find the best or <em>optimal</em> parameters (represented by θ) for each of our features (represented by x) to minimize the cost function or the loss function. We could do this using the Normal Equation or with something called <a class="reference external" href="https://builtin.com/data-science/gradient-descent"><strong>Gradient Descent</strong></a>.</p>
 </section>
 <section id="gradient-descent">
-<h3>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this heading">#</a></h3>
+<h4>2.2 Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this heading">#</a></h4>
 <p>Gradient descent is an algorithm used in many machine learning algorithms. What it does is that it tweaks and changes our parameters of our model to minimize the cost function discussed before. These are the steps of gradient descent:</p>
 <ol class="arabic simple">
 <li><p>First you plug in some random values for your model parameters to start off with. This is known as random initialization, because we need to start off somewhere</p></li>
 </ol>
 <ol class="arabic simple" start="2">
-<li><p>Now you have to measure how the cost function changes with each change in the parameter to see if its increasing, decreasing, ect. This can be measured by computing something called the partial derivative of the cost function which essentially captures how our parameters are changing. Our cost function would have to be convex and would have to have a global mimima, representing 0 meaning that is our optimal parameter, the lowest point on our curve. What this is essentially doing is capturing the slope as our parameter is travelling down to the global mimima. We give the algorithm a certain number of iterations to indicate how many attempts we want it to make to get to our global or local minima. This could be any number from 1 to 100000, but we need a number large enough to get it to our optimal parameter.</p></li>
+<li><p>Measure how the cost function changes with each change in the parameter to see if its increasing or decreasing. This can be measured by computing something called the <em>partial derivative</em> of the cost function. Our cost function would have to be convex and would have to have a global mimima, the lowest point on our curve. The partial derivative measures the direction of the parameter as it is travelling down to the global mimima.</p></li>
 </ol>
 <p><img alt="derivativecostfunction.webp" src="attachment:5a8ead35-474e-4ec8-a619-4d9756845f7f.webp" /></p>
+<ol class="arabic simple" start="3">
+<li><p>We also need to give the algorithm a certain number of iterations to indicate how many attempts we want it to make to get to our global or local minima. This could be any number from 1 to 100000, but we need a number large enough to get it to our optimal parameter.</p></li>
+</ol>
 <ol class="arabic simple" start="3">
 <li><p>Now after getting the derivative, you now have to update the parameters and change them simultaneously to see how it impacts our cost function. Our derivative is multiplied by something called the <em>learning rate</em> which represented by a. This learning rate will determine how fast or how slow our parameters move towards our desired local optima. We never want to have a learning rate that is too big or too small. If our learning rate is small it will take forever for us to get to our optimal parameter. But even worse, if it is too big we could completely overshoot and whizz past our desired parameters. Note that if we have more than 1 parameter, we would have to plug in the changes simultaneously to see how each change for every coefficient on our feature is impacting the cost function.</p></li>
 </ol>
@@ -462,9 +474,20 @@ Statistics in particular is a necessary curriculum you’ll need for Machine Lea
 <p>I like to think of Gradient Descent from the perspective of a hiker embarking on a journey down a valley to find a natural spring to quench their thirst. They start of at ground 0, unsure of what lies in wait for them, but step by step, put one foot in front of the other to traverse the valley on a quest to save themselves from dying of dehydration. They can’t run or walk too fast, else they might end up rolling down the hill to quickly and might shoot right past the spring, but they also cant walk too slow or they’ll be dead before they get there. They have to take slow measured steps and try their best to track their journey so they can find their way back once they find what they’re looking for.</p>
 </section>
 <section id="hyperparameters">
-<h3>Hyperparameters<a class="headerlink" href="#hyperparameters" title="Permalink to this heading">#</a></h3>
-<p>Often with machine learning algorithms, you’ll often hear the word hyperparameters. In machine learning, a hyperparameter is a parameter whose value is used to control the learning process. With the gradient descent algorithm, our hyperparameters are our learning rate (a) and the number of iterations we need for our parameter to get to the local or global minima. We can randomly choose the values of these hyperparameteres but as I’m sure you’ve noticed, there’s always an optimization framework for anything with Machine Learning. To choose optimal hyperparameters we can employ an algorithm called <a class="reference external" href="https://www.mygreatlearning.com/blog/gridsearchcv/#:~:text=Grid%20search%20is%20a%20method,learning%20rate%20of%20the%20optimiser">GridSearch</a>. We won’t be implementing it in this example since that’s for more advanced Machine Learning models, but it will be further discussed in later blogs.</p>
-<p>Lets implement the gradient descent algorithm from scratch and see how it’s able to decrease our cost function overtime</p>
+<h4>2.3 Hyperparameters<a class="headerlink" href="#hyperparameters" title="Permalink to this heading">#</a></h4>
+<p>Often with machine learning algorithms, you’ll often hear the word <strong>hyperparameters</strong>. In machine learning, a hyperparameter is a parameter whose value is used to control the learning process. With the gradient descent algorithm, our hyperparameters are our <strong>learning rate</strong> (a) and the <strong>number of iterations</strong> (n) we need for our parameter to get to the local or global minima. We can randomly choose the values of these hyperparameteres but as I’m sure you’ve noticed, there’s always an optimization framework for anything with Machine Learning. To choose optimal hyperparameters we can employ an algorithm called <a class="reference external" href="https://www.mygreatlearning.com/blog/gridsearchcv/#:~:text=Grid%20search%20is%20a%20method,learning%20rate%20of%20the%20optimiser">GridSearch</a>. We won’t be implementing it in this example since that’s for more advanced Machine Learning models, but it will be further discussed in later blogs.</p>
+</section>
+</section>
+<section id="metrics-for-model-evaluation">
+<h3>3. Metrics for Model Evaluation<a class="headerlink" href="#metrics-for-model-evaluation" title="Permalink to this heading">#</a></h3>
+<p>Once we have a line of best fit, we need to be able to determine whether it fits our data. To do this we need to understand the main metrics for evaluating our LOF. The most important for a basic linear regression model are:</p>
+<ul class="simple">
+<li><p><strong>R2</strong>: This measures the goodness of fit of a model. A higher R2 is an indication that your model is doing a good job of explaining the variation in your data set.</p></li>
+<li><p><strong>RMSE (Root Mean Squared Error)</strong>: This is our error term which determines how good the model is at predicting the actual values in a dataset. The lower this term is the better</p></li>
+</ul>
+<section id="visualizing-the-optimization-process">
+<h4>3.1 Visualizing the Optimization Process<a class="headerlink" href="#visualizing-the-optimization-process" title="Permalink to this heading">#</a></h4>
+<p>Lets now implement the gradient descent algorithm from scratch to find a good model for our “data” and evaluate its fitness.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -541,7 +564,7 @@ Statistics in particular is a necessary curriculum you’ll need for Machine Lea
 <img alt="_images/9575f48528c6a4cbd0f82b123d7e78f81acdda82061e7f6edb2f47745c7f609e.png" src="_images/9575f48528c6a4cbd0f82b123d7e78f81acdda82061e7f6edb2f47745c7f609e.png" />
 </div>
 </div>
-<p>Now that we’ve gotten our best fit line, which looks pretty good, lets now visualize how our cost function changed across each iteration.</p>
+<p>Now we’ve gotten our best fit line and it looks pretty good. Now lets visualize how our cost function changed across each iteration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -556,7 +579,7 @@ Statistics in particular is a necessary curriculum you’ll need for Machine Lea
 <img alt="_images/292339a4a36608cb664257f5924d5758f813aa78bbe4a65ae8521008db389e7f.png" src="_images/292339a4a36608cb664257f5924d5758f813aa78bbe4a65ae8521008db389e7f.png" />
 </div>
 </div>
-<p>We can see that our cost function dramatically dipped almost to 0 as we got closer to the 200th iteration, showing the how powerful the gradient descent algorithm can be for finding optimal parameters. Now lets get a more objective sense of how our moel is performing using Scikit Learns Linear Regression Model framework.</p>
+<p>We can see that our cost function dramatically dipped almost to 0 as we got closer to the 200th iteration, showing the how powerful the gradient descent algorithm can be for finding optimal parameters. Now lets get a more objective sense of how our model is performing using <strong>Scikit Learns</strong> Linear Regression Model framework.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imports</span>
@@ -605,7 +628,8 @@ R2 score:  0.9038655568672764
 <img alt="_images/ea44a3f92fcfea4dd3c45364133a477bf07942397032235be8a71b9664a01fde.png" src="_images/ea44a3f92fcfea4dd3c45364133a477bf07942397032235be8a71b9664a01fde.png" />
 </div>
 </div>
-<p>We clearly have some very good metrics here with an R2 of 90% meaning our model explains about 90% of the variation in our data and we also have a RMSE of 0.07, which is quite low and is also a good sign our model is perfomrting well.</p>
+<p>We clearly have some very good metrics here with an R2 of 90% meaning our model explains about 90% of the variation in our data and we also have a RMSE of 0.07, which is quite low and is also a good sign our model is performing well.</p>
+</section>
 </section>
 </section>
 </section>
@@ -647,7 +671,7 @@ R2 score:  0.9038655568672764
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Geocoding in Python</p>
+        <p class="prev-next-title">Introduction To Geocoding with APIs</p>
       </div>
     </a>
     <a class="right-next"
@@ -655,7 +679,7 @@ R2 score:  0.9038655568672764
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction to ML: Boston Housing Data</p>
+        <p class="prev-next-title">ML Basics: Boston Housing Dataset</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -677,11 +701,21 @@ R2 score:  0.9038655568672764
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-exactly-is-linear-regression">What exactly is Linear Regression?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-of-linear-regression">Structure of Linear Regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-determine-our-line-of-best-fit">How do we determine our line of best fit?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient Descent</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameters">Hyperparameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-linear-regression">What is Linear Regression?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-of-linear-regression">1. Structure of Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#line-of-best-fit">1.1 Line of Best Fit</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-line-of-best-fit">2. Determining Line of Best Fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-function-and-error-terms">2.1 Cost Function and Error Terms</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">2.2 Gradient Descent</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameters">2.3 Hyperparameters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics-for-model-evaluation">3. Metrics for Model Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-optimization-process">3.1 Visualizing the Optimization Process</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
