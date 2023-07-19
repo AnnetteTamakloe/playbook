@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to ML: Boston Housing Data &#8212; Data_Science_Playbook</title>
+    <title>ML Basics: Boston Housing Dataset &#8212; Data_Science_Playbook</title>
   
   
   
@@ -161,11 +161,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="IntroToGit.html">Git and Github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Your_Coding_Environment.html">Your Coding Environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Basic_intro_Python.html">Python Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Geocoder.html">Geocoding in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geocoder.html">Introduction To Geocoding with APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Linear_Regression_Basics.html">Linear Regression for Machine Learning: The Basics</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to ML: Boston Housing Data</a></li>
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">ML Basics: Boston Housing Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Ensemble_Learning_BH.html">Ensemble Learning: Bagging, Boosting, and Stacking</a></li>
 </ul>
 
@@ -350,7 +348,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to ML: Boston Housing Data</h1>
+    <h1>ML Basics: Boston Housing Dataset</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -360,33 +358,29 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to ML: Boston Housing Data</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-data-cleaning-and-preliminary-analysis">EDA: Data Cleaning and Preliminary Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualizations">Data Visualizations</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-for-target-variable">Histogram for target variable</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-heatmap">Correlation Heatmap</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-model-selection-and-evaluation">Preliminary Model Selection and Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-our-data-for-the-model">Preparing our Data for the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-ur-data-into-the-training-set-and-the-testing-sets">Splitting ur data into the training set and the testing sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model-on-training-set">Training the Model on training set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-model-on-our-test-set">Testing the model on our test set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-this-on-our-model-with-13-features">Test this on our model with 13 features</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-model-selection-and-evaluation">Preliminary Model Selection and Evaluation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-our-data-for-the-model">Preparing our Data for the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-ur-data-into-the-training-set-and-the-testing-sets">Splitting ur data into the training set and the testing sets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model-on-training-set">Training the Model on training set</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-model-on-our-test-set">Testing the model on our test set</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-this-on-our-model-with-13-features">Test this on our model with 13 features</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-better-models">Creating Better Models</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logarithimic-transformations">Logarithimic Transformations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression">Polynomial Regression</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#under-fitting-and-over-fitting">Under-Fitting and Over-Fitting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-vs-variance-trade-off">Bias vs Variance trade - off</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-polynomial-regression-to-our-boston-housing-dataset">Applying Polynomial Regression to Our Boston Housing Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-better-models">Creating Better Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logarithimic-transformations">Logarithimic Transformations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression">Polynomial Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#under-fitting-and-over-fitting">Under-Fitting and Over-Fitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-vs-variance-trade-off">Bias vs Variance trade - off</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-polynomial-regression-to-our-boston-housing-dataset">Applying Polynomial Regression to Our Boston Housing Dataset</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -397,8 +391,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="introduction-to-ml-boston-housing-data">
-<h1>Introduction to ML: Boston Housing Data<a class="headerlink" href="#introduction-to-ml-boston-housing-data" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="ml-basics-boston-housing-dataset">
+<h1>ML Basics: Boston Housing Dataset<a class="headerlink" href="#ml-basics-boston-housing-dataset" title="Permalink to this heading">#</a></h1>
 <section id="eda-data-cleaning-and-preliminary-analysis">
 <h2>EDA: Data Cleaning and Preliminary Analysis<a class="headerlink" href="#eda-data-cleaning-and-preliminary-analysis" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -906,8 +900,8 @@ dtype: object
 Dep. Variable:                   MEDV   R-squared:                       0.741
 Model:                            OLS   Adj. R-squared:                  0.734
 Method:                 Least Squares   F-statistic:                     108.1
-Date:                Mon, 17 Jul 2023   Prob (F-statistic):          6.72e-135
-Time:                        20:33:24   Log-Likelihood:                -1498.8
+Date:                Tue, 18 Jul 2023   Prob (F-statistic):          6.72e-135
+Time:                        19:08:24   Log-Likelihood:                -1498.8
 No. Observations:                 506   AIC:                             3026.
 Df Residuals:                     492   BIC:                             3085.
 Df Model:                          13                                         
@@ -966,7 +960,7 @@ strong multicollinearity or other numerical problems.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10dd66b50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10e1e7a00&gt;
 </pre></div>
 </div>
 <img alt="_images/53d0eed25cce942a870e1fa852a4e1400b48146859fba0182ffdbeef26218509.png" src="_images/53d0eed25cce942a870e1fa852a4e1400b48146859fba0182ffdbeef26218509.png" />
@@ -1061,11 +1055,10 @@ strong multicollinearity or other numerical problems.
 <p>We can clearly see that both variables have a fairly strong relationship with MEDV as expected. LSAT has a negative relationship while RM has a positive one</p>
 </section>
 </section>
-</section>
 <section id="preliminary-model-selection-and-evaluation">
-<h1>Preliminary Model Selection and Evaluation<a class="headerlink" href="#preliminary-model-selection-and-evaluation" title="Permalink to this heading">#</a></h1>
+<h2>Preliminary Model Selection and Evaluation<a class="headerlink" href="#preliminary-model-selection-and-evaluation" title="Permalink to this heading">#</a></h2>
 <section id="preparing-our-data-for-the-model">
-<h2>Preparing our Data for the model<a class="headerlink" href="#preparing-our-data-for-the-model" title="Permalink to this heading">#</a></h2>
+<h3>Preparing our Data for the model<a class="headerlink" href="#preparing-our-data-for-the-model" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Using numpy we&#39;re going to grab our features and put them into a data frame</span>
@@ -1078,7 +1071,7 @@ strong multicollinearity or other numerical problems.
 </div>
 </section>
 <section id="splitting-ur-data-into-the-training-set-and-the-testing-sets">
-<h2>Splitting ur data into the training set and the testing sets<a class="headerlink" href="#splitting-ur-data-into-the-training-set-and-the-testing-sets" title="Permalink to this heading">#</a></h2>
+<h3>Splitting ur data into the training set and the testing sets<a class="headerlink" href="#splitting-ur-data-into-the-training-set-and-the-testing-sets" title="Permalink to this heading">#</a></h3>
 <p>Next, the data will have to be split into training sets, and testing sets. The model will be trained with about 80% of the data and we’ll test 20% of the data on it. We have to do this to make sure our model performs well on unseen data. To ensure we have a good model that is trained well on our data. To split the data we use train_test_split function provided by scikit-learn library. Then we’ll verify the size of our training and setting sets to ensure our data is distributed correctly</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1169,7 +1162,7 @@ strong multicollinearity or other numerical problems.
 </div>
 </section>
 <section id="training-the-model-on-training-set">
-<h2>Training the Model on training set<a class="headerlink" href="#training-the-model-on-training-set" title="Permalink to this heading">#</a></h2>
+<h3>Training the Model on training set<a class="headerlink" href="#training-the-model-on-training-set" title="Permalink to this heading">#</a></h3>
 <p>Things look good. Now lets use scikit-learn’s <code class="docutils literal notranslate"><span class="pre">Linear-Regression</span></code> to train our model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1215,7 +1208,7 @@ R2 score is 0.6725214335656511
 <p>This is a fairly good baseline to start of with. Our rmse is fairly okay and our R2 explains 67% of the variation in our dataset. Now lets see how our model will perform on data it hasn’t seen before.</p>
 </section>
 <section id="testing-the-model-on-our-test-set">
-<h2>Testing the model on our test set<a class="headerlink" href="#testing-the-model-on-our-test-set" title="Permalink to this heading">#</a></h2>
+<h3>Testing the model on our test set<a class="headerlink" href="#testing-the-model-on-our-test-set" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Same tests for the test set</span>
@@ -1242,7 +1235,7 @@ R2 is 0.691587828074417
 <p>Our rmse is lower and he r2 is higher, all good signs. We have a good baseline to start of with but now we want to make our model even better, so we’ll have to employ more methods to our dataset to get closer to a better model.</p>
 </section>
 <section id="test-this-on-our-model-with-13-features">
-<h2>Test this on our model with 13 features<a class="headerlink" href="#test-this-on-our-model-with-13-features" title="Permalink to this heading">#</a></h2>
+<h3>Test this on our model with 13 features<a class="headerlink" href="#test-this-on-our-model-with-13-features" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#defining our features and our target variable for OLS model</span>
@@ -1335,7 +1328,7 @@ R2 is 0.7334492147453086
 </section>
 </section>
 <section id="creating-better-models">
-<h1>Creating Better Models<a class="headerlink" href="#creating-better-models" title="Permalink to this heading">#</a></h1>
+<h2>Creating Better Models<a class="headerlink" href="#creating-better-models" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Lets Discuss Assumptions of a linear model and whether our data completely fits those <a class="reference external" href="https://towardsdatascience.com/top-3-methods-for-handling-skewed-data-1334e0debf45">assumptions</a></p></li>
 <li><p>Lets fit a <a class="reference external" href="https://medium.com/towards-data-science/polynomial-regression-bbe8b9d97491">Polynomial model</a> to our data</p></li>
@@ -1365,7 +1358,7 @@ R2 is 0.7334492147453086
 </ul>
 <p>When the data does not completely fit these assumptions, some transformations are applied to our training data to give our variables a better relationship for our model.</p>
 <section id="logarithimic-transformations">
-<h2>Logarithimic Transformations<a class="headerlink" href="#logarithimic-transformations" title="Permalink to this heading">#</a></h2>
+<h3>Logarithimic Transformations<a class="headerlink" href="#logarithimic-transformations" title="Permalink to this heading">#</a></h3>
 <p>Lets tackle the 4th assumption of Normal distributions. Lets look at all of our variables, including our feautres and target variable to look at their distributions to check to see how skewed they are.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1410,7 +1403,7 @@ R2 is 0.7334492147453086
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12cc7c8e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12b1b2e50&gt;
 </pre></div>
 </div>
 <img alt="_images/651dd714f2314770fc6b6adb7f9a65581830e384903738b77b2aae069189281f.png" src="_images/651dd714f2314770fc6b6adb7f9a65581830e384903738b77b2aae069189281f.png" />
@@ -1459,7 +1452,7 @@ skew for MEDV target v: 1.1058610569534628
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12ce21fa0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12d2949a0&gt;
 </pre></div>
 </div>
 <img alt="_images/d985130a62ab1c88714a6e453f6825fa23167d71258aef61c07281e814a3870e.png" src="_images/d985130a62ab1c88714a6e453f6825fa23167d71258aef61c07281e814a3870e.png" />
@@ -1481,7 +1474,7 @@ skew for MEDV target v: 1.1058610569534628
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12d0d8be0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12d17baf0&gt;
 </pre></div>
 </div>
 <img alt="_images/60e646d24f2f9a33fdc70645d8fc46603b68f8bea2f2860e54793dbd45bad500.png" src="_images/60e646d24f2f9a33fdc70645d8fc46603b68f8bea2f2860e54793dbd45bad500.png" />
@@ -1606,7 +1599,7 @@ R2 is 0.7334492147453086
 <p>Our log transformations proved useful for our training set and gave us some increases in the R2 score meaning that our model understands our data better and a lower RMSE meaning our error rate is a little lower as well. Now lets take a look at some of our other assumptions to see if we can also make some gains in other areas.</p>
 </section>
 <section id="polynomial-regression">
-<h2>Polynomial Regression<a class="headerlink" href="#polynomial-regression" title="Permalink to this heading">#</a></h2>
+<h3>Polynomial Regression<a class="headerlink" href="#polynomial-regression" title="Permalink to this heading">#</a></h3>
 <p>Previously we tried to create a more linear relationship by trying to transform our data into more normal distributions with logarithmic transformations. Yet there are other ways to deal with non linear distributions. Another way is to fit the model on a <a class="reference external" href="https://www.analyticsvidhya.com/blog/2021/07/all-you-need-to-know-about-polynomial-regression/">Polynomial regression</a>. These types of regressions deal with variables that look to have a slight curve when plotted against the target variable instead of a straight line. We can see that our variable LSTAT has a slight curve as compared to RM, indicating that maybe a Polynomial Regression would be a good fit for it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1692,7 +1685,7 @@ R2 score is 0.6386750054827146
 </div>
 </section>
 <section id="under-fitting-and-over-fitting">
-<h2>Under-Fitting and Over-Fitting<a class="headerlink" href="#under-fitting-and-over-fitting" title="Permalink to this heading">#</a></h2>
+<h3>Under-Fitting and Over-Fitting<a class="headerlink" href="#under-fitting-and-over-fitting" title="Permalink to this heading">#</a></h3>
 <p>We can see that our line of best fit clearly is not doing the job right and isn’t able to capture the pattern of our data set at all. This is an <strong>Under-Fitting</strong>. Under-Fitting is something we want to circumvent when building our models and to do that we have to increase the <em>complexity</em> of our model.</p>
 <p>We’ll essentially have to generate a higher order of equations. Our current equation looks like
 Y = B0 + B1x
@@ -1845,7 +1838,7 @@ Y = B0 + B1x + B2x^2</p>
 <p>To correct this, we can add more training samples so the algorithm we have doesn’t learn the noise in our data, but really and truly we have to learn how to choose optimal models. But how do we do that?</p>
 </section>
 <section id="bias-vs-variance-trade-off">
-<h2>Bias vs Variance trade - off<a class="headerlink" href="#bias-vs-variance-trade-off" title="Permalink to this heading">#</a></h2>
+<h3>Bias vs Variance trade - off<a class="headerlink" href="#bias-vs-variance-trade-off" title="Permalink to this heading">#</a></h3>
 <p>What we have just proved with our previous work is the <em>bias variance trade-off</em>. Bias refers to the error due to our models very simple assumptions in fitting the data. A high bias means the model can’t understand our data patterns. It is biased towards its basic assumptions which results in <strong>under-fitting</strong>. Variance refers to the error due to the complex model trying to fit the data too well. High variance means the models path is highly variable, and has the ability to fit almost every data point which results in <strong>over-fitting</strong>. Lets visualize all our previous models and put them side by side to really see what this looks like.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1896,7 +1889,7 @@ Y = B0 + B1x + B2x^2</p>
 <p><img alt="model_complexity.webp" src="attachment:fcc2671c-f50e-4ad9-aba3-dbc1da96968b.webp" /></p>
 </section>
 <section id="applying-polynomial-regression-to-our-boston-housing-dataset">
-<h2>Applying Polynomial Regression to Our Boston Housing Dataset<a class="headerlink" href="#applying-polynomial-regression-to-our-boston-housing-dataset" title="Permalink to this heading">#</a></h2>
+<h3>Applying Polynomial Regression to Our Boston Housing Dataset<a class="headerlink" href="#applying-polynomial-regression-to-our-boston-housing-dataset" title="Permalink to this heading">#</a></h3>
 <p>As mentioned before, our Boston Housing data set doesn’t have completely linear values. Our LSTAT value in particular has a slighly more complex pattern than a simple linear one.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1985,7 +1978,7 @@ R2 score of test set is 0.8246861116515365
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://builtin.com/machine-learning/ensemble-model">https://builtin.com/machine-learning/ensemble-model</a></p>
+</section>
 </section>
 </section>
 
@@ -2056,33 +2049,29 @@ R2 score of test set is 0.8246861116515365
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to ML: Boston Housing Data</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-data-cleaning-and-preliminary-analysis">EDA: Data Cleaning and Preliminary Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualizations">Data Visualizations</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-for-target-variable">Histogram for target variable</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-heatmap">Correlation Heatmap</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-model-selection-and-evaluation">Preliminary Model Selection and Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-our-data-for-the-model">Preparing our Data for the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-ur-data-into-the-training-set-and-the-testing-sets">Splitting ur data into the training set and the testing sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model-on-training-set">Training the Model on training set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-model-on-our-test-set">Testing the model on our test set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-this-on-our-model-with-13-features">Test this on our model with 13 features</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-model-selection-and-evaluation">Preliminary Model Selection and Evaluation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-our-data-for-the-model">Preparing our Data for the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-ur-data-into-the-training-set-and-the-testing-sets">Splitting ur data into the training set and the testing sets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model-on-training-set">Training the Model on training set</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-model-on-our-test-set">Testing the model on our test set</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-this-on-our-model-with-13-features">Test this on our model with 13 features</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-better-models">Creating Better Models</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logarithimic-transformations">Logarithimic Transformations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression">Polynomial Regression</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#under-fitting-and-over-fitting">Under-Fitting and Over-Fitting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-vs-variance-trade-off">Bias vs Variance trade - off</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-polynomial-regression-to-our-boston-housing-dataset">Applying Polynomial Regression to Our Boston Housing Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-better-models">Creating Better Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logarithimic-transformations">Logarithimic Transformations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression">Polynomial Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#under-fitting-and-over-fitting">Under-Fitting and Over-Fitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-vs-variance-trade-off">Bias vs Variance trade - off</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-polynomial-regression-to-our-boston-housing-dataset">Applying Polynomial Regression to Our Boston Housing Dataset</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>
