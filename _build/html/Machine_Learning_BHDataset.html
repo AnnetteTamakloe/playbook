@@ -161,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="IntroToGit.html">Git and Github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Your_Coding_Environment.html">Your Coding Environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Basic_intro_Python.html">Python Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Geocoder.html">Introduction To Geocoding with APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geocoder.html">Geocoding with APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Linear_Regression_Basics.html">Linear Regression for Machine Learning: The Basics</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">ML Basics: Boston Housing Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Ensemble_Learning_BH.html">Ensemble Learning: Bagging, Boosting, and Stacking</a></li>
@@ -358,26 +358,38 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-data-cleaning-and-preliminary-analysis">EDA: Data Cleaning and Preliminary Analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualizations">Data Visualizations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-for-target-variable">Histogram for target variable</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-heatmap">Correlation Heatmap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-data-cleaning-and-preliminary-analysis">EDA: Data Cleaning and Preliminary Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-and-structuring-the-data">1. Reading and Structuring the Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-for-nulls-and-data-types">2. Check For Nulls and Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-analysis-and-visualizations">4. Data Analysis and Visualizations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualizations">4.1 Data Visualizations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection-with-correlation-heatmaps">4.2 Feature Selection with Correlation Heatmaps</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-model-selection-and-evaluation">Preliminary Model Selection and Evaluation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-our-data-for-the-model">Preparing our Data for the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-ur-data-into-the-training-set-and-the-testing-sets">Splitting ur data into the training set and the testing sets</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model-on-training-set">Training the Model on training set</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-model-on-our-test-set">Testing the model on our test set</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-this-on-our-model-with-13-features">Test this on our model with 13 features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">1. Train-Test-Split</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training-model-on-training-set">1.1 Training Model on training set</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-model-on-test-set">1.2 Testing model on test set</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-better-models">Creating Better Models</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logarithimic-transformations">Logarithimic Transformations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression">Polynomial Regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#under-fitting-and-over-fitting">Under-Fitting and Over-Fitting</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-vs-variance-trade-off">Bias vs Variance trade - off</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-polynomial-regression-to-our-boston-housing-dataset">Applying Polynomial Regression to Our Boston Housing Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-optimization">Model Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-of-linear-regression-models">1. Assumptions of Linear Regression Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logarithimic-transformations">2. Logarithimic Transformations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms-for-skewnees">2.1 Histograms for Skewnees</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics-for-skewness">2.2 Metrics for Skewness</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-log-transformations">2.3 Performing Log Transformations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression-understanding-the-bias-variance-tradeoff">3. Polynomial Regression: Understanding the Bias Variance Tradeoff</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#under-fitting-and-over-fitting">3.1 Under-Fitting and Over-Fitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-vs-variance-tradeoff">3.2 Bias vs Variance Tradeoff</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-polynomial-regression-to-our-boston-housing-dataset">3.3 Applying Polynomial Regression to Our Boston Housing Dataset</a></li>
 </ul>
 </li>
 </ul>
@@ -393,8 +405,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ml-basics-boston-housing-dataset">
 <h1>ML Basics: Boston Housing Dataset<a class="headerlink" href="#ml-basics-boston-housing-dataset" title="Permalink to this heading">#</a></h1>
+<p>Machine learning is an important component of the growing field of data science and it is an important concept to understand as a Data Scientist. This guide will discuss and implement the basics of Machine Learning on a popular data set, the Boston Housing dataset. This dataset will solely be used for the purposes of discussing and implementing ML methods since the Boston Data Housing Data set has found to have some issues with fairness in the ML community. To learn more about the issues with the Boston Housing data set and AI Ethics and Fairness, head over to <a class="reference external" href="https://fairlearn.org/main/user_guide/datasets/boston_housing_data.html">Fairlearn</a>. Without further ado, lets dive in.</p>
 <section id="eda-data-cleaning-and-preliminary-analysis">
 <h2>EDA: Data Cleaning and Preliminary Analysis<a class="headerlink" href="#eda-data-cleaning-and-preliminary-analysis" title="Permalink to this heading">#</a></h2>
+<p>Before getting to the nitty gritty, lets perform some initial exploratory data analysis to truly understand and gain some insight about our dataset. Lets first import the necessary packages needed for analysis and read in our dataset. To download the Boston Housing Dataset, head over to this <a class="reference external" href="https://github.com/AnnetteTamakloe/ML_Intro">github repository</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -415,7 +429,9 @@ document.write(`
 </div>
 </div>
 </div>
-<p>You’ll notice when you open the raw data that there are 0 columns. We’ll have to impute the values for the columns in our dataframe and read it in using the <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code> function in pandas</p>
+<section id="reading-and-structuring-the-data">
+<h3>1. Reading and Structuring the Data<a class="headerlink" href="#reading-and-structuring-the-data" title="Permalink to this heading">#</a></h3>
+<p>When you open the raw dataset, you’ll notice that there are 0 columns. We’ll have to impute the values for the columns into our dataframe and read it in using the <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code> function in pandas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Make our column names so we can define them in our dataset</span>
@@ -433,24 +449,6 @@ document.write(`
 </div>
 </div>
 </div>
-<p><strong>Meaning of Values in dataset:</strong></p>
-<ul class="simple">
-<li><p>CRIM:  per capita crime rate by town.</p></li>
-<li><p>ZN:    proportion of residential land zoned for lots over 25,000 sq.ft.</p></li>
-<li><p>INDUS: proportion of nonretail business acres per town.</p></li>
-<li><p>CHAS:  Charles River dummy variable (= 1 if tract bounds river; 0 otherwise).</p></li>
-<li><p>NOX:   nitric oxides concentration (parts per 10 million).</p></li>
-<li><p>RM: average number of rooms per dwelling.</p></li>
-<li><p>AGE: proportion of owner-occupied units built prior to 1940.</p></li>
-<li><p>DIS: weighted distances to five Boston employment centers.</p></li>
-<li><p>RAD: index of accessibility to radial highways.</p></li>
-<li><p>TAX: full-value property-tax rate per 10,000 dollars.</p></li>
-<li><p>PTRATIO: pupil-teacher ratio by town.</p></li>
-<li><p>B: 1000(Bk – 0.63)^2 where Bk is the proportion of blacks by town.</p></li>
-<li><p>LSTAT: % lower status of the population.</p></li>
-<li><p>MEDV: Median value of owner-occupied homes in $1000s.</p></li>
-</ul>
-<p><strong>Prelim_Analysis</strong>: Looking at the values in our data set, it looks like each observation is a essentially a town in boston and each variable is calculating porportions/averages of specific measures for each town. Our main dependent variable and target variable in this dataset will be ‘MEDV’ which will gives us a sense of house prices in that specific area.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#lets check to see if our dataset looks pretty.</span>
@@ -583,6 +581,10 @@ document.write(`
 </table>
 </div></div></div>
 </div>
+</section>
+<section id="check-for-nulls-and-data-types">
+<h3>2. Check For Nulls and Data Types<a class="headerlink" href="#check-for-nulls-and-data-types" title="Permalink to this heading">#</a></h3>
+<p>Now that our data is read in properly, lets take a look at how large our dataset is and also check for null values. We want to ensure that all of our data is represented numerically, hence why we check for nulls to convert them to 0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Lets take a look at our dataset as whole. No of rows/columns ect. We should have over 500 rows and 14 columns</span>
@@ -697,6 +699,27 @@ dtype: object
 </div>
 </div>
 </div>
+</section>
+<section id="data-analysis-and-visualizations">
+<h3>4. Data Analysis and Visualizations<a class="headerlink" href="#data-analysis-and-visualizations" title="Permalink to this heading">#</a></h3>
+<p>Lets now dive into the more qualitative elements of our dataset.</p>
+<ul class="simple">
+<li><p>CRIM:  per capita crime rate by town.</p></li>
+<li><p>ZN:    proportion of residential land zoned for lots over 25,000 sq.ft.</p></li>
+<li><p>INDUS: proportion of nonretail business acres per town.</p></li>
+<li><p>CHAS:  Charles River dummy variable (= 1 if tract bounds river; 0 otherwise).</p></li>
+<li><p>NOX:   nitric oxides concentration (parts per 10 million).</p></li>
+<li><p>RM: average number of rooms per dwelling.</p></li>
+<li><p>AGE: proportion of owner-occupied units built prior to 1940.</p></li>
+<li><p>DIS: weighted distances to five Boston employment centers.</p></li>
+<li><p>RAD: index of accessibility to radial highways.</p></li>
+<li><p>TAX: full-value property-tax rate per 10,000 dollars.</p></li>
+<li><p>PTRATIO: pupil-teacher ratio by town.</p></li>
+<li><p>B: 1000(Bk – 0.63)^2 where Bk is the proportion of blacks by town.</p></li>
+<li><p>LSTAT: % lower status of the population.</p></li>
+<li><p>MEDV: Median value of owner-occupied homes in $1000s.</p></li>
+</ul>
+<p>After taking a look at the values in our data set, it seems each observation is a town in Boston and each variable is calculating porportions/averages of specific measures for each town. Our main dependent variable and target variable in this dataset will be ‘MEDV’ which gives us a sense of house prices in that specific area. All other variables can be regarded as potential dependent variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Take a look at some general statistics</span>
@@ -880,70 +903,9 @@ dtype: object
 </table>
 </div></div></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#defining our features and our target variable for OLS model</span>
-<span class="n">X_af</span> <span class="o">=</span> <span class="n">bh</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;MEDV&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">bh</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span>
-<span class="n">X_af</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X_af</span><span class="p">)</span>
-
-<span class="c1"># create formula for model 1</span>
-<span class="n">model_1</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X_af</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">model_1</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:                   MEDV   R-squared:                       0.741
-Model:                            OLS   Adj. R-squared:                  0.734
-Method:                 Least Squares   F-statistic:                     108.1
-Date:                Tue, 18 Jul 2023   Prob (F-statistic):          6.72e-135
-Time:                        19:08:24   Log-Likelihood:                -1498.8
-No. Observations:                 506   AIC:                             3026.
-Df Residuals:                     492   BIC:                             3085.
-Df Model:                          13                                         
-Covariance Type:            nonrobust                                         
-==============================================================================
-                 coef    std err          t      P&gt;|t|      [0.025      0.975]
-------------------------------------------------------------------------------
-const         36.4595      5.103      7.144      0.000      26.432      46.487
-CRIM          -0.1080      0.033     -3.287      0.001      -0.173      -0.043
-ZN             0.0464      0.014      3.382      0.001       0.019       0.073
-INDUS          0.0206      0.061      0.334      0.738      -0.100       0.141
-CHAS           2.6867      0.862      3.118      0.002       0.994       4.380
-NOX          -17.7666      3.820     -4.651      0.000     -25.272     -10.262
-RM             3.8099      0.418      9.116      0.000       2.989       4.631
-AGE            0.0007      0.013      0.052      0.958      -0.025       0.027
-DIS           -1.4756      0.199     -7.398      0.000      -1.867      -1.084
-RAD            0.3060      0.066      4.613      0.000       0.176       0.436
-TAX           -0.0123      0.004     -3.280      0.001      -0.020      -0.005
-PTRATIO       -0.9527      0.131     -7.283      0.000      -1.210      -0.696
-B              0.0093      0.003      3.467      0.001       0.004       0.015
-LSTAT         -0.5248      0.051    -10.347      0.000      -0.624      -0.425
-==============================================================================
-Omnibus:                      178.041   Durbin-Watson:                   1.078
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):              783.126
-Skew:                           1.521   Prob(JB):                    8.84e-171
-Kurtosis:                       8.281   Cond. No.                     1.51e+04
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The condition number is large, 1.51e+04. This might indicate that there are
-strong multicollinearity or other numerical problems.
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="data-visualizations">
-<h2>Data Visualizations<a class="headerlink" href="#data-visualizations" title="Permalink to this heading">#</a></h2>
-<p>Lets take a look at our target variable to understand its distribution. We’ll also plot our percentiles on the graph to visualize them as well.</p>
-<section id="histogram-for-target-variable">
-<h3>Histogram for target variable<a class="headerlink" href="#histogram-for-target-variable" title="Permalink to this heading">#</a></h3>
+<h4>4.1 Data Visualizations<a class="headerlink" href="#data-visualizations" title="Permalink to this heading">#</a></h4>
+<p>Data visualizations are a powerful way to gain insight additional insight into our data and make quick decisions about our data strategy for Machine Learning on datasets. Lets first take a look at our target variable to understand its distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p25</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bh</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">],</span> <span class="mi">25</span><span class="p">)</span>
@@ -960,17 +922,17 @@ strong multicollinearity or other numerical problems.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10e1e7a00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10cca5fd0&gt;
 </pre></div>
 </div>
 <img alt="_images/53d0eed25cce942a870e1fa852a4e1400b48146859fba0182ffdbeef26218509.png" src="_images/53d0eed25cce942a870e1fa852a4e1400b48146859fba0182ffdbeef26218509.png" />
 </div>
 </div>
-<p>We can see that our data is slightly skewed to the right, meaning we have a positively skewed distribution. This is important to note for any transformations we decide to employ down the line. Generally, we don’t like to have skewness in our data. For more on that refer to this <a class="reference external" href="https://builtin.com/data-science/skewed-data">article</a>.</p>
+<p>We can see that the data for our target vairable is slightly skewed to the right, meaning we have a positively skewed distribution. This is important to note for any transformations we decide to employ down the line. Generally, we don’t like to have skewness in our data. For more on that refer to this <a class="reference external" href="https://builtin.com/data-science/skewed-data">article</a>.</p>
 </section>
-<section id="correlation-heatmap">
-<h3>Correlation Heatmap<a class="headerlink" href="#correlation-heatmap" title="Permalink to this heading">#</a></h3>
-<p>Now lets create a heatmap to view the correlation between MEDV and the other features in our data sets</p>
+<section id="feature-selection-with-correlation-heatmaps">
+<h4>4.2 Feature Selection with Correlation Heatmaps<a class="headerlink" href="#feature-selection-with-correlation-heatmaps" title="Permalink to this heading">#</a></h4>
+<p>Now lets create a heatmap to view the correlation between MEDV and the other features in our data sets. Our OLS Model indicated that there may be issues with multicollinearity within our data. A heatmap will allow is to spot this easily and correlty assess the best features to choose for our model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>         
@@ -1028,8 +990,7 @@ strong multicollinearity or other numerical problems.
 <img alt="_images/daac35dcdd9e45da1be96c4c6b22a5720a3b53985c398acf0b4060f8ecfda193.png" src="_images/daac35dcdd9e45da1be96c4c6b22a5720a3b53985c398acf0b4060f8ecfda193.png" />
 </div>
 </div>
-<p>RM overall has a nice normal gaussian distribution</p>
-<p>The LSTAT(lower status) distribution clearly has a hard positive, right skew.</p>
+<p>RM overall has a nice normal gaussian distribution while the LSTAT(lower status) distribution clearly has a hard positive, right skew. Lets not plot both oif these variables against MEDV to further assess their relationship.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -1055,10 +1016,10 @@ strong multicollinearity or other numerical problems.
 <p>We can clearly see that both variables have a fairly strong relationship with MEDV as expected. LSAT has a negative relationship while RM has a positive one</p>
 </section>
 </section>
+</section>
 <section id="preliminary-model-selection-and-evaluation">
 <h2>Preliminary Model Selection and Evaluation<a class="headerlink" href="#preliminary-model-selection-and-evaluation" title="Permalink to this heading">#</a></h2>
-<section id="preparing-our-data-for-the-model">
-<h3>Preparing our Data for the model<a class="headerlink" href="#preparing-our-data-for-the-model" title="Permalink to this heading">#</a></h3>
+<p>Now that we’ve decided on our features, we now have to select a good baseline model that will fit our data well. First we’ll define our X variables then we’ll employ the standard ML <strong>train-test-split</strong> method to train and evaluate our data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Using numpy we&#39;re going to grab our features and put them into a data frame</span>
@@ -1069,10 +1030,10 @@ strong multicollinearity or other numerical problems.
 </div>
 </div>
 </div>
-</section>
-<section id="splitting-ur-data-into-the-training-set-and-the-testing-sets">
-<h3>Splitting ur data into the training set and the testing sets<a class="headerlink" href="#splitting-ur-data-into-the-training-set-and-the-testing-sets" title="Permalink to this heading">#</a></h3>
-<p>Next, the data will have to be split into training sets, and testing sets. The model will be trained with about 80% of the data and we’ll test 20% of the data on it. We have to do this to make sure our model performs well on unseen data. To ensure we have a good model that is trained well on our data. To split the data we use train_test_split function provided by scikit-learn library. Then we’ll verify the size of our training and setting sets to ensure our data is distributed correctly</p>
+<section id="train-test-split">
+<h3>1. Train-Test-Split<a class="headerlink" href="#train-test-split" title="Permalink to this heading">#</a></h3>
+<p>The whole point of a Machine Learning Model is what is sounds like - to build a model that can learn your data well enough to enhance its predictive power and potential evaluate things as well as us humans can. To do this, we first have to train our model on good, quality data so it can actually learn something, then we have to test our model on unseen data to trully see if our model is robust enough to actually be used on unseen data as time goes on.</p>
+<p>Our model will be trained with about 80% of the data and we’ll test 20% of the data on it. To split the data we use train_test_split function provided by scikit-learn library. Then we’ll verify the size of our training and setting sets to ensure our data is distributed correctly</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#For our 2 feature model</span>
@@ -1160,9 +1121,8 @@ strong multicollinearity or other numerical problems.
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="training-the-model-on-training-set">
-<h3>Training the Model on training set<a class="headerlink" href="#training-the-model-on-training-set" title="Permalink to this heading">#</a></h3>
+<section id="training-model-on-training-set">
+<h4>1.1 Training Model on training set<a class="headerlink" href="#training-model-on-training-set" title="Permalink to this heading">#</a></h4>
 <p>Things look good. Now lets use scikit-learn’s <code class="docutils literal notranslate"><span class="pre">Linear-Regression</span></code> to train our model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1205,10 +1165,10 @@ R2 score is 0.6725214335656511
 </div>
 </div>
 </div>
-<p>This is a fairly good baseline to start of with. Our rmse is fairly okay and our R2 explains 67% of the variation in our dataset. Now lets see how our model will perform on data it hasn’t seen before.</p>
+<p>This is a fairly good baseline to start off with. Our RMSE is fairly okay and our R2 explains 67% of the variation in our dataset. Now lets see how our model will perform on data it hasn’t seen before.</p>
 </section>
-<section id="testing-the-model-on-our-test-set">
-<h3>Testing the model on our test set<a class="headerlink" href="#testing-the-model-on-our-test-set" title="Permalink to this heading">#</a></h3>
+<section id="testing-model-on-test-set">
+<h4>1.2 Testing model on test set<a class="headerlink" href="#testing-model-on-test-set" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Same tests for the test set</span>
@@ -1232,10 +1192,7 @@ R2 is 0.691587828074417
 </div>
 </div>
 </div>
-<p>Our rmse is lower and he r2 is higher, all good signs. We have a good baseline to start of with but now we want to make our model even better, so we’ll have to employ more methods to our dataset to get closer to a better model.</p>
-</section>
-<section id="test-this-on-our-model-with-13-features">
-<h3>Test this on our model with 13 features<a class="headerlink" href="#test-this-on-our-model-with-13-features" title="Permalink to this heading">#</a></h3>
+<p>Our RMSE is lower and the R2 is higher, all great signs. We have a good baseline to start of with but now we want to make our model even better, so we’ll have to employ more methods to our dataset to optimize our model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#defining our features and our target variable for OLS model</span>
@@ -1327,12 +1284,12 @@ R2 is 0.7334492147453086
 </div>
 </section>
 </section>
-<section id="creating-better-models">
-<h2>Creating Better Models<a class="headerlink" href="#creating-better-models" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Lets Discuss Assumptions of a linear model and whether our data completely fits those <a class="reference external" href="https://towardsdatascience.com/top-3-methods-for-handling-skewed-data-1334e0debf45">assumptions</a></p></li>
-<li><p>Lets fit a <a class="reference external" href="https://medium.com/towards-data-science/polynomial-regression-bbe8b9d97491">Polynomial model</a> to our data</p></li>
-</ul>
+</section>
+<section id="model-optimization">
+<h2>Model Optimization<a class="headerlink" href="#model-optimization" title="Permalink to this heading">#</a></h2>
+<p>We have a great baseline model to start off with but we can always make our model better. To fully understand how to optimize our Machine Learning Model, lets first discuss the assumptions of Linear Regression Models</p>
+<section id="assumptions-of-linear-regression-models">
+<h3>1. Assumptions of Linear Regression Models<a class="headerlink" href="#assumptions-of-linear-regression-models" title="Permalink to this heading">#</a></h3>
 <p>Linear Regression models make a great amount of <em>assumptions</em> about our dataset. These assumptions are:</p>
 <ul class="simple">
 <li><ol class="arabic simple">
@@ -1357,9 +1314,12 @@ R2 is 0.7334492147453086
 </li>
 </ul>
 <p>When the data does not completely fit these assumptions, some transformations are applied to our training data to give our variables a better relationship for our model.</p>
+</section>
 <section id="logarithimic-transformations">
-<h3>Logarithimic Transformations<a class="headerlink" href="#logarithimic-transformations" title="Permalink to this heading">#</a></h3>
-<p>Lets tackle the 4th assumption of Normal distributions. Lets look at all of our variables, including our feautres and target variable to look at their distributions to check to see how skewed they are.</p>
+<h3>2. Logarithimic Transformations<a class="headerlink" href="#logarithimic-transformations" title="Permalink to this heading">#</a></h3>
+<p>Lets tackle the 4th assumption of Normal distributions. Lets look at all of our variables, including our features and target variable to look at their distributions and check for skewness.</p>
+<section id="histograms-for-skewnees">
+<h4>2.1 Histograms for Skewnees<a class="headerlink" href="#histograms-for-skewnees" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feautures</span> <span class="o">=</span> <span class="p">[</span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;RM&#39;</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;LSTAT&#39;</span><span class="p">]]</span>
@@ -1403,13 +1363,16 @@ R2 is 0.7334492147453086
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12b1b2e50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12bbb8b50&gt;
 </pre></div>
 </div>
 <img alt="_images/651dd714f2314770fc6b6adb7f9a65581830e384903738b77b2aae069189281f.png" src="_images/651dd714f2314770fc6b6adb7f9a65581830e384903738b77b2aae069189281f.png" />
 </div>
 </div>
 <p>We can see that RM has a lovely normal distribution, while our other feature LSTAT has quite a positive, right skewed distribution. When we take a look at our target variable, we can see a very similar pattern where MEDV is also slightly positively (right) skewed. There are <a class="reference external" href="https://towardsdatascience.com/top-3-methods-for-handling-skewed-data-1334e0debf45">several ways</a> to tackle skewed distributions, but a very popular way to tackle right skewed distributions is to perform a <strong>log transformation</strong>. This is where we transform our skewed data into their logarithmic forms to create a more linear relationship between all our variables. We’ll do this using numpy log function</p>
+</section>
+<section id="metrics-for-skewness">
+<h4>2.2 Metrics for Skewness<a class="headerlink" href="#metrics-for-skewness" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#first lets check the skews of our features</span>
@@ -1427,10 +1390,13 @@ skew for MEDV target v: 1.1058610569534628
 </div>
 </div>
 </div>
+</section>
+<section id="performing-log-transformations">
+<h4>2.3 Performing Log Transformations<a class="headerlink" href="#performing-log-transformations" title="Permalink to this heading">#</a></h4>
+<p>Now lets transform our features for our one feature LSTAT and our target variable MEDV using <code class="docutils literal notranslate"><span class="pre">np.log</span></code> function in the numpy package</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Now lets transform our features for our one feature LSTAT and MEDV</span>
-<span class="n">LSTAT_log</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;LSTAT&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LSTAT_log</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;LSTAT&#39;</span><span class="p">])</span>
 <span class="n">MEDV_log</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Y_train</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1452,7 +1418,7 @@ skew for MEDV target v: 1.1058610569534628
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12d2949a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12bc79e50&gt;
 </pre></div>
 </div>
 <img alt="_images/d985130a62ab1c88714a6e453f6825fa23167d71258aef61c07281e814a3870e.png" src="_images/d985130a62ab1c88714a6e453f6825fa23167d71258aef61c07281e814a3870e.png" />
@@ -1474,12 +1440,13 @@ skew for MEDV target v: 1.1058610569534628
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12d17baf0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12c021af0&gt;
 </pre></div>
 </div>
 <img alt="_images/60e646d24f2f9a33fdc70645d8fc46603b68f8bea2f2860e54793dbd45bad500.png" src="_images/60e646d24f2f9a33fdc70645d8fc46603b68f8bea2f2860e54793dbd45bad500.png" />
 </div>
 </div>
+<p>Now lets check the skewness of our log transformed values</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#first lets check the skews of our features</span>
@@ -1559,7 +1526,7 @@ log R2 score is 0.7334492147453086
 </div>
 </div>
 </div>
-<p>This model did a lot better than our previous training set with no log transformations. Lets see how this model now performs on our testing set. We’ll also have to transorm our test values to log values as well in the same way</p>
+<p>This model did a lot better than our previous training set with no log transformations. Lets see how this model now performs on our testing set. We’ll also have to transform our test values to log values as well to evaluate our data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LSTAT_log_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;LSTAT&#39;</span><span class="p">])</span>
@@ -1598,8 +1565,10 @@ R2 is 0.7334492147453086
 </div>
 <p>Our log transformations proved useful for our training set and gave us some increases in the R2 score meaning that our model understands our data better and a lower RMSE meaning our error rate is a little lower as well. Now lets take a look at some of our other assumptions to see if we can also make some gains in other areas.</p>
 </section>
-<section id="polynomial-regression">
-<h3>Polynomial Regression<a class="headerlink" href="#polynomial-regression" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="polynomial-regression-understanding-the-bias-variance-tradeoff">
+<h2>3. Polynomial Regression: Understanding the Bias Variance Tradeoff<a class="headerlink" href="#polynomial-regression-understanding-the-bias-variance-tradeoff" title="Permalink to this heading">#</a></h2>
 <p>Previously we tried to create a more linear relationship by trying to transform our data into more normal distributions with logarithmic transformations. Yet there are other ways to deal with non linear distributions. Another way is to fit the model on a <a class="reference external" href="https://www.analyticsvidhya.com/blog/2021/07/all-you-need-to-know-about-polynomial-regression/">Polynomial regression</a>. These types of regressions deal with variables that look to have a slight curve when plotted against the target variable instead of a straight line. We can see that our variable LSTAT has a slight curve as compared to RM, indicating that maybe a Polynomial Regression would be a good fit for it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1623,8 +1592,7 @@ R2 is 0.7334492147453086
 <img alt="_images/cc6772d3ea3f2ef975da64ef23394633b259157e163bb6858034cfeb8d26faa1.png" src="_images/cc6772d3ea3f2ef975da64ef23394633b259157e163bb6858034cfeb8d26faa1.png" />
 </div>
 </div>
-<p>Before we explore how this type of model can be used to fit our data, lets generate a random data set to understand it better</p>
-<p>Lets apply a linear regression model to a data set we will generate using numpy and the scikit learn library</p>
+<p>Before we explore how this type of model can be used to fit our data, lets generate a random data set to understand it better. Lets apply a linear regression model to a data set we will generate using numpy and the scikit learn library</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1658,6 +1626,7 @@ R2 is 0.7334492147453086
 <img alt="_images/28ca60d0af15d19cb954396c7883838afa5731c377d9f585e6251ce96a28c437.png" src="_images/28ca60d0af15d19cb954396c7883838afa5731c377d9f585e6251ce96a28c437.png" />
 </div>
 </div>
+<p>Now lets fit this dummy data on a Linear Regression model and evaluate its performance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Fitting our linear model to our features to see what they give us as a prediction for y</span>
@@ -1683,14 +1652,13 @@ R2 score is 0.6386750054827146
 </div>
 </div>
 </div>
-</section>
 <section id="under-fitting-and-over-fitting">
-<h3>Under-Fitting and Over-Fitting<a class="headerlink" href="#under-fitting-and-over-fitting" title="Permalink to this heading">#</a></h3>
-<p>We can see that our line of best fit clearly is not doing the job right and isn’t able to capture the pattern of our data set at all. This is an <strong>Under-Fitting</strong>. Under-Fitting is something we want to circumvent when building our models and to do that we have to increase the <em>complexity</em> of our model.</p>
+<h3>3.1 Under-Fitting and Over-Fitting<a class="headerlink" href="#under-fitting-and-over-fitting" title="Permalink to this heading">#</a></h3>
+<p>We can see that our line of best fit clearly is not doing the job right and isn’t able to capture the pattern of our data set at all. This is an example of <strong>Under-Fitting</strong>. Under-Fitting is something we want to circumvent when building our models and to do that we have to increase the <em>complexity</em> of our model.</p>
 <p>We’ll essentially have to generate a higher order of equations. Our current equation looks like
-Y = B0 + B1x
+<code class="docutils literal notranslate"><span class="pre">Y</span> <span class="pre">=</span> <span class="pre">B0</span> <span class="pre">+</span> <span class="pre">B1x</span></code>
 But what we want instead is”
-Y = B0 + B1x + B2x^2</p>
+<code class="docutils literal notranslate"><span class="pre">Y</span> <span class="pre">=</span> <span class="pre">B0</span> <span class="pre">+</span> <span class="pre">B1x</span> <span class="pre">+</span> <span class="pre">B2x^2</span></code></p>
 <p>This is still a linear model because the coefficients we currently have are still linear. x^2 is just an additional feature, but including it has indicated to our model that the curve we are fitting is <a class="reference external" href="https://en.wikipedia.org/wiki/Quadratic_function">quadratic</a> in nature</p>
 <p>To add and convert our current features to best fit our model, we will use the <code class="docutils literal notranslate"><span class="pre">PolynomialFeatures</span></code> class in scikit-learn. To account for our new feature of x^2 we’ll have to use the <a class="reference external" href="https://www.investopedia.com/terms/d/degrees-of-freedom.asp#:~:text=Degrees%20of%20Freedom%20Formula&amp;text=Some%20calculations%20of%20degrees%20of,are%20two%20parameters%20to%20estimate.">degree</a> parameter.</p>
 <div class="cell docutils container">
@@ -1744,7 +1712,7 @@ Y = B0 + B1x + B2x^2</p>
 <img alt="_images/dcf1222cd125a3f08ce26d343aa1c7114e06098ead3c1dfd72deba252d9da32d.png" src="_images/dcf1222cd125a3f08ce26d343aa1c7114e06098ead3c1dfd72deba252d9da32d.png" />
 </div>
 </div>
-<p>We can see that our RMSE has decreased by about 5 points meaning our error term is lower, a good sign. We can also see that our our r2 is higher as well and has increased by over 22%. This indicates that our model is getting better! Now lets try fitting a <a class="reference external" href="https://en.wikipedia.org/wiki/Cubic_function">cubic curve</a> to our data to see how it impacts our data.</p>
+<p>We can see that our RMSE has decreased by about 5 points meaning our error term is lower, a good sign. We can also see that our our R2 is higher as well and has increased by over 22%. This indicates that our model is getting better! Now lets try fitting a <a class="reference external" href="https://en.wikipedia.org/wiki/Cubic_function">cubic curve</a> to our data to see how it impacts our data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -1767,8 +1735,8 @@ Y = B0 + B1x + B2x^2</p>
 <span class="c1">#evaluate our metrics</span>
 <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y_poly_pred</span><span class="p">))</span>
 <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y_poly_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rmse</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rmse</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2 score is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r2</span><span class="p">))</span>
 
 <span class="c1">#create our scatter plot-you have to create this after evaluating your metrics or it&#39;ll skew the data a bit</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -1782,14 +1750,14 @@ Y = B0 + B1x + B2x^2</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.449895507408725
-0.9830071790386679
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE is 3.449895507408725
+R2 score is 0.9830071790386679
 </pre></div>
 </div>
 <img alt="_images/17c0d2f996655a5507e4ec048b396e6c18da1fe73369a17576047dccb475acb1.png" src="_images/17c0d2f996655a5507e4ec048b396e6c18da1fe73369a17576047dccb475acb1.png" />
 </div>
 </div>
-<p>We’ve now gotten a much lower error score, decreasing it by 7 points and our r2 has increased by 13%, and is now very close 100%. Looking at this, it looks like our cubic curve fits our data very well and has optimized our model greatly. We can go even further and increase our degrees to 20. Lets do that to see how well it fits to our data and impacts our model.</p>
+<p>We’ve now gotten a much lower error score, decreasing it by 7 points and our R2 has increased by 13%, and is now very close 100%. Looking at this, it looks like our cubic curve fits our data very well and has optimized our model greatly. We can go even further and increase our degrees to 20. Lets do that to see how well it fits to our data and impacts our model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -1812,8 +1780,8 @@ Y = B0 + B1x + B2x^2</p>
 <span class="c1">#evaluate our metrics</span>
 <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y_poly_pred</span><span class="p">))</span>
 <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y_poly_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rmse</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rmse</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2 score is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r2</span><span class="p">))</span>
 
 <span class="c1">#create our scatter plot-you have to create this after evaluating your metrics or it&#39;ll skew the data a bit</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -1827,18 +1795,18 @@ Y = B0 + B1x + B2x^2</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1131604487933962
-0.9982308317618072
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE is 1.1131604487933962
+R2 score is 0.9982308317618072
 </pre></div>
 </div>
 <img alt="_images/ac055e8e228a499bf9a66e9962c25ce6c6c35610387e33e444c7179f16f2ca48.png" src="_images/ac055e8e228a499bf9a66e9962c25ce6c6c35610387e33e444c7179f16f2ca48.png" />
 </div>
 </div>
-<p>Our error term has decreased by 2 points, and our r2 has increased by about 1% point. Overall though it looks like this is an extremely optimal fit for our data, we don’t really benefit much from having that marginal positive increase in metrics. Furthermore, this curve is also capturing a lot of the outliers and noise in our data, which is perfect for this specific set of data we have, but is extremely sub optimal for future data we decide to use this model for, future unseen data. This is an example of <strong>over-fitting</strong>.</p>
+<p>Our error term has decreased by 2 points, and our R2 has increased by about 1% point. Overall though it looks like this is an extremely optimal fit for our data, we don’t really benefit much from having that marginal positive increase in metrics. Furthermore, this curve is also capturing a lot of the outliers and noise in our data, which is perfect for this specific set of data we have, but is extremely sub optimal for future data we decide to use this model for, future unseen data. This is an example of <strong>over-fitting</strong>.</p>
 <p>To correct this, we can add more training samples so the algorithm we have doesn’t learn the noise in our data, but really and truly we have to learn how to choose optimal models. But how do we do that?</p>
 </section>
-<section id="bias-vs-variance-trade-off">
-<h3>Bias vs Variance trade - off<a class="headerlink" href="#bias-vs-variance-trade-off" title="Permalink to this heading">#</a></h3>
+<section id="bias-vs-variance-tradeoff">
+<h3>3.2 Bias vs Variance Tradeoff<a class="headerlink" href="#bias-vs-variance-tradeoff" title="Permalink to this heading">#</a></h3>
 <p>What we have just proved with our previous work is the <em>bias variance trade-off</em>. Bias refers to the error due to our models very simple assumptions in fitting the data. A high bias means the model can’t understand our data patterns. It is biased towards its basic assumptions which results in <strong>under-fitting</strong>. Variance refers to the error due to the complex model trying to fit the data too well. High variance means the models path is highly variable, and has the ability to fit almost every data point which results in <strong>over-fitting</strong>. Lets visualize all our previous models and put them side by side to really see what this looks like.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1889,7 +1857,7 @@ Y = B0 + B1x + B2x^2</p>
 <p><img alt="model_complexity.webp" src="attachment:fcc2671c-f50e-4ad9-aba3-dbc1da96968b.webp" /></p>
 </section>
 <section id="applying-polynomial-regression-to-our-boston-housing-dataset">
-<h3>Applying Polynomial Regression to Our Boston Housing Dataset<a class="headerlink" href="#applying-polynomial-regression-to-our-boston-housing-dataset" title="Permalink to this heading">#</a></h3>
+<h3>3.3 Applying Polynomial Regression to Our Boston Housing Dataset<a class="headerlink" href="#applying-polynomial-regression-to-our-boston-housing-dataset" title="Permalink to this heading">#</a></h3>
 <p>As mentioned before, our Boston Housing data set doesn’t have completely linear values. Our LSTAT value in particular has a slighly more complex pattern than a simple linear one.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1978,6 +1946,7 @@ R2 score of test set is 0.8246861116515365
 </div>
 </div>
 </div>
+<p>Our Polynomial Model’s performance metrics look better than our previous models with no signs of overfitting on our training data, proving it could be considered one of the more optimal models for this data. These are some of the basics of Machine Learning algorithmic development, but as you’ll see in other blogs, there are always ways to optimize models to get better outcomes and create poweful learners.</p>
 </section>
 </section>
 </section>
@@ -2049,26 +2018,38 @@ R2 score of test set is 0.8246861116515365
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-data-cleaning-and-preliminary-analysis">EDA: Data Cleaning and Preliminary Analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualizations">Data Visualizations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-for-target-variable">Histogram for target variable</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-heatmap">Correlation Heatmap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-data-cleaning-and-preliminary-analysis">EDA: Data Cleaning and Preliminary Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-and-structuring-the-data">1. Reading and Structuring the Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-for-nulls-and-data-types">2. Check For Nulls and Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-analysis-and-visualizations">4. Data Analysis and Visualizations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualizations">4.1 Data Visualizations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection-with-correlation-heatmaps">4.2 Feature Selection with Correlation Heatmaps</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-model-selection-and-evaluation">Preliminary Model Selection and Evaluation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-our-data-for-the-model">Preparing our Data for the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-ur-data-into-the-training-set-and-the-testing-sets">Splitting ur data into the training set and the testing sets</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model-on-training-set">Training the Model on training set</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-model-on-our-test-set">Testing the model on our test set</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-this-on-our-model-with-13-features">Test this on our model with 13 features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">1. Train-Test-Split</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training-model-on-training-set">1.1 Training Model on training set</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-model-on-test-set">1.2 Testing model on test set</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-better-models">Creating Better Models</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logarithimic-transformations">Logarithimic Transformations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression">Polynomial Regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#under-fitting-and-over-fitting">Under-Fitting and Over-Fitting</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-vs-variance-trade-off">Bias vs Variance trade - off</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-polynomial-regression-to-our-boston-housing-dataset">Applying Polynomial Regression to Our Boston Housing Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-optimization">Model Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-of-linear-regression-models">1. Assumptions of Linear Regression Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logarithimic-transformations">2. Logarithimic Transformations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms-for-skewnees">2.1 Histograms for Skewnees</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics-for-skewness">2.2 Metrics for Skewness</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-log-transformations">2.3 Performing Log Transformations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression-understanding-the-bias-variance-tradeoff">3. Polynomial Regression: Understanding the Bias Variance Tradeoff</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#under-fitting-and-over-fitting">3.1 Under-Fitting and Over-Fitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-vs-variance-tradeoff">3.2 Bias vs Variance Tradeoff</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-polynomial-regression-to-our-boston-housing-dataset">3.3 Applying Polynomial Regression to Our Boston Housing Dataset</a></li>
 </ul>
 </li>
 </ul>

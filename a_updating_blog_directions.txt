@@ -16,3 +16,5 @@ Process for updating blog
     cd playbook
 7. Update the github pages blog with the following command:
    ghp-import -n -p -f _build/html
+   
+   
