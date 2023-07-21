@@ -1,0 +1,2142 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>References: &#8212; Data_Science_Playbook</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'webscrapping_apt_data';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/data.diaries.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/data.diaries.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CommandLine.html">The Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroToGit.html">Git and Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Your_Coding_Environment.html">Your Coding Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Basic_intro_Python.html">Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geocoder.html">Geocoding with APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linear_Regression_Basics.html">Linear Regression for Machine Learning: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Machine_Learning_BHDataset.html">ML Basics: Boston Housing Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ensemble_Learning_BH.html">Ensemble Learning: Bagging, Boosting, and Stacking</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fwebscrapping_apt_data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/webscrapping_apt_data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>References:</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Imorting requests package to communicate with URL</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="c1">#bs4 will help us parse the content of the html page</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span> <span class="k">as</span> <span class="n">bs</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="c1">#Importing psycopg2 to access postgresql server and create DB and table</span>
+<span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="c1">#Importing sqlalchemy and create_engine to write dataframes to SQL</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Creating empty lists for the elements we will scrape</span>
+<span class="n">address</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+<span class="n">price</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+<span class="n">bed</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+<span class="n">amenities</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+
+<span class="c1">#Creating forloop to scrape 14 pages from site</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">):</span>
+    <span class="c1">#set url and create headers to trick our site into thinking we are legitimate users</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://www.apartments.com/austin-tx/min-1-bedrooms-800-to-1550/</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">/&quot;</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.141 Safari/537.36&quot;</span><span class="p">}</span>
+    <span class="c1">#define response as requests.get and pass our url and headers through it to access the site and get the html content</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">response</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+    <span class="c1">#define our soup object as our html parser we are accessing through beautifulsoup and print our soup title to confirm we are accessing each url</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">bs</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="k">for</span> <span class="n">div</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span> <span class="s2">&quot;property-address js-url&quot;</span><span class="p">):</span>
+        <span class="n">address</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">div</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span> <span class="s2">&quot;property-pricing&quot;</span><span class="p">):</span>
+        <span class="n">price</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span> <span class="s2">&quot;property-beds&quot;</span><span class="p">):</span>
+        <span class="n">bed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;property-amenities&quot;</span><span class="p">):</span>
+        <span class="n">amenities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">div</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="n">class_</span><span class="o">=</span><span class="s2">&quot;property-information&quot;</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">div</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;aria-label&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 2 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 3 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 4 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 5 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 6 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 7 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 8 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 9 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 10 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 11 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 12 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 13 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 14 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total Names:&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total Names: 33
+Villas at Shadow Oaks, Austin, TX
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total No Addresses:&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">address</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">address</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total No Addresses: 350
+2611 Bee Caves Rd, Austin, TX 78746
+12403 Mellow Meadow Dr, Austin, TX 78750
+7655 N Ranch Road 620, Austin, TX 78726
+2811 La Frontera Blvd, Austin, TX 78728
+12300 Riata Trace Pky, Austin, TX 78727
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total No of Prices:&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">price</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">price</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total No of Prices: 350
+$1,359 - 1,469
+$1,339 - 2,178
+$1,245 - 1,740
+$1,288 - 3,612
+$1,300 - 2,009
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total No of Beds:&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">bed</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bed</span><span class="p">[:</span><span class="mi">10</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total No of Beds: 350
+1 Bed
+1-3 Beds
+1-3 Beds
+1-2 Beds
+1-2 Beds
+2 Beds
+1 Bed
+1 Bed
+1-3 Beds
+1-2 Beds
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total No of amenities:&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">amenities</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">amenities</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total No of amenities: 154
+Dog &amp; Cat Friendly, Fitness Center, Pool, Package Service, Online Services
+Dog &amp; Cat Friendly, Fitness Center, Pool, Maintenance on site, Package Service, Washer &amp; Dryer Hookups
+Dog &amp; Cat Friendly, Fitness Center, Pool, In Unit Washer &amp; Dryer, Walk-In Closets, Clubhouse, Stainless Steel Appliances, Business Center
+Dog &amp; Cat Friendly, Fitness Center, Pool, Dishwasher, Refrigerator, Kitchen, In Unit Washer &amp; Dryer, Walk-In Closets
+Dog &amp; Cat Friendly, Fitness Center, In Unit Washer &amp; Dryer, Maintenance on site, Package Service, EV Charging
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://www.apartments.com/austin-tx/min-1-bedrooms-800-to-1550/</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">/&quot;</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.141 Safari/537.36&quot;</span><span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">response</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">bs</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">listing</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span> <span class="s2">&quot;mortar-wrapper&quot;</span><span class="p">):</span>
+        <span class="n">apartment</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">div</span> <span class="ow">in</span> <span class="n">listing</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="n">class_</span><span class="o">=</span><span class="s2">&quot;property-information&quot;</span><span class="p">):</span>
+            <span class="n">apartment</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">div</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;aria-label&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">div</span> <span class="ow">in</span> <span class="n">listing</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span> <span class="s2">&quot;property-address js-url&quot;</span><span class="p">):</span>
+            <span class="n">apartment</span><span class="p">[</span><span class="s1">&#39;address&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">div</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">listing</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span> <span class="s2">&quot;property-pricing&quot;</span><span class="p">):</span>
+            <span class="n">apartment</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">listing</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span> <span class="s2">&quot;property-beds&quot;</span><span class="p">):</span>
+            <span class="n">apartment</span><span class="p">[</span><span class="s1">&#39;beds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">listing</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;property-amenities&quot;</span><span class="p">):</span>
+            <span class="n">apartment</span><span class="p">[</span><span class="s1">&#39;amenities&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
+        <span class="n">apartments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">apartment</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 2 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 3 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 4 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 5 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 6 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 7 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 8 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 9 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 10 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 11 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 12 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 13 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;title&gt; 1 Bedroom Apartments under $1,550 in Austin, TX - 7,232 Rentals - Page 14 | Apartments.com&lt;/title&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">apartments</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">apartment</span> <span class="ow">in</span> <span class="n">apartments</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">apartment</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>350
+{&#39;name&#39;: &#39;Waters at Barton Creek Apartments, Austin, TX&#39;, &#39;address&#39;: &#39;2611 Bee Caves Rd, Austin, TX 78746&#39;, &#39;price&#39;: &#39;$1,359 - 1,469&#39;, &#39;beds&#39;: &#39;1 Bed&#39;, &#39;amenities&#39;: &#39;Dog &amp; Cat Friendly, Fitness Center, Pool, Package Service, Online Services&#39;}
+{&#39;name&#39;: &#39;Lantern, Austin, TX&#39;, &#39;address&#39;: &#39;12403 Mellow Meadow Dr, Austin, TX 78750&#39;, &#39;price&#39;: &#39;$1,339 - 2,178&#39;, &#39;beds&#39;: &#39;1-3 Beds&#39;, &#39;amenities&#39;: &#39;Dog &amp; Cat Friendly, Fitness Center, Pool, Maintenance on site, Package Service, Washer &amp; Dryer Hookups&#39;}
+{&#39;name&#39;: &#39;Ellwood at Lake Travis, Austin, TX&#39;, &#39;address&#39;: &#39;7655 N Ranch Road 620, Austin, TX 78726&#39;, &#39;price&#39;: &#39;$1,245 - 1,740&#39;, &#39;beds&#39;: &#39;1-3 Beds&#39;, &#39;amenities&#39;: &#39;Dog &amp; Cat Friendly, Fitness Center, Pool, In Unit Washer &amp; Dryer, Walk-In Closets, Clubhouse, Stainless Steel Appliances, Business Center&#39;}
+{&#39;name&#39;: &#39;The District on La Frontera, Austin, TX&#39;, &#39;address&#39;: &#39;2811 La Frontera Blvd, Austin, TX 78728&#39;, &#39;price&#39;: &#39;$1,288 - 3,612&#39;, &#39;beds&#39;: &#39;1-2 Beds&#39;, &#39;amenities&#39;: &#39;Dog &amp; Cat Friendly, Fitness Center, Pool, Dishwasher, Refrigerator, Kitchen, In Unit Washer &amp; Dryer, Walk-In Closets&#39;}
+{&#39;name&#39;: &#39;Riata, Austin, TX&#39;, &#39;address&#39;: &#39;12300 Riata Trace Pky, Austin, TX 78727&#39;, &#39;price&#39;: &#39;$1,300 - 2,009&#39;, &#39;beds&#39;: &#39;1-2 Beds&#39;, &#39;amenities&#39;: &#39;Dog &amp; Cat Friendly, Fitness Center, In Unit Washer &amp; Dryer, Maintenance on site, Package Service, EV Charging&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">apartments</span><span class="p">)</span>
+<span class="n">apartments_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>address</th>
+      <th>price</th>
+      <th>beds</th>
+      <th>amenities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Waters at Barton Creek Apartments, Austin, TX</td>
+      <td>2611 Bee Caves Rd, Austin, TX 78746</td>
+      <td>$1,359 - 1,469</td>
+      <td>1 Bed</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Pack...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lantern, Austin, TX</td>
+      <td>12403 Mellow Meadow Dr, Austin, TX 78750</td>
+      <td>$1,339 - 2,178</td>
+      <td>1-3 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Main...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ellwood at Lake Travis, Austin, TX</td>
+      <td>7655 N Ranch Road 620, Austin, TX 78726</td>
+      <td>$1,245 - 1,740</td>
+      <td>1-3 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, In U...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The District on La Frontera, Austin, TX</td>
+      <td>2811 La Frontera Blvd, Austin, TX 78728</td>
+      <td>$1,288 - 3,612</td>
+      <td>1-2 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Dish...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Riata, Austin, TX</td>
+      <td>12300 Riata Trace Pky, Austin, TX 78727</td>
+      <td>$1,300 - 2,009</td>
+      <td>1-2 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, In Unit Wa...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;,[^,]*$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;,[^,]*$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>address</th>
+      <th>price</th>
+      <th>beds</th>
+      <th>amenities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Waters at Barton Creek Apartments</td>
+      <td>2611 Bee Caves Rd, Austin, TX 78746</td>
+      <td>$1,359 - 1,469</td>
+      <td>1 Bed</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Pack...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lantern</td>
+      <td>12403 Mellow Meadow Dr, Austin, TX 78750</td>
+      <td>$1,339 - 2,178</td>
+      <td>1-3 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Main...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ellwood at Lake Travis</td>
+      <td>7655 N Ranch Road 620, Austin, TX 78726</td>
+      <td>$1,245 - 1,740</td>
+      <td>1-3 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, In U...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The District on La Frontera</td>
+      <td>2811 La Frontera Blvd, Austin, TX 78728</td>
+      <td>$1,288 - 3,612</td>
+      <td>1-2 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Dish...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Riata</td>
+      <td>12300 Riata Trace Pky, Austin, TX 78727</td>
+      <td>$1,300 - 2,009</td>
+      <td>1-2 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, In Unit Wa...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>345</th>
+      <td>Village Oaks</td>
+      <td>10926 Jollyville Rd, Austin, TX 78759</td>
+      <td>$1,150 - 2,410</td>
+      <td>1-2 Beds</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>346</th>
+      <td>Creekside on Parmer Lane</td>
+      <td>5401 E Parmer Ln, Austin, TX 78754</td>
+      <td>$1,252 - 1,608</td>
+      <td>1 Bed</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>347</th>
+      <td>Hidden Timber</td>
+      <td>13359 Pond Springs Rd, Austin, TX 78729</td>
+      <td>$1,010 - 1,080</td>
+      <td>1-2 Beds</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>348</th>
+      <td>Alister Apartments</td>
+      <td>1845 Burton Dr, Austin, TX 78741</td>
+      <td>$1,166 - 2,788</td>
+      <td>1 Bed</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>349</th>
+      <td>Villas at Shadow Oaks</td>
+      <td>12148 Jollyville Rd, Austin, TX 78759</td>
+      <td>$1,050 - 1,300</td>
+      <td>1-2 Beds</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>350 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Cleaning and Seperating Address Column</span>
+<span class="n">apartments_df</span><span class="p">[[</span><span class="s1">&#39;street&#39;</span><span class="p">,</span> <span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;state/zip&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;address&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>address</th>
+      <th>price</th>
+      <th>beds</th>
+      <th>amenities</th>
+      <th>street</th>
+      <th>city</th>
+      <th>state/zip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Waters at Barton Creek Apartments</td>
+      <td>2611 Bee Caves Rd, Austin, TX 78746</td>
+      <td>$1,359 - 1,469</td>
+      <td>1 Bed</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Pack...</td>
+      <td>2611 Bee Caves Rd</td>
+      <td>Austin</td>
+      <td>TX 78746</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lantern</td>
+      <td>12403 Mellow Meadow Dr, Austin, TX 78750</td>
+      <td>$1,339 - 2,178</td>
+      <td>1-3 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Main...</td>
+      <td>12403 Mellow Meadow Dr</td>
+      <td>Austin</td>
+      <td>TX 78750</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ellwood at Lake Travis</td>
+      <td>7655 N Ranch Road 620, Austin, TX 78726</td>
+      <td>$1,245 - 1,740</td>
+      <td>1-3 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, In U...</td>
+      <td>7655 N Ranch Road 620</td>
+      <td>Austin</td>
+      <td>TX 78726</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The District on La Frontera</td>
+      <td>2811 La Frontera Blvd, Austin, TX 78728</td>
+      <td>$1,288 - 3,612</td>
+      <td>1-2 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Dish...</td>
+      <td>2811 La Frontera Blvd</td>
+      <td>Austin</td>
+      <td>TX 78728</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Riata</td>
+      <td>12300 Riata Trace Pky, Austin, TX 78727</td>
+      <td>$1,300 - 2,009</td>
+      <td>1-2 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, In Unit Wa...</td>
+      <td>12300 Riata Trace Pky</td>
+      <td>Austin</td>
+      <td>TX 78727</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>345</th>
+      <td>Village Oaks</td>
+      <td>10926 Jollyville Rd, Austin, TX 78759</td>
+      <td>$1,150 - 2,410</td>
+      <td>1-2 Beds</td>
+      <td>NaN</td>
+      <td>10926 Jollyville Rd</td>
+      <td>Austin</td>
+      <td>TX 78759</td>
+    </tr>
+    <tr>
+      <th>346</th>
+      <td>Creekside on Parmer Lane</td>
+      <td>5401 E Parmer Ln, Austin, TX 78754</td>
+      <td>$1,252 - 1,608</td>
+      <td>1 Bed</td>
+      <td>NaN</td>
+      <td>5401 E Parmer Ln</td>
+      <td>Austin</td>
+      <td>TX 78754</td>
+    </tr>
+    <tr>
+      <th>347</th>
+      <td>Hidden Timber</td>
+      <td>13359 Pond Springs Rd, Austin, TX 78729</td>
+      <td>$1,010 - 1,080</td>
+      <td>1-2 Beds</td>
+      <td>NaN</td>
+      <td>13359 Pond Springs Rd</td>
+      <td>Austin</td>
+      <td>TX 78729</td>
+    </tr>
+    <tr>
+      <th>348</th>
+      <td>Alister Apartments</td>
+      <td>1845 Burton Dr, Austin, TX 78741</td>
+      <td>$1,166 - 2,788</td>
+      <td>1 Bed</td>
+      <td>NaN</td>
+      <td>1845 Burton Dr</td>
+      <td>Austin</td>
+      <td>TX 78741</td>
+    </tr>
+    <tr>
+      <th>349</th>
+      <td>Villas at Shadow Oaks</td>
+      <td>12148 Jollyville Rd, Austin, TX 78759</td>
+      <td>$1,050 - 1,300</td>
+      <td>1-2 Beds</td>
+      <td>NaN</td>
+      <td>12148 Jollyville Rd</td>
+      <td>Austin</td>
+      <td>TX 78759</td>
+    </tr>
+  </tbody>
+</table>
+<p>350 rows × 8 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apts_df_new</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;state/zip&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">apts_df_new</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">,</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;zip&#39;</span><span class="p">]</span>
+<span class="n">apartments_df</span><span class="p">[[</span><span class="s1">&#39;state&#39;</span><span class="p">,</span><span class="s1">&#39;zipcode&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">apts_df_new</span><span class="p">[[</span><span class="s1">&#39;state&#39;</span><span class="p">,</span><span class="s1">&#39;zip&#39;</span><span class="p">]]</span>
+<span class="n">apartments_df</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state/zip&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>address</th>
+      <th>price</th>
+      <th>beds</th>
+      <th>amenities</th>
+      <th>street</th>
+      <th>city</th>
+      <th>state</th>
+      <th>zipcode</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Waters at Barton Creek Apartments</td>
+      <td>2611 Bee Caves Rd, Austin, TX 78746</td>
+      <td>$1,359 - 1,469</td>
+      <td>1 Bed</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Pack...</td>
+      <td>2611 Bee Caves Rd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78746</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lantern</td>
+      <td>12403 Mellow Meadow Dr, Austin, TX 78750</td>
+      <td>$1,339 - 2,178</td>
+      <td>1-3 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Main...</td>
+      <td>12403 Mellow Meadow Dr</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78750</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ellwood at Lake Travis</td>
+      <td>7655 N Ranch Road 620, Austin, TX 78726</td>
+      <td>$1,245 - 1,740</td>
+      <td>1-3 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, In U...</td>
+      <td>7655 N Ranch Road 620</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78726</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The District on La Frontera</td>
+      <td>2811 La Frontera Blvd, Austin, TX 78728</td>
+      <td>$1,288 - 3,612</td>
+      <td>1-2 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Dish...</td>
+      <td>2811 La Frontera Blvd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78728</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Riata</td>
+      <td>12300 Riata Trace Pky, Austin, TX 78727</td>
+      <td>$1,300 - 2,009</td>
+      <td>1-2 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, In Unit Wa...</td>
+      <td>12300 Riata Trace Pky</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78727</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Cleaning Price Columns</span>
+<span class="n">apartments_df</span><span class="p">[[</span><span class="s1">&#39;minprice&#39;</span><span class="p">,</span> <span class="s1">&#39;maxprice&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;minprice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;minprice&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,)</span>
+<span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;maxprice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;maxprice&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,)</span>
+<span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;minprice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;minprice&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,)</span>
+<span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;maxprice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;maxprice&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,)</span>
+<span class="n">apartments_df</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>address</th>
+      <th>beds</th>
+      <th>amenities</th>
+      <th>street</th>
+      <th>city</th>
+      <th>state</th>
+      <th>zipcode</th>
+      <th>minprice</th>
+      <th>maxprice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Waters at Barton Creek Apartments</td>
+      <td>2611 Bee Caves Rd, Austin, TX 78746</td>
+      <td>1 Bed</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Pack...</td>
+      <td>2611 Bee Caves Rd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78746</td>
+      <td>1359</td>
+      <td>1469</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lantern</td>
+      <td>12403 Mellow Meadow Dr, Austin, TX 78750</td>
+      <td>1-3 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Main...</td>
+      <td>12403 Mellow Meadow Dr</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78750</td>
+      <td>1339</td>
+      <td>2178</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ellwood at Lake Travis</td>
+      <td>7655 N Ranch Road 620, Austin, TX 78726</td>
+      <td>1-3 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, In U...</td>
+      <td>7655 N Ranch Road 620</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78726</td>
+      <td>1245</td>
+      <td>1740</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The District on La Frontera</td>
+      <td>2811 La Frontera Blvd, Austin, TX 78728</td>
+      <td>1-2 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Dish...</td>
+      <td>2811 La Frontera Blvd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78728</td>
+      <td>1288</td>
+      <td>3612</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Riata</td>
+      <td>12300 Riata Trace Pky, Austin, TX 78727</td>
+      <td>1-2 Beds</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, In Unit Wa...</td>
+      <td>12300 Riata Trace Pky</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78727</td>
+      <td>1300</td>
+      <td>2009</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>345</th>
+      <td>Village Oaks</td>
+      <td>10926 Jollyville Rd, Austin, TX 78759</td>
+      <td>1-2 Beds</td>
+      <td>NaN</td>
+      <td>10926 Jollyville Rd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78759</td>
+      <td>1150</td>
+      <td>2410</td>
+    </tr>
+    <tr>
+      <th>346</th>
+      <td>Creekside on Parmer Lane</td>
+      <td>5401 E Parmer Ln, Austin, TX 78754</td>
+      <td>1 Bed</td>
+      <td>NaN</td>
+      <td>5401 E Parmer Ln</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78754</td>
+      <td>1252</td>
+      <td>1608</td>
+    </tr>
+    <tr>
+      <th>347</th>
+      <td>Hidden Timber</td>
+      <td>13359 Pond Springs Rd, Austin, TX 78729</td>
+      <td>1-2 Beds</td>
+      <td>NaN</td>
+      <td>13359 Pond Springs Rd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78729</td>
+      <td>1010</td>
+      <td>1080</td>
+    </tr>
+    <tr>
+      <th>348</th>
+      <td>Alister Apartments</td>
+      <td>1845 Burton Dr, Austin, TX 78741</td>
+      <td>1 Bed</td>
+      <td>NaN</td>
+      <td>1845 Burton Dr</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78741</td>
+      <td>1166</td>
+      <td>2788</td>
+    </tr>
+    <tr>
+      <th>349</th>
+      <td>Villas at Shadow Oaks</td>
+      <td>12148 Jollyville Rd, Austin, TX 78759</td>
+      <td>1-2 Beds</td>
+      <td>NaN</td>
+      <td>12148 Jollyville Rd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78759</td>
+      <td>1050</td>
+      <td>1300</td>
+    </tr>
+  </tbody>
+</table>
+<p>350 rows × 10 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;minprice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;minprice&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Call for Rent&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">,)</span>
+<span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;maxprice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;maxprice&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Call for Rent&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">,)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Cleaning bedroom column</span>
+<span class="n">apartments_df</span><span class="p">[[</span><span class="s1">&#39;minbed&#39;</span><span class="p">,</span> <span class="s1">&#39;maxbed&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;beds&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;minbed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;minbed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Beds&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,)</span>
+<span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;minbed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;minbed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Bed&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,)</span>
+<span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;maxbed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;maxbed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Beds&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,)</span>
+<span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;maxbed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;maxbed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Bed&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,)</span>
+<span class="n">apartments_df</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;beds&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">today</span><span class="p">)</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="n">date</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-07-21 10:42:31.603285
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;21/07/2023 10:42:31&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;building_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;APT&#39;</span>
+<span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">date</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>address</th>
+      <th>amenities</th>
+      <th>street</th>
+      <th>city</th>
+      <th>state</th>
+      <th>zipcode</th>
+      <th>minprice</th>
+      <th>maxprice</th>
+      <th>minbed</th>
+      <th>maxbed</th>
+      <th>building_type</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Waters at Barton Creek Apartments</td>
+      <td>2611 Bee Caves Rd, Austin, TX 78746</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Pack...</td>
+      <td>2611 Bee Caves Rd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78746</td>
+      <td>1359</td>
+      <td>1469</td>
+      <td>1</td>
+      <td>0</td>
+      <td>APT</td>
+      <td>21/07/2023 10:42:31</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lantern</td>
+      <td>12403 Mellow Meadow Dr, Austin, TX 78750</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Main...</td>
+      <td>12403 Mellow Meadow Dr</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78750</td>
+      <td>1339</td>
+      <td>2178</td>
+      <td>1</td>
+      <td>3</td>
+      <td>APT</td>
+      <td>21/07/2023 10:42:31</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ellwood at Lake Travis</td>
+      <td>7655 N Ranch Road 620, Austin, TX 78726</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, In U...</td>
+      <td>7655 N Ranch Road 620</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78726</td>
+      <td>1245</td>
+      <td>1740</td>
+      <td>1</td>
+      <td>3</td>
+      <td>APT</td>
+      <td>21/07/2023 10:42:31</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The District on La Frontera</td>
+      <td>2811 La Frontera Blvd, Austin, TX 78728</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Dish...</td>
+      <td>2811 La Frontera Blvd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78728</td>
+      <td>1288</td>
+      <td>3612</td>
+      <td>1</td>
+      <td>2</td>
+      <td>APT</td>
+      <td>21/07/2023 10:42:31</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Riata</td>
+      <td>12300 Riata Trace Pky, Austin, TX 78727</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, In Unit Wa...</td>
+      <td>12300 Riata Trace Pky</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78727</td>
+      <td>1300</td>
+      <td>2009</td>
+      <td>1</td>
+      <td>2</td>
+      <td>APT</td>
+      <td>21/07/2023 10:42:31</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>city
+ Austin          317
+ Pflugerville     13
+ Cedar Park       11
+ Round Rock        4
+ Manor             2
+ Del Valle         2
+ AUSTIN            1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name             object
+address          object
+amenities        object
+street           object
+city             object
+state            object
+zipcode          object
+minprice         object
+maxprice         object
+minbed           object
+maxbed           object
+building_type    object
+date             object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convert_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;minprice&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                <span class="s1">&#39;maxprice&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                <span class="s1">&#39;minbed&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                <span class="s1">&#39;maxbed&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                <span class="p">}</span>
+<span class="n">apartments_df</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">convert_dict</span><span class="p">)</span>
+<span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">apartments_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;datetime64[ns]&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">apartments_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name                     object
+address                  object
+amenities                object
+street                   object
+city                     object
+state                    object
+zipcode                  object
+minprice                float64
+maxprice                float64
+minbed                    int64
+maxbed                    int64
+building_type            object
+date             datetime64[ns]
+dtype: object
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/0k/r3nvlvy97cgdhjrb4v697trw0000gn/T/ipykernel_74849/1689935638.py:7: UserWarning: Parsing dates in %d/%m/%Y %H:%M:%S format when dayfirst=False (the default) was specified. Pass `dayfirst=True` or specify a format to silence this warning.
+  apartments_df[&#39;date&#39;] = apartments_df[&#39;date&#39;].astype(&#39;datetime64[ns]&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>address</th>
+      <th>amenities</th>
+      <th>street</th>
+      <th>city</th>
+      <th>state</th>
+      <th>zipcode</th>
+      <th>minprice</th>
+      <th>maxprice</th>
+      <th>minbed</th>
+      <th>maxbed</th>
+      <th>building_type</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Waters at Barton Creek Apartments</td>
+      <td>2611 Bee Caves Rd, Austin, TX 78746</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Pack...</td>
+      <td>2611 Bee Caves Rd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78746</td>
+      <td>1359.0</td>
+      <td>1469.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>APT</td>
+      <td>2023-07-21 10:42:31</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lantern</td>
+      <td>12403 Mellow Meadow Dr, Austin, TX 78750</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Main...</td>
+      <td>12403 Mellow Meadow Dr</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78750</td>
+      <td>1339.0</td>
+      <td>2178.0</td>
+      <td>1</td>
+      <td>3</td>
+      <td>APT</td>
+      <td>2023-07-21 10:42:31</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ellwood at Lake Travis</td>
+      <td>7655 N Ranch Road 620, Austin, TX 78726</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, In U...</td>
+      <td>7655 N Ranch Road 620</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78726</td>
+      <td>1245.0</td>
+      <td>1740.0</td>
+      <td>1</td>
+      <td>3</td>
+      <td>APT</td>
+      <td>2023-07-21 10:42:31</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The District on La Frontera</td>
+      <td>2811 La Frontera Blvd, Austin, TX 78728</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, Pool, Dish...</td>
+      <td>2811 La Frontera Blvd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78728</td>
+      <td>1288.0</td>
+      <td>3612.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>APT</td>
+      <td>2023-07-21 10:42:31</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Riata</td>
+      <td>12300 Riata Trace Pky, Austin, TX 78727</td>
+      <td>Dog &amp; Cat Friendly, Fitness Center, In Unit Wa...</td>
+      <td>12300 Riata Trace Pky</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78727</td>
+      <td>1300.0</td>
+      <td>2009.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>APT</td>
+      <td>2023-07-21 10:42:31</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>345</th>
+      <td>Village Oaks</td>
+      <td>10926 Jollyville Rd, Austin, TX 78759</td>
+      <td>0</td>
+      <td>10926 Jollyville Rd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78759</td>
+      <td>1150.0</td>
+      <td>2410.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>APT</td>
+      <td>2023-07-21 10:42:31</td>
+    </tr>
+    <tr>
+      <th>346</th>
+      <td>Creekside on Parmer Lane</td>
+      <td>5401 E Parmer Ln, Austin, TX 78754</td>
+      <td>0</td>
+      <td>5401 E Parmer Ln</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78754</td>
+      <td>1252.0</td>
+      <td>1608.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>APT</td>
+      <td>2023-07-21 10:42:31</td>
+    </tr>
+    <tr>
+      <th>347</th>
+      <td>Hidden Timber</td>
+      <td>13359 Pond Springs Rd, Austin, TX 78729</td>
+      <td>0</td>
+      <td>13359 Pond Springs Rd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78729</td>
+      <td>1010.0</td>
+      <td>1080.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>APT</td>
+      <td>2023-07-21 10:42:31</td>
+    </tr>
+    <tr>
+      <th>348</th>
+      <td>Alister Apartments</td>
+      <td>1845 Burton Dr, Austin, TX 78741</td>
+      <td>0</td>
+      <td>1845 Burton Dr</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78741</td>
+      <td>1166.0</td>
+      <td>2788.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>APT</td>
+      <td>2023-07-21 10:42:31</td>
+    </tr>
+    <tr>
+      <th>349</th>
+      <td>Villas at Shadow Oaks</td>
+      <td>12148 Jollyville Rd, Austin, TX 78759</td>
+      <td>0</td>
+      <td>12148 Jollyville Rd</td>
+      <td>Austin</td>
+      <td>TX</td>
+      <td>78759</td>
+      <td>1050.0</td>
+      <td>1300.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>APT</td>
+      <td>2023-07-21 10:42:31</td>
+    </tr>
+  </tbody>
+</table>
+<p>350 rows × 13 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">.%m.%Y&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;./Addresses/addresses_</span><span class="si">{}</span><span class="s2">.xlsx&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="n">apartments_df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21.07.2023
+./Addresses/addresses_21.07.2023.xlsx
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">OSError</span><span class="g g-Whitespace">                                   </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">29</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;./Addresses/addresses_</span><span class="si">{}</span><span class="s2">.xlsx&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">apartments_df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.9/site-packages/pandas/core/generic.py:2252,</span> in <span class="ni">NDFrame.to_excel</span><span class="nt">(self, excel_writer, sheet_name, na_rep, float_format, columns, header, index, index_label, startrow, startcol, engine, merge_cells, inf_rep, freeze_panes, storage_options)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2239</span> <span class="kn">from</span> <span class="nn">pandas.io.formats.excel</span> <span class="kn">import</span> <span class="n">ExcelFormatter</span>
+<span class="g g-Whitespace">   </span><span class="mi">2241</span> <span class="n">formatter</span> <span class="o">=</span> <span class="n">ExcelFormatter</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2242</span>     <span class="n">df</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2243</span>     <span class="n">na_rep</span><span class="o">=</span><span class="n">na_rep</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2250</span>     <span class="n">inf_rep</span><span class="o">=</span><span class="n">inf_rep</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2251</span> <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2252</span> <span class="n">formatter</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2253</span>     <span class="n">excel_writer</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2254</span>     <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2255</span>     <span class="n">startrow</span><span class="o">=</span><span class="n">startrow</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2256</span>     <span class="n">startcol</span><span class="o">=</span><span class="n">startcol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2257</span>     <span class="n">freeze_panes</span><span class="o">=</span><span class="n">freeze_panes</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2258</span>     <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2259</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2260</span> <span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.9/site-packages/pandas/io/formats/excel.py:934,</span> in <span class="ni">ExcelFormatter.write</span><span class="nt">(self, writer, sheet_name, startrow, startcol, freeze_panes, engine, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">930</span>     <span class="n">need_save</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">931</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">932</span>     <span class="c1"># error: Cannot instantiate abstract class &#39;ExcelWriter&#39; with abstract</span>
+<span class="g g-Whitespace">    </span><span class="mi">933</span>     <span class="c1"># attributes &#39;engine&#39;, &#39;save&#39;, &#39;supported_extensions&#39; and &#39;write_cells&#39;</span>
+<span class="ne">--&gt; </span><span class="mi">934</span>     <span class="n">writer</span> <span class="o">=</span> <span class="n">ExcelWriter</span><span class="p">(</span>  <span class="c1"># type: ignore[abstract]</span>
+<span class="g g-Whitespace">    </span><span class="mi">935</span>         <span class="n">writer</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span>
+<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">need_save</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">939</span> <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.9/site-packages/pandas/io/excel/_openpyxl.py:60,</span> in <span class="ni">OpenpyxlWriter.__init__</span><span class="nt">(self, path, engine, date_format, datetime_format, mode, storage_options, if_sheet_exists, engine_kwargs, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="kn">from</span> <span class="nn">openpyxl.workbook</span> <span class="kn">import</span> <span class="n">Workbook</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="n">engine_kwargs</span> <span class="o">=</span> <span class="n">combine_kwargs</span><span class="p">(</span><span class="n">engine_kwargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">60</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="n">path</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="n">if_sheet_exists</span><span class="o">=</span><span class="n">if_sheet_exists</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span>     <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="c1"># ExcelWriter replaced &quot;a&quot; by &quot;r+&quot; to allow us to first read the excel file from</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="c1"># the file and later write to it</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span> <span class="k">if</span> <span class="s2">&quot;r+&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span><span class="p">:</span>  <span class="c1"># Load from existing workbook</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.9/site-packages/pandas/io/excel/_base.py:1219,</span> in <span class="ni">ExcelWriter.__init__</span><span class="nt">(self, path, engine, date_format, datetime_format, mode, storage_options, if_sheet_exists, engine_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1215</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handles</span> <span class="o">=</span> <span class="n">IOHandles</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1216</span>     <span class="n">cast</span><span class="p">(</span><span class="n">IO</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span> <span class="n">path</span><span class="p">),</span> <span class="n">compression</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;compression&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+<span class="g g-Whitespace">   </span><span class="mi">1217</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1218</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">ExcelWriter</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1219</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1220</span>         <span class="n">path</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">is_text</span><span class="o">=</span><span class="kc">False</span>
+<span class="g g-Whitespace">   </span><span class="mi">1221</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1222</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cur_sheet</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1224</span> <span class="k">if</span> <span class="n">date_format</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.9/site-packages/pandas/io/common.py:737,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">735</span> <span class="c1"># Only for write methods</span>
+<span class="g g-Whitespace">    </span><span class="mi">736</span> <span class="k">if</span> <span class="s2">&quot;r&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span> <span class="ow">and</span> <span class="n">is_path</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">737</span>     <span class="n">check_parent_directory</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">handle</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">739</span> <span class="k">if</span> <span class="n">compression</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">740</span>     <span class="k">if</span> <span class="n">compression</span> <span class="o">!=</span> <span class="s2">&quot;zstd&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">741</span>         <span class="c1"># compression libraries do not like an explicit text-mode</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.9/site-packages/pandas/io/common.py:600,</span> in <span class="ni">check_parent_directory</span><span class="nt">(path)</span>
+<span class="g g-Whitespace">    </span><span class="mi">598</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<span class="g g-Whitespace">    </span><span class="mi">599</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">parent</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">600</span>     <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="sa">rf</span><span class="s2">&quot;Cannot save file into a non-existent directory: &#39;</span><span class="si">{</span><span class="n">parent</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+<span class="ne">OSError</span>: Cannot save file into a non-existent directory: &#39;Addresses&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>I would like to schedule this book to automatically run once a day or maybe once a week to collect apartment data for the austin area.
+A Keith Galli video I found on this could be super helpful for this: How to schedule and automatically run python code
+He mentions crontab, a tool that could be helpful in setting thhis up. This sould be fun to dig into and play with and I hope it works</p>
+<p>SAVE TABLE TO SQL</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hostname</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span>
+<span class="n">database</span> <span class="o">=</span> <span class="s1">&#39;geo&#39;</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;postgres&#39;</span>
+<span class="n">pwd</span> <span class="o">=</span> <span class="s1">&#39;032197An&#39;</span>
+<span class="n">port_id</span> <span class="o">=</span> <span class="mi">5432</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>    
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span> <span class="o">=</span> <span class="n">hostname</span><span class="p">,</span>
+        <span class="n">dbname</span> <span class="o">=</span> <span class="n">database</span><span class="p">,</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">username</span><span class="p">,</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">pwd</span><span class="p">,</span>
+        <span class="n">port</span> <span class="o">=</span> <span class="n">port_id</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">psycopg2.extensions</span> <span class="kn">import</span> <span class="n">ISOLATION_LEVEL_AUTOCOMMIT</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">set_isolation_level</span><span class="p">(</span><span class="n">ISOLATION_LEVEL_AUTOCOMMIT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Created a new database to in SQL to store the date</span>
+<span class="c1">#cur.execute(&#39;CREATE DATABASE austin&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Deleted any tables named austin if they existed</span>
+<span class="c1">#cur.execute(&#39;DROP TABLE IF EXISTS apartments&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Created new table in database to collect the data in the dataframe</span>
+<span class="c1">#cur.execute(&quot;CREATE TABLE IF NOT EXISTS apartments (name VARCHAR(256), address VARCHAR(256),amenities VARCHAR(256), street VARCHAR(256), city VARCHAR(256), state VARCHAR(5), zipcode VARCHAR(10), minprice FLOAT, maxprice FLOAT, minbed INT, maxbed INT, building_type VARCHAR(5), date TIMESTAMP)&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Need to research more about this,</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;postgresql+psycopg2://postgres:032197An@localhost/geo&#39;</span><span class="p">)</span>
+<span class="n">engine</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Engine(postgresql+psycopg2://postgres:***@localhost/geo)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apartments_df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;austin_apartments&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>350
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function connection.commit&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install jupyter_scheduler</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install jupytext</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After installing Jupytext and getting our .py file, we will now be able to automatically run our python script and then manually webscrape our data and append it to our apartments table in our austin database.
+Link: <a class="reference external" href="https://crontab.guru/#5_4_">https://crontab.guru/#5_4_</a><em>_</em>_*
+Link: <a class="reference external" href="https://www.youtube.com/watch?v=vDOVEDl2z84">https://www.youtube.com/watch?v=vDOVEDl2z84</a>
+Link: <a class="reference external" href="https://www.youtube.com/watch?v=VztRqRXeyn0">https://www.youtube.com/watch?v=VztRqRXeyn0</a>
+Link:</p>
+<section id="references">
+<h1>References:<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://data36.com/scrape-multiple-web-pages-beautiful-soup-tutorial/">https://data36.com/scrape-multiple-web-pages-beautiful-soup-tutorial/</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=MH3641s3Roc&amp;amp;ab_channel=Pythonology">https://www.youtube.com/watch?v=MH3641s3Roc&amp;ab_channel=Pythonology</a></p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Annette Tamakloe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
