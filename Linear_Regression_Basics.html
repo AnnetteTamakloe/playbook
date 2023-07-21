@@ -439,12 +439,11 @@ Statistics in particular is a necessary curriculum you’ll need for Machine Lea
 <section id="determining-line-of-best-fit">
 <h3>2. Determining Line of Best Fit<a class="headerlink" href="#determining-line-of-best-fit" title="Permalink to this heading">#</a></h3>
 <p>As mentioned before, our line of best fits job is to hit as many points as it can on our scatter plot. If it does its job well, the distance between our line and each of our data points would be very small. The distance between each of our predicted values(represented by our line of best fit) and the actual data observations is known as an error term or a residual. Lets take a look at a visual representation of this.</p>
-<p><img alt="residuals.webp" src="attachment:264bfb77-90a4-4c53-baea-1aebc0940255.webp" /></p>
-<p><img alt="residuals.gif" src="attachment:f85d7728-5f18-407d-9ad7-9cc9d3ee8971.gif" /></p>
+<p><img alt="residuals.png" src="_images/residuals.png" /></p>
 <section id="cost-function-and-error-terms">
 <h4>2.1 Cost Function and Error Terms<a class="headerlink" href="#cost-function-and-error-terms" title="Permalink to this heading">#</a></h4>
 <p>The sum of all of our error terms is measured by something called the <em>cost function</em> which is defined as the sum of the squares of all of our residuals. This is how our cost function looks like for a specific feature or parameter</p>
-<p><img alt="cost_function.webp" src="attachment:0e572f2b-c86c-4f22-a42a-3d792f403f3e.webp" /></p>
+<p><img alt="cost_function.webp" src="_images/cost_function.webp" /></p>
 <ul class="simple">
 <li><p><strong>J(θ)</strong>: This represents a parameter for a feature. We want the parameter that will make our cost function 0</p></li>
 <li><p><strong>h(x)</strong>: The hypothesis function we mentioned before, it is our predicted value. The predicted value is subtracted from the actual value in the data to get our error for one observation. This is done for each observation and they are then squared them and aggregated.</p></li>
@@ -462,15 +461,15 @@ Statistics in particular is a necessary curriculum you’ll need for Machine Lea
 <ol class="arabic simple" start="2">
 <li><p>Measure how the cost function changes with each change in the parameter to see if its increasing or decreasing. This can be measured by computing something called the <em>partial derivative</em> of the cost function. Our cost function would have to be convex and would have to have a global mimima, the lowest point on our curve. The partial derivative measures the direction of the parameter as it is travelling down to the global mimima.</p></li>
 </ol>
-<p><img alt="derivativecostfunction.webp" src="attachment:5a8ead35-474e-4ec8-a619-4d9756845f7f.webp" /></p>
+<p><img alt="derivativecostfunction.webp" src="_images/derivativecostfunction.webp" /></p>
 <ol class="arabic simple" start="3">
 <li><p>We also need to give the algorithm a certain number of iterations to indicate how many attempts we want it to make to get to our global or local minima. This could be any number from 1 to 100000, but we need a number large enough to get it to our optimal parameter.</p></li>
 </ol>
 <ol class="arabic simple" start="3">
 <li><p>Now after getting the derivative, you now have to update the parameters and change them simultaneously to see how it impacts our cost function. Our derivative is multiplied by something called the <em>learning rate</em> which represented by a. This learning rate will determine how fast or how slow our parameters move towards our desired local optima. We never want to have a learning rate that is too big or too small. If our learning rate is small it will take forever for us to get to our optimal parameter. But even worse, if it is too big we could completely overshoot and whizz past our desired parameters. Note that if we have more than 1 parameter, we would have to plug in the changes simultaneously to see how each change for every coefficient on our feature is impacting the cost function.</p></li>
 </ol>
-<p><img alt="learning_rate.webp" src="attachment:499ed091-ebf6-43d3-a901-ef01d8b0a1b6.webp" /></p>
-<p><img alt="learningrate2.webp" src="attachment:afc3e393-b884-4035-9751-3f36fc48c9d5.webp" /></p>
+<p><img alt="learning_rate.webp" src="_images/learning_rate.webp" /></p>
+<p><img alt="learningrate2.webp" src="_images/learningrate2.webp" /></p>
 <p>I like to think of Gradient Descent from the perspective of a hiker embarking on a journey down a valley to find a natural spring to quench their thirst. They start of at ground 0, unsure of what lies in wait for them, but step by step, put one foot in front of the other to traverse the valley on a quest to save themselves from dying of dehydration. They can’t run or walk too fast, else they might end up rolling down the hill to quickly and might shoot right past the spring, but they also cant walk too slow or they’ll be dead before they get there. They have to take slow measured steps and try their best to track their journey so they can find their way back once they find what they’re looking for.</p>
 </section>
 <section id="hyperparameters">

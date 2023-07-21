@@ -562,11 +562,11 @@ Shape of y_test (152,)
 <section id="bagging">
 <h2>Bagging<a class="headerlink" href="#bagging" title="Permalink to this heading">#</a></h2>
 <p>Bagging is a type of ensemble modelling where several baseline models or ‘weak’ models are trained at the same time and are then combined to create a better model.</p>
-<p><img alt="bagging_visual.png" src="attachment:d7532872-a7ed-4ca1-a4b7-cd66f3c39357.png" /></p>
+<p><img alt="bagging_visual.png" src="_images/bagging_visual.png" /></p>
 <section id="parallel-training">
 <h3>1. Parallel Training<a class="headerlink" href="#parallel-training" title="Permalink to this heading">#</a></h3>
 <p>First bagging uses a resampling technique known as bootstrapping to randomly pick datapoints in the training data set and puts them into several different subsets. After the subsets have been created, it then trains each of them at the same time with baseline models. This is known as <strong>Parallel Training</strong>. Afterwards, the average of all of the outputs are taken to create a more accurate estimation model. Bagging is usually used to enhance baseline models that have high variance and low bias which tend to be models that have overfitting issues.</p>
-<p><img alt="bootstrap_process_bagging.png" src="attachment:1a4d755f-eef2-4624-9e2a-be446f60d19f.png" /></p>
+<p><img alt="bootstrap_process_bagging.png" src="_images/bootstrap_process_bagging.png" /></p>
 </section>
 <section id="benefits-of-bagging">
 <h3>2. Benefits of Bagging<a class="headerlink" href="#benefits-of-bagging" title="Permalink to this heading">#</a></h3>
@@ -588,7 +588,7 @@ These are the steps for implementing the Random Forest model:</p>
 <li><p>Step 3: Each decision tree will generate an output.</p></li>
 <li><p>Step 4: Final output is considered based on Majority Voting or Averaging for Classification and regression, respectively.</p></li>
 </ul>
-<p><img alt="rf_algo_viz.jpeg" src="attachment:5fd62d9f-221b-4298-96a9-24540279e7db.jpeg" /></p>
+<p><img alt="rf_algo_viz.jpeg" src="_images/rf_algo_viz.jpeg" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Bring in RF model from sklearn and define rf model</span>
@@ -639,11 +639,11 @@ RMSE for test set is 3.233214527492636
 <section id="boosting">
 <h2>Boosting<a class="headerlink" href="#boosting" title="Permalink to this heading">#</a></h2>
 <p>Boosting is an ensemble learning method that combines weak models together to create a strong learner that minimizes training errors. This sounds similar to Bagging, and foundationally it is, but there is one key difference. While bagging trains its models in parallel, boosting trains models <strong>Sequentially</strong>.</p>
-<p><img alt="boosting_visual.png" src="attachment:8806eff6-ff26-4fdf-9856-027f68c674ef.png" /></p>
+<p><img alt="boosting_visual.png" src="_images/boosting_visual.png" /></p>
 <section id="sequential-training">
 <h3>1. Sequential Training<a class="headerlink" href="#sequential-training" title="Permalink to this heading">#</a></h3>
 <p>With Sequential training, a series of models are constructed and with each new model, the weights of the misclassified data in the previous model are changed to get better accuracy. This process helps the algorithm identify the key variables that it needs to focus on to improve its performance. Boosting is usually used for models that have low variance and high bias, which tend to be models experience underfitting issues.</p>
-<p><img alt="boosting_visual_process.png" src="attachment:2bdc0d89-e59a-47ce-ac12-ea2c9a761cb5.png" /></p>
+<p><img alt="boosting_visual_process.png" src="_images/boosting_visual_process.png" /></p>
 </section>
 <section id="types-of-boosting-models">
 <h3>2. Types of Boosting Models<a class="headerlink" href="#types-of-boosting-models" title="Permalink to this heading">#</a></h3>
@@ -739,13 +739,13 @@ RMSE for test set is 1.9391973068772448
 <section id="stacking">
 <h2>Stacking<a class="headerlink" href="#stacking" title="Permalink to this heading">#</a></h2>
 <p>Boosting and Bagging are the most widely known and used ensemble methods, but another powerful ensemble method used in Machine Learning is <strong>Stacking</strong>. Stacking is a method that uses different types of models to learn some parts of a problem within a dataset. What stacking does is that it builds multiple different learners and use them to build an “intermediate prediction”, one prediction for each learned model. Afterwards a new model, the final model, is then added to the framework. This model is stacked on top of the others and learns from each of the intermediate predictions to build the final prediction of the framework. This process will most likely give you a better model and might improve overall model performance</p>
-<p><img alt="model_stacking.png" src="attachment:6c9f5d78-c97f-4508-b6de-3e6ccdae8468.png" /></p>
+<p><img alt="model_stacking.png" src="_images/model_stacking.png" /></p>
 <section id="cross-validation">
 <h3>1. Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this heading">#</a></h3>
 <p>To perform stacking, a method called <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)"><strong>Cross Validation</strong></a> is required. This method is optional for bagging and boosting, but it is absolutely critical for stacking, so lets learn more about it. The gold standard for model evaluation in Machine Learning is train-test-split. You first split your data into two sets, the training set and the test set, train your model on the training set, then test it on the testing set to ensure your model works well on unseen data. This is done to check for overfitting.</p>
 <p>Now when doing evaluations on the testing set, there’s a chance that your model could mold itself differently after being fit on the testing set, which could result in overfitting on other data brought in after the model is finalized. This is where the <em>validation</em> set comes in. With validation your data is split into three sets, the training set, the validation set, and the test set. This can work, but this can reduce the number of samples which can be sued for learning the model and the results are based on picking data points randomly, which could cause more overfitting issues down the line with unseen data.</p>
 <p>This is where cross validation comes in. When performing cross validation with stacking you first split your data into two sets, the training set and the holdout set. You then <em>further</em> split your training data into smaller sets(k sets). Each k subset is then further split <em>again</em> where you’ll have training sets and a testing set for each k subset. You then bring in the models where one model would be used for each k subset. Once each model has been trained using the k subsets you’d then test them again on the holdout dataset. The average of the predictions for the test set in each k fold would be put into an array and added to the larger training set as a new feature and the same would be done for the holdout set, each getting a new feature added to it. The udpatd datasets would then be used to train the metalearner for the final predictions.</p>
-<p><img alt="stacking_process.png" src="attachment:3a87c062-c202-4238-85a3-1ef28d2c49cc.png" /></p>
+<p><img alt="stacking_process.png" src="_images/stacking_process.png" /></p>
 </section>
 <section id="cross-validation-process">
 <h3>2. Cross Validation Process<a class="headerlink" href="#cross-validation-process" title="Permalink to this heading">#</a></h3>
@@ -776,52 +776,19 @@ RMSE for test set is 1.9391973068772448
 </li>
 </ul>
 <p>We would predict one fold at a time, with a different model each time.</p>
-<p><img alt="k_fold_crossv.png" src="attachment:332f4e1d-7726-4ff5-ac91-cd873a9c7ddf.png" /></p>
+<p><img alt="k_fold_crossv.png" src="_images/k_fold_crossv.png" /></p>
 </section>
 <section id="implementing-stacking-model">
 <h3>3. Implementing Stacking Model<a class="headerlink" href="#implementing-stacking-model" title="Permalink to this heading">#</a></h3>
 <p>Lets actually implement model stacking using the 4 models we’ve used so far on our data set, Linear Regression, Random Forest, and XGBoost</p>
-<div class="cell docutils container">
+<div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>mlxtend
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: mlxtend in /opt/anaconda3/lib/python3.9/site-packages (0.22.0)
-</pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.16.2 in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (1.24.2)
-Requirement already satisfied: joblib&gt;=0.13.2 in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (1.2.0)
-Requirement already satisfied: scikit-learn&gt;=1.0.2 in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (1.2.2)
-Requirement already satisfied: matplotlib&gt;=3.0.0 in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (3.7.1)
-Requirement already satisfied: pandas&gt;=0.24.2 in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (2.0.0)
-Requirement already satisfied: setuptools in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (65.6.3)
-Requirement already satisfied: scipy&gt;=1.2.1 in /opt/anaconda3/lib/python3.9/site-packages (from mlxtend) (1.10.1)
-Requirement already satisfied: cycler&gt;=0.10 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (0.11.0)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (1.0.7)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (3.0.9)
-Requirement already satisfied: pillow&gt;=6.2.0 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (9.4.0)
-Requirement already satisfied: packaging&gt;=20.0 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (23.0)
-Requirement already satisfied: importlib-resources&gt;=3.2.0 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (5.12.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (4.39.3)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (1.4.4)
-Requirement already satisfied: python-dateutil&gt;=2.7 in /opt/anaconda3/lib/python3.9/site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (2.8.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: tzdata&gt;=2022.1 in /opt/anaconda3/lib/python3.9/site-packages (from pandas&gt;=0.24.2-&gt;mlxtend) (2023.3)
-Requirement already satisfied: pytz&gt;=2020.1 in /opt/anaconda3/lib/python3.9/site-packages (from pandas&gt;=0.24.2-&gt;mlxtend) (2022.7)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /opt/anaconda3/lib/python3.9/site-packages (from scikit-learn&gt;=1.0.2-&gt;mlxtend) (3.1.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: zipp&gt;=3.1.0 in /opt/anaconda3/lib/python3.9/site-packages (from importlib-resources&gt;=3.2.0-&gt;matplotlib&gt;=3.0.0-&gt;mlxtend) (3.11.0)
-Requirement already satisfied: six&gt;=1.5 in /opt/anaconda3/lib/python3.9/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=3.0.0-&gt;mlxtend) (1.16.0)
-</pre></div>
-</div>
-</div>
-</div>
+<p>We’ll define our training sets and our testing sets</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">bh</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;MEDV&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -846,6 +813,7 @@ Shape of y_test (152,)
 </div>
 </div>
 </div>
+<p>Now lets choose and define the models we need for our learner</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mlxtend.regressor</span> <span class="kn">import</span> <span class="n">StackingCVRegressor</span>
@@ -860,6 +828,7 @@ Shape of y_test (152,)
 </div>
 </div>
 </div>
+<p>Lets bring in our performance metrics</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -869,6 +838,7 @@ Shape of y_test (152,)
 </div>
 </div>
 </div>
+<p>And then lets now build our learner</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stack</span> <span class="o">=</span> <span class="n">StackingCVRegressor</span><span class="p">(</span><span class="n">regressors</span><span class="o">=</span><span class="p">(</span><span class="n">l_model</span><span class="p">,</span><span class="n">rf</span><span class="p">,</span> <span class="n">xgb</span><span class="p">),</span>
@@ -882,18 +852,19 @@ Shape of y_test (152,)
 <span class="n">pred</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">rmse_stack</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">)))</span>
 <span class="n">score</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rmse_stack</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE For Stacking is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rmse_stack</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2 score for Stacking is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.782717447328145
-0.8972271503948912
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE For Stacking is 2.9526287356845287
+R2 score for Stacking is 0.8842934723407595
 </pre></div>
 </div>
 </div>
 </div>
+<p>This learner has a RMSE of about 3 and a 90% accuracy score which tells us that it is able to explain 90% of the variation in our model with the test set. These are great metrics and shows how powerful our stacking model can be for gaining better insights into our data.</p>
 </section>
 </section>
 </section>
