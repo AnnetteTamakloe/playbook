@@ -8,6 +8,3 @@ Data Analytics can be confusing, but our short tutorials and insights aim to pro
 Whether you're a beginner seeking direction or an aspiring data wizard, "The Data Diaries" will be your resource for success. Let's uncover the world of data together, one step at a time. Welcome aboard!
 
 
-` `
-
-
